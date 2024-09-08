@@ -43,10 +43,8 @@ redirect_from:
 </head>
 </html>
 <p class="justified-text">
-Hello, this is MD FAHIM.
-<!--Hi, I'm a Lecturer at <a href="https://cse.iutoic-dhaka.edu/">IUT-CSE</a> and a researcher at <a href="https://www.pentabd.com/">Penta Global Limited</a>. Before joining IUT, I completed my Bachelor's in Computer Science and Engineering (CSE) from IUT and was a researcher at <a href = "https://amirl.org/">AMIRL</a>.<br><br>My research explores the interaction between different modalities, such as vision and language, and different linguistic variations, such as transliteration, code-mixing, and dialects. Currently, I am working with <a href = "https://about.uq.edu.au/experts/32270">Dr Mohammad Ali Moni</a> (<a href="https://www.uq.edu.au/">UQ</a>) on LLM applications in the biomedical domain and <a href = "https://sites.google.com/view/mirrayatimtiazhossain/home">Mir Rayat Imtiaz Hossain</a> (<a href="https://www.ubc.ca/">UBC</a>) on assistive technologies for color blindness. My research interests span:
-</p> -->
-
+Hi, I'm a Lecturer at <a href="https://cse.iutoic-dhaka.edu/">IUT-CSE</a> and a researcher at <a href="https://www.pentabd.com/">Penta Global Limited</a>. Before joining IUT, I completed my Bachelor's in Computer Science and Engineering (CSE) from IUT and was a researcher at <a href = "https://amirl.org/">AMIRL</a>.<br><br>My research explores the interaction between different modalities, such as vision and language, and different linguistic variations, such as transliteration, code-mixing, and dialects. Currently, I am working with <a href = "https://about.uq.edu.au/experts/32270">Dr Mohammad Ali Moni</a> (<a href="https://www.uq.edu.au/">UQ</a>) on LLM applications in the biomedical domain and <a href = "https://sites.google.com/view/mirrayatimtiazhossain/home">Mir Rayat Imtiaz Hossain</a> (<a href="https://www.ubc.ca/">UBC</a>) on assistive technologies for color blindness. My research interests span:
+</p>
 <!-- <ul> -->
 <!--  <li><strong>Visual Question Answering (VQA) and Multimodal Learning</strong></li>
   
@@ -66,11 +64,11 @@ Hello, this is MD FAHIM.
 </ul> -->
 <h2>News and Updates</h2>
 
+- **Aug 24:** New preprints on <a href="https://arxiv.org/abs/2408.08803">Fourier-KAN Text Classification</a> and <a href="https://arxiv.org/abs/2408.08964">Code-Mixed Bengali Sentiment Analysis</a> are available on arXiv.
 - **Jul 24:** New preprint on <a href="https://arxiv.org/abs/2407.03386">Visual Robustness Benchmark for VQA</a> is available on arXiv.
-
 - **May 24:** Finalists at Robi Datathon 3.0, Bangladesh's largest data analysis event with 3,500+ participants.
-
 - **May 24:** Multiple papers accepted in <a href="http://nlp.uned.es/exist2024/">EXIST-2024</a>.
+- **Jan 24:** <a href="https://www.sciencedirect.com/science/article/abs/pii/S1566253524000484">VQA Survey</a> is accepted in Information Fusion.
 <br>
 <h2>Research Highlights</h2>
 <h3>Visual Robustness Benchmark for Visual Question Answering (VQA)</h3>
