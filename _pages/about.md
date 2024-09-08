@@ -69,53 +69,11 @@ Hi, I am MD Fahim.
 - **May 24:** Finalists at Robi Datathon 3.0, Bangladesh's largest data analysis event with 3,500+ participants.
 - **May 24:** Multiple papers accepted in <a href="http://nlp.uned.es/exist2024/">EXIST-2024</a>.
 <br>
-<h2>Research Highlights</h2>
-<h3>Visual Robustness Benchmark for Visual Question Answering (VQA)</h3>
-
-<b>Md Farhan Ishmam</b>\*, Ishmam Tashdeed\*, Talukder Asir Saadat\*, Md Hamjajul Ashmafee, Abu Raihan Mostofa Kamal, Md Azam Hossain <br>
-<body>
-<button class="transparent-button" onclick="window.location.href='https://arxiv.org/abs/2407.03386'">
-    <a href="https://arxiv.org/abs/2407.03386"> ArVix </a>
-</button>
-
-<button class="transparent-button" onclick="window.location.href='https://github.com/ishmamt/VQA-Visual-Robustness-Benchmark'">
-    <a href="https://github.com/ishmamt/VQA-Visual-Robustness-Benchmark"> Code </a>
-</button>
-</body>
-
-<div style="text-align: center; margin-top: 10px; margin-bottom: 10px;">
-    <img src="images/overviewVRE.png" style="border: 2px solid black;">
-</div>
-
-<ul style="font-size: 16px;">
-    <li>Large-scale benchmark comprising 213,000 augmented images to challenge the robustness of VQA models against realistic visual corruptions.</li>
-    <li>Novel robustness evaluation metrics that can be aggregated into a unified metric adaptable for multiple use cases.</li>
-    <li>Experiments reveal the interplay between factors, such as model size, performance, and robustness, when subjected to real-world corruption effects.</li>
-</ul>
-
-<h3>From Image to Language: A Critical Analysis of Visual Question Answering (VQA) Approaches, Challenges, and Opportunities</h3>
-
-<b>Md Farhan Ishmam</b>, Md Sakib Hossain Shovon, Muhammad Firoz Mridha, Nilanjan Dey <br>
-<body>
-<button class="transparent-button" onclick="window.location.href='https://www.sciencedirect.com/science/article/abs/pii/S1566253524000484'">
-    <a href="https://www.sciencedirect.com/science/article/abs/pii/S1566253524000484"> Information Fusion 2024 </a>
-</button>
-</body>
-
-<div style="display: flex; justify-content: center; align-items: center; margin-top: 10px; margin-bottom: 10px; width: 100%;">
-    <img src="images/vqaOverview.PNG" style="border: 2px solid black; max-width: 50%; height: 85%;  margin-right: 10px;">
-    <img src="images/vqaApp.PNG" style="border: 2px solid black; max-width: 50%; height: auto;">
-</div>
-
-<ul style="font-size: 16px;">
-    <li> Comprehensive survey on VQA datasets, methods, metrics, challenges, and research opportunities. </li>
-    <li> New taxonomy that systematically categorizes VQA literature and multimodal learning tasks. </li>
-    <li> Novel real-world applications of VQA in domains e.g. assistive technology, education, and healthcare. </li>
-</ul>
+<h2>Selected Publications</h2>
 
 <h3>BanglaTLit: A Benchmark Dataset for Back-Transliteration of Romanized Bangla</h3>
 
-Md Fahim\*, Fariha Tanjim Shifat\*, <b>Md Farhan Ishmam</b>\*, Deeparghya Dutta Barua, Fabiha Haider, Md Sakib Ul Rahman Sourove, Farhad Alam Bhuiyan
+<b>Md Fahim</b>\*, Fariha Tanjim Shifat\*, Md Farhan Ishmam\*, Deeparghya Dutta Barua, Fabiha Haider, Md Sakib Ul Rahman Sourove, Farhad Alam Bhuiyan
 <br>
 <body>
 <button class="transparent-button" onclick="window.location.href='https://github.com/farhanishmam/BanglaTLit'">
@@ -132,6 +90,29 @@ Md Fahim\*, Fariha Tanjim Shifat\*, <b>Md Farhan Ishmam</b>\*, Deeparghya Dutta 
     <li> A romanized Bangla pre-training corpus, BanglaTLit-PT, with over 245.7k samples. </li>
     <li> Novel T5-based dual encoder architecture achieving SOTA on BanglaTLit.</li>
 </ul>
+
+<h3>ChitroJera: A Regionally Relevant Visual Question Answering Dataset for Bangla</h3>
+
+<b>Md Fahim</b>\*, Deeparghya Dutta Barua\*, Md Sakib Ul Rahman Sourove\*, *Md Farhan Ishmam*, Fariha Tanjim Shifat, Fabiha Haider, Farhad Alam Bhuiyan
+<br>
+<body>
+<button class="transparent-button" onclick="window.location.href='https://github.com/farhanishmam/ChitroJera'">
+    <a href="https://github.com/farhanishmam/ChitroJera">Code</a>
+</button> </body>
+
+<!-- <div style="display: flex; justify-content: center; align-items: center; margin-top: 10px; margin-bottom: 10px; width: 100%;">
+    <img src="images/tLitOverview.PNG" style="border: 2px solid black; max-width: 38%; height: 76%; margin-right: 10px;">
+    <img src="images/tLit.png" style="border: 2px solid black; max-width: 60%; height: auto;">
+</div>
+
+<ul style="font-size: 16px;">
+    <li> First large-scale automated Bangla transliteration, BanglaTLit, with over 42.7k samples.</li>
+    <li> A romanized Bangla pre-training corpus, BanglaTLit-PT, with over 245.7k samples. </li>
+    <li> Novel T5-based dual encoder architecture achieving SOTA on BanglaTLit.</li>
+</ul> 
+-->
+
+
 
 <!-- # Add two spaces after writing the title to go new line and two spaces before the new line. -->
 
