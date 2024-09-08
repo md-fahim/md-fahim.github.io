@@ -8,11 +8,11 @@
 
 # Basic Site Settings
 locale                   : "en-BD"
-title                    : "Farhan Ishmam"
+title                    : "Md Fahim"
 title_separator          : "-"
-name                     : &name "Md Farhan Ishmam"
+name                     : &name "Md Fahim"
 description              : &description "personal description"
-url                      : https://farhanishmam.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : https://md-fahim.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "farhanishmam/farhanishmam.github.io"
 
@@ -24,17 +24,17 @@ author:
   avatar           : "profile.jpg"
   name             : "Md Farhan Ishmam"
   pronouns         : # example: "she/her"  
-  bio              : "Lecturer (IUT-CSE), Researcher (Penta Global Ltd.)"
+  bio              : "Research Assistant, CCDS Lab & AI/ML Researcher (Penta Global Ltd.)"
   location         : # "Dhaka, Bangladesh"
-  employer         : # "Islamic University of Technology"
+  employer         : # "CCDS"
   uri              : # URL
-  email            : "farhanishmam@iut-dhaka.edu" 
+  email            : "fahimcse381@gmail.com" 
 
   # Academic websites
   arxiv            : # URL - Update with the correct link to your profile
-  googlescholar    : "https://scholar.google.com/citations?user=VIEERisAAAAJ&hl=en"
+  googlescholar    : "https://scholar.google.com/citations?user=fIQFVoUAAAAJ&hl=en"
   impactstory      : # URL
-  orcid            : 0009-0004-3725-0342
+  orcid            : # 0009-0004-3725-0342
   semantic         : # URL
   pubmed           : # "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
   researchgate     : # URL
@@ -43,8 +43,8 @@ author:
   bitbucket        : # Username - Update with your username on the site
   codepen          : # Username
   dribbble         : # Username
-  github           : "farhanishmam"
-  kaggle           : #"aplycaebous"   
+  github           : "md-fahim"
+  kaggle           : "https://www.kaggle.com/mdfahimreshm"   
 
   # Social media
   bluesky          : #"bsky.app" # Replace this with you Bluesky username
@@ -56,7 +56,7 @@ author:
   keybase          : # Username
   instagram        : # Username
   lastfm           : # Username
-  linkedin         : "farhan-ishmam"
+  linkedin         : #"farhan-ishmam"
   mastodon         : # URL
   medium           : # URL
   pinterest        : # Username
