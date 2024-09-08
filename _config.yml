@@ -14,14 +14,14 @@ name                     : &name "Md Fahim"
 description              : &description "personal description"
 url                      : https://md-fahim.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
-repository               : "farhanishmam/farhanishmam.github.io"
+repository               : "md-fahim/md-fahim.github.io/"
 
 # Site Author - The following control what appear as part of the author content on the side bar.
 #               If a field is blank the icon and link will not appear, otherwise it will be shown.
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : #"profile.jpg"
+  avatar           : "Md_Fahim_PP.jpg"
   name             : "Md Fahim"
   pronouns         : # example: "she/her"  
   bio              : "Research Assistant, CCDS Lab & AI/ML Researcher (Penta Global Ltd.)"
