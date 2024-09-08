@@ -65,8 +65,11 @@ Hello, this is MD FAHIM.
   <p class="justified-text"> Addressing Western bias of NLP models, challenges in multicultural settings, and the complexities of detecting and mitigating diverse forms of hateful content, such as sexism. </p>
 </ul> -->
 <h2>News and Updates</h2>
+
 - **Jul 24:** New preprint on <a href="https://arxiv.org/abs/2407.03386">Visual Robustness Benchmark for VQA</a> is available on arXiv.
+
 - **May 24:** Finalists at Robi Datathon 3.0, Bangladesh's largest data analysis event with 3,500+ participants.
+
 - **May 24:** Multiple papers accepted in <a href="http://nlp.uned.es/exist2024/">EXIST-2024</a>.
 <br>
 <h2>Research Highlights</h2>
