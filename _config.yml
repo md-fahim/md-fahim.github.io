@@ -21,8 +21,8 @@ repository               : "farhanishmam/farhanishmam.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.jpg"
-  name             : "Md Farhan Ishmam"
+  avatar           : #"profile.jpg"
+  name             : "Md Fahim"
   pronouns         : # example: "she/her"  
   bio              : "Research Assistant, CCDS Lab & AI/ML Researcher (Penta Global Ltd.)"
   location         : # "Dhaka, Bangladesh"
@@ -44,7 +44,7 @@ author:
   codepen          : # Username
   dribbble         : # Username
   github           : "md-fahim"
-  kaggle           : "https://www.kaggle.com/mdfahimreshm"   
+  kaggle           : "mdfahimreshm"   
 
   # Social media
   bluesky          : #"bsky.app" # Replace this with you Bluesky username
