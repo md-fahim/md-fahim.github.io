@@ -120,4 +120,4 @@ Hi, I am MD Fahim.
     <li> New taxonomy that systematically categorizes VQA literature and multimodal learning tasks. </li>
     <li> Novel real-world applications of VQA in domains e.g. assistive technology, education, and healthcare. </li>
 </ul>
--- >
+-->
