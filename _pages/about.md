@@ -100,18 +100,6 @@ Hi, I am MD Fahim.
     <a href="https://github.com/farhanishmam/ChitroJera">Code</a>
 </button> </body>
 
-<!-- <div style="display: flex; justify-content: center; align-items: center; margin-top: 10px; margin-bottom: 10px; width: 100%;">
-    <img src="images/tLitOverview.PNG" style="border: 2px solid black; max-width: 38%; height: 76%; margin-right: 10px;">
-    <img src="images/tLit.png" style="border: 2px solid black; max-width: 60%; height: auto;">
-</div>
-
-<ul style="font-size: 16px;">
-    <li> First large-scale automated Bangla transliteration, BanglaTLit, with over 42.7k samples.</li>
-    <li> A romanized Bangla pre-training corpus, BanglaTLit-PT, with over 245.7k samples. </li>
-    <li> Novel T5-based dual encoder architecture achieving SOTA on BanglaTLit.</li>
-</ul> 
--->
-
 <!-- A full code for completed paper (Paper + Code)
 <h3>From Image to Language: A Critical Analysis of Visual Question Answering (VQA) Approaches, Challenges, and Opportunities</h3>
 
