@@ -93,7 +93,7 @@ Hi, I am MD Fahim.
 
 <h3>ChitroJera: A Regionally Relevant Visual Question Answering Dataset for Bangla</h3>
 
-<b>Md Fahim</b>\*, Deeparghya Dutta Barua\*, Md Sakib Ul Rahman Sourove\*, *Md Farhan Ishmam*, Fariha Tanjim Shifat, Fabiha Haider, Farhad Alam Bhuiyan
+<b>Md Fahim</b>\*, Deeparghya Dutta Barua\*, Md Sakib Ul Rahman Sourove\*, Md Farhan Ishmam, Fariha Tanjim Shifat, Fabiha Haider, Farhad Alam Bhuiyan
 <br>
 <body>
 <button class="transparent-button" onclick="window.location.href='https://github.com/farhanishmam/ChitroJera'">
@@ -112,61 +112,24 @@ Hi, I am MD Fahim.
 </ul> 
 -->
 
+<!-- A full code for completed paper (Paper + Code)
+<h3>From Image to Language: A Critical Analysis of Visual Question Answering (VQA) Approaches, Challenges, and Opportunities</h3>
 
-
-<!-- # Add two spaces after writing the title to go new line and two spaces before the new line. -->
-
-<!-- ## Visual Question Answering (VQA)
-
-- **Visual Robustness Benchmark for Visual Question Answering (VQA)**
-   _In-review, Preprint Available_
-   **Md Farhan Ishmam**\*, Ishmam Tashdeed\*, Talukder Asir Saadat\*, Md Hamjajul Ashmafee, Abu Raihan Mostofa Kamal, Md Azam Hossain
-   [Preprint](https://arxiv.org/abs/2407.03386) | [Code](https://github.com/ishmamt/VQA-Visual-Robustness-Benchmark)
-  <button class="transparent-button" onclick="window.location.href='https://your-link-here.com'">
-  ArVix
-  </button>
-
-<button class="transparent-button" onclick="window.location.href='https://your-link-here.com'">
-    Code
+<b>Md Farhan Ishmam</b>, Md Sakib Hossain Shovon, Muhammad Firoz Mridha, Nilanjan Dey <br>
+<body>
+<button class="transparent-button" onclick="window.location.href='https://www.sciencedirect.com/science/article/abs/pii/S1566253524000484'">
+    <a href="https://www.sciencedirect.com/science/article/abs/pii/S1566253524000484"> Information Fusion 2024 </a>
 </button>
+</body>
 
-- **ChitroJera: A Regionally Relevant Visual Question Answering Dataset for Bangla**
-  _In-review_
-  Md Fahim\*, Deeparghya Dutta Barua\*, Md Sakib Ul Rahman Sourove\*, **Md Farhan Ishmam**, Fariha Tanjim Shifat, Fabiha Haider, Farhad Alam Bhuiyan
-  [Code](https://github.com/farhanishmam/ChitroJera)
+<div style="display: flex; justify-content: center; align-items: center; margin-top: 10px; margin-bottom: 10px; width: 100%;">
+    <img src="images/vqaOverview.PNG" style="border: 2px solid black; max-width: 50%; height: 85%;  margin-right: 10px;">
+    <img src="images/vqaApp.PNG" style="border: 2px solid black; max-width: 50%; height: auto;">
+</div>
 
-- **From Image to Language: A Critical Analysis of Visual Question Answering (VQA) Approaches, Challenges, and Opportunities**
-  [_Information Fusion Journal_](https://www.sciencedirect.com/journal/information-fusion) | _2024_
-  **Md Farhan Ishmam**, Md Sakib Hossain Shovon, Muhammad Firoz Mridha, Nilanjan Dey
-  [Paper](https://www.sciencedirect.com/science/article/abs/pii/S1566253524000484) | [Preprint](https://arxiv.org/abs/2311.00308)
-
-## Transliteration and Code-Mixing
-
-- **BnSentMix: A Diverse Bengali-English Code-Mixed Dataset for Sentiment Analysis**
-  _In-review, Preprint Available_
-  Sadia Alam, **Md Farhan Ishmam**, Navid Hasin Alvee, Md Shahnewaz Siddique, Md Azam Hossain, Abu Raihan Mostofa Kamal
-  [Preprint](https://arxiv.org/abs/2408.08964) | [Code](https://github.com/Nishita2000/BnSentMix/)
-
-- **BanglaTLit: A Benchmark Dataset for Back-Transliteration of Romanized Bangla**
-  _In-review_
-  Md Fahim\*, Fariha Tanjim Shifat\*, **Md Farhan Ishmam**\*, Deeparghya Dutta Barua, Fabiha Haider, Md Sakib Ul Rahman Sourove, Farhad Alam Bhuiyan
-  [Code](https://github.com/farhanishmam/BanglaTLit)
-
-## Harmful Content
-
-- **Penta NLP at EXIST 2024 Task 1–3: Sexism Identification, Source Intention, Sexism Categorization In Tweets**
-  [_EXIST at Conference and Labs of the Evaluation Forum (CLEF)_](http://nlp.uned.es/exist2024/) | _2024_
-  Fariha Tanjim Shifat, Fabiha Haider, Md Sakib Ul Rahman Sourove, Deeparghya Dutta Barua, **Md Farhan Ishmam**, Md Fahim, Farhad Alam Bhuiyan
-  [Paper](https://ceur-ws.org/Vol-3740/paper-114.pdf) | [Code](https://github.com/farhanishmam/Penta-Exist-2024)
-
-- **Penta ML at EXIST 2024: Tagging Sexism in Online Multimodal Content With Attention-enhanced Modal Context**
-  [_EXIST at Conference and Labs of the Evaluation Forum (CLEF)_](http://nlp.uned.es/exist2024/) | _2024_
-  Deeparghya Dutta Barua, Md Sakib Ul Rahman Sourove, Fabiha Haider, Fariha Tanjim Shifat, **Md Farhan Ishmam**, Md Fahim, Farhad Alam Bhuiyan
-  [Paper](https://ceur-ws.org/Vol-3740/paper-90.pdf) | [Code](https://github.com/farhanishmam/Penta-Exist-2024)
-
-## Text Classification Techniques
-
-- **Leveraging FourierKAN Classification Head for Pre-Trained Transformer-based Text Classification**
-  _Preprint Available_
-  Abdullah Al Imran\*, **Md Farhan Ishmam**\*
-  [Preprint](https://arxiv.org/abs/2408.08803) | [Code](https://github.com/abdalimran/FR-KAN-Text-Classification) -->
+<ul style="font-size: 16px;">
+    <li> Comprehensive survey on VQA datasets, methods, metrics, challenges, and research opportunities. </li>
+    <li> New taxonomy that systematically categorizes VQA literature and multimodal learning tasks. </li>
+    <li> Novel real-world applications of VQA in domains e.g. assistive technology, education, and healthcare. </li>
+</ul>
+-- >
