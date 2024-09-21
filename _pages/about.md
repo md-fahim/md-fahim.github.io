@@ -96,7 +96,7 @@ Hi, I am MD Fahim.
 
 <h3>Improving the Performance of Transformer-based Models Over Classical Baselines in Multiple Transliterated Languages</h3> <i> ECAI-2024 [Full Talk Presentation] </i>
 
-Fahim Ahmed*, <b>Md Fahim</b>*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur Rahman
+Fahim Ahmed\*, <b>Md Fahim</b>\*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur Rahman
 <br>
 <body>
 <button class="transparent-button" onclick="window.location.href='https://www.ecai2024.eu/programme/accepted-papers#main-track'">
