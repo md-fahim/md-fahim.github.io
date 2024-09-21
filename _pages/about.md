@@ -68,7 +68,7 @@ Hi, I am MD Fahim.
 
 - **September 24:** Paper accepted in <a href="https://2024.emnlp.org/">EMNLP 2024 - Findings</a> 😍😍 🎉🎉
 - **August 24:** Two papers have been accepted in <a href="https://icpr2024.org/index.html">ICPR 2024</a>
-- **July 24:** One paper has been accepted in <a href="https://www.ecai2024.eu/calls/main-track">ECAI 2024</a>
+- **July 24:** One paper has been accepted in <a href="https://www.ecai2024.eu/calls/main-track">ECAI 2024</a> 😍
 - **May 24:** Finalists at Robi Datathon 3.0, Bangladesh's largest data analysis event with 3,500+ participants.
 - **May 24:** Two shared task papers accepted in <a href="http://nlp.uned.es/exist2024/">EXIST 2024</a>.
 <br>
