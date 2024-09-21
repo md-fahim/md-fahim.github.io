@@ -74,7 +74,7 @@ Hi, I am MD Fahim.
 <br>
 <h2>Selected Publications</h2>
 
-<h3>BanglaTLit: A Benchmark Dataset for Back-Transliteration of Romanized Bangla <i> EMNLP-2024 [Findings] </i> </h3>
+<h3>BanglaTLit: A Benchmark Dataset for Back-Transliteration of Romanized Bangla </h3> <i> EMNLP-2024 [Findings] </i>
 
 <b>Md Fahim</b>\*, Fariha Tanjim Shifat\*, Md Farhan Ishmam\*, Deeparghya Dutta Barua, Fabiha Haider, Md Sakib Ul Rahman Sourove, Farhad Alam Bhuiyan
 <br>
