@@ -94,6 +94,16 @@ Hi, I am MD Fahim.
     <li> Novel T5-based dual encoder architecture achieving SOTA on BanglaTLit.</li>
 </ul>
 
+<h3>Improving the Performance of Transformer-based Models Over Classical Baselines in Multiple Transliterated Languages</h3> <i> ECAI-2024 [Full Talk Presentation] </i>
+
+Fahim Ahmed*, <b>Md Fahim</b>*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur Rahman
+<br>
+<body>
+<button class="transparent-button" onclick="window.location.href='https://www.ecai2024.eu/programme/accepted-papers#main-track'">
+    <a href="https://www.ecai2024.eu/programme/accepted-papers#main-track">Paper</a>
+</button> </body>
+
+
 <h3>ChitroJera: A Regionally Relevant Visual Question Answering Dataset for Bangla</h3>
 
 <b>Md Fahim</b>\*, Deeparghya Dutta Barua\*, Md Sakib Ul Rahman Sourove\*, Md Farhan Ishmam, Fariha Tanjim Shifat, Fabiha Haider, Farhad Alam Bhuiyan
