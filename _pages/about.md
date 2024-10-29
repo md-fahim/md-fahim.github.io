@@ -43,9 +43,9 @@ redirect_from:
 </head>
 </html>
 <p class="justified-text">
-Hello, I’m MD Fahim. I am currently working as a Research Assistant in the <a href="https://ccds.ai/"> CCDS Lab </a> at IUB, and I also work part-time as an AI/ML Researcher at <a href="https://www.pentabd.com/">Penta Global Limited</a>. I earned my B.Sc. degree in Computer Science and Engineering from the University of Dhaka. <br>
+Hello, I’m Md Fahim. I am currently working as a Research Assistant in the <a href="https://ccds.ai/"> CCDS Lab </a> at IUB, and I also work part-time as an AI/ML Researcher at <a href="https://www.pentabd.com/">Penta Global Limited</a>. I earned my B.Sc. degree in Computer Science and Engineering from the University of Dhaka. <br>
 
-My research interests are primarily in Natural Language Processing (NLP) and multimodality. In the field of NLP, I focus on areas such as low-resource languages, hate speech detection, and improving the inference speed of language models. In multimodal research, I am engaged in projects related to visual question answering, modality alignment, addressing modality gaps, and developing multimodal adapters. Additionally, I have explored topics Variational Autoencoders (VAEs), Posterior Collapse, State Space Models (SSMs), and Diffusion models. 
+My research interests are primarily in Natural Language Processing (NLP) and Multimodality. In the field of NLP, I focus on areas such as low-resource languages, hate speech detection, and improving the inference speed of language models. In multimodal research, I am engaged in projects related to visual question answering, modality alignment, addressing modality gaps, and developing multimodal adapters. Additionally, I have also explored several important & popular topics Variational Autoencoders (VAEs), Posterior Collapse, State Space Models (SSMs), and Diffusion models. 
 </p>
 <!-- <ul> -->
 <!--  <li><strong>Visual Question Answering (VQA) and Multimodal Learning</strong></li>
