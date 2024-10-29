@@ -43,9 +43,9 @@ redirect_from:
 </head>
 </html>
 <p class="justified-text">
-Hi, I am MD Fahim.
-<!-- I'm a Lecturer at <a href="https://cse.iutoic-dhaka.edu/">IUT-CSE</a> and a researcher at <a href="https://www.pentabd.com/">Penta Global Limited</a>. Before joining IUT, I completed my Bachelor's in Computer Science and Engineering (CSE) from IUT and was a researcher at <a href = "https://amirl.org/">AMIRL</a>.<br><br>My research explores the interaction between different modalities, such as vision and language, and different linguistic variations, such as transliteration, code-mixing, and dialects. Currently, I am working with <a href = "https://about.uq.edu.au/experts/32270">Dr Mohammad Ali Moni</a> (<a href="https://www.uq.edu.au/">UQ</a>) on LLM applications in the biomedical domain and <a href = "https://sites.google.com/view/mirrayatimtiazhossain/home">Mir Rayat Imtiaz Hossain</a> (<a href="https://www.ubc.ca/">UBC</a>) on assistive technologies for color blindness. My research interests span:
--->
+Hello, I’m MD Fahim. I currently serve as a Research Assistant in the <a href="https://ccds.ai/"> CCDS Lab </a> at IUB, and I also work part-time as an AI/ML Researcher at <a href="https://www.pentabd.com/">Penta Global Limited</a>. I earned my B.Sc. degree in Computer Science and Engineering from the University of Dhaka. <br>
+
+My research interests are primarily in Natural Language Processing (NLP) and multimodality. In the field of NLP, I focus on areas such as low-resource languages, hate speech detection, and improving the inference speed of language models. In multimodal research, I am engaged in projects related to visual question answering, modality alignment, addressing modality gaps, and developing modality adapters. Additionally, I have explored topics like Variational Autoencoders (VAEs), posterior collapse, and diffusion models. 
 </p>
 <!-- <ul> -->
 <!--  <li><strong>Visual Question Answering (VQA) and Multimodal Learning</strong></li>
@@ -64,6 +64,7 @@ Hi, I am MD Fahim.
   
   <p class="justified-text"> Addressing Western bias of NLP models, challenges in multicultural settings, and the complexities of detecting and mitigating diverse forms of hateful content, such as sexism. </p>
 </ul> -->
+
 <h2>News and Updates</h2>
 
 - **September 2024:** Paper accepted in <a href="https://2024.emnlp.org/">EMNLP 2024 - Findings</a> 😍🎉
@@ -116,6 +117,7 @@ Fahim Ahmed\*, <b>Md Fahim</b>\*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur R
 
 <h3>Aambela at BLP-2023 Task 2: Enhancing BanglaBERT Performance for Bangla Sentiment Analysis Task with In Task Pretraining and Adversarial Weight Perturbation</h3>
 <i> <a href="https://blp-workshop.github.io/"> [Best Paper Award] </a> </i>
+<br>
 <b>Md Fahim</b>\
 <br>
 <body>
@@ -126,7 +128,7 @@ Fahim Ahmed\*, <b>Md Fahim</b>\*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur R
 
 <h3>ChitroJera: A Regionally Relevant Visual Question Answering Dataset for Bangla</h3>
 
-Deeparghya Dutta Barua\*, Md Sakib Ul Rahman Sourove\*, Md Farhan Ishmam, Fabiha Haider, Fariha Tanjim Shifat, <b>Md Fahim</b>\*, Farhad Alam Bhuiyan
+Deeparghya Dutta Barua\*, Md Sakib Ul Rahman Sourove\*, Md Farhan Ishmam\*, Fabiha Haider, Fariha Tanjim Shifat, <b>Md Fahim</b>, Farhad Alam Bhuiyan
 <br>
 <body>
 <button class="transparent-button" onclick="window.location.href='https://arxiv.org/abs/2410.14991'">
