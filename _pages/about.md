@@ -94,7 +94,7 @@ Hi, I am MD Fahim.
     <li> Novel T5-based dual encoder architecture achieving SOTA on BanglaTLit.</li>
 </ul>
 
-<h3>Improving the Performance of Transformer-based Models Over Classical Baselines in Multiple Transliterated Languages</h3> <i> ECAI-2024 [Full Talk Presentation] </i>
+<h3>Improving the Performance of Transformer-based Models Over Classical Baselines in Multiple Transliterated Languages</h3> <i> <a href="https://www.ecai2024.eu/programme/schedule"> ECAI-2024 [Full Talk Presentation] </a> </i>
 
 Fahim Ahmed\*, <b>Md Fahim</b>\*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur Rahman
 <br>
@@ -103,6 +103,26 @@ Fahim Ahmed\*, <b>Md Fahim</b>\*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur R
     <a href="https://ebooks.iospress.nl/doi/10.3233/FAIA240972">Paper</a>
 </button> </body>
 
+
+<h3>HateXplain Space Model: Fusing Robustness with Explainability in Hate Speech Analysis</h3>
+
+<b>Md Fahim</b>\*,Md Shihab Shahriar, Mohammad Ruhul Amin
+<br>
+<body>
+<button class="transparent-button" onclick="window.location.href='https://neurips2023-enlsp.github.io/papers/paper_91.pdf'">
+    <a href="https://neurips2023-enlsp.github.io/papers/paper_91.pdf">Paper</a>
+</button> 
+</body>
+
+<h3>Aambela at BLP-2023 Task 2: Enhancing BanglaBERT Performance for Bangla Sentiment Analysis Task with In Task Pretraining and Adversarial Weight Perturbation</h3>
+<i> <a href="https://blp-workshop.github.io/"> [Best Paper Award] </a> </i>
+<b>Md Fahim</b>\
+<br>
+<body>
+<button class="transparent-button" onclick="window.location.href='https://aclanthology.org/2023.banglalp-1.42.pdf'">
+    <a href="https://aclanthology.org/2023.banglalp-1.42.pdf">Paper</a>
+</button> 
+</body>
 
 <h3>ChitroJera: A Regionally Relevant Visual Question Answering Dataset for Bangla</h3>
 
@@ -125,6 +145,7 @@ Deeparghya Dutta Barua\*, Md Sakib Ul Rahman Sourove\*, Md Farhan Ishmam, Fabiha
 <button class="transparent-button" onclick="window.location.href='https://www.sciencedirect.com/science/article/abs/pii/S1566253524000484'">
     <a href="https://www.sciencedirect.com/science/article/abs/pii/S1566253524000484"> Information Fusion 2024 </a>
 </button>
+
 </body>
 
 <div style="display: flex; justify-content: center; align-items: center; margin-top: 10px; margin-bottom: 10px; width: 100%;">
