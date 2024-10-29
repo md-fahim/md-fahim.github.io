@@ -66,7 +66,7 @@ Hi, I am MD Fahim.
 </ul> -->
 <h2>News and Updates</h2>
 
-- **September 2024:** Paper accepted in <a href="https://2024.emnlp.org/">EMNLP 2024 - Findings</a> 😍😍 🎉🎉
+- **September 2024:** Paper accepted in <a href="https://2024.emnlp.org/">EMNLP 2024 - Findings</a> 😍🎉
 - **August 2024:** Two papers have been accepted in <a href="https://icpr2024.org/index.html">ICPR 2024</a>
 - **July 2024:** One paper has been accepted in <a href="https://www.ecai2024.eu/calls/main-track">ECAI 2024</a> 😍
 - **May 2024:** Finalists at Robi Datathon 3.0, Bangladesh's largest data analysis event with 3,500+ participants.
@@ -99,19 +99,23 @@ Hi, I am MD Fahim.
 Fahim Ahmed\*, <b>Md Fahim</b>\*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur Rahman
 <br>
 <body>
-<button class="transparent-button" onclick="window.location.href='https://www.ecai2024.eu/programme/accepted-papers#main-track'">
-    <a href="https://www.ecai2024.eu/programme/accepted-papers#main-track">Paper</a>
+<button class="transparent-button" onclick="window.location.href='https://ebooks.iospress.nl/doi/10.3233/FAIA240972'">
+    <a href="https://ebooks.iospress.nl/doi/10.3233/FAIA240972">Paper</a>
 </button> </body>
 
 
 <h3>ChitroJera: A Regionally Relevant Visual Question Answering Dataset for Bangla</h3>
 
-<b>Md Fahim</b>\*, Deeparghya Dutta Barua\*, Md Sakib Ul Rahman Sourove\*, Md Farhan Ishmam, Fariha Tanjim Shifat, Fabiha Haider, Farhad Alam Bhuiyan
+Deeparghya Dutta Barua\*, Md Sakib Ul Rahman Sourove\*, Md Farhan Ishmam, Fabiha Haider, Fariha Tanjim Shifat, <b>Md Fahim</b>\*, Farhad Alam Bhuiyan
 <br>
 <body>
+<button class="transparent-button" onclick="window.location.href='https://arxiv.org/abs/2410.14991'">
+    <a href="https://arxiv.org/abs/2410.14991">Paper</a>
+</button> 
 <button class="transparent-button" onclick="window.location.href='https://github.com/farhanishmam/ChitroJera'">
     <a href="https://github.com/farhanishmam/ChitroJera">Code</a>
-</button> </body>
+</button> 
+</body>
 
 <!-- A full code for completed paper (Paper + Code)
 <h3>From Image to Language: A Critical Analysis of Visual Question Answering (VQA) Approaches, Challenges, and Opportunities</h3>
