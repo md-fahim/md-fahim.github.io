@@ -116,13 +116,24 @@ Fahim Ahmed\*, <b>Md Fahim</b>\*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur R
 </body>
 
 <h3>Aambela at BLP-2023 Task 2: Enhancing BanglaBERT Performance for Bangla Sentiment Analysis Task with In Task Pretraining and Adversarial Weight Perturbation</h3>
-<i> <a href="https://blp-workshop.github.io/"> [Best Paper Award] </a> </i>
+<i> BLP Workshop @ EMNLP<a href="https://blp-workshop.github.io/"> [Best Paper Award] </a> </i>
 <br>
-<b>Md Fahim</b>\
+<b>Md Fahim</b>
 <br>
 <body>
 <button class="transparent-button" onclick="window.location.href='https://aclanthology.org/2023.banglalp-1.42.pdf'">
     <a href="https://aclanthology.org/2023.banglalp-1.42.pdf">Paper</a>
+</button> 
+</body>
+
+<h3>TinyLLM Efficacy in Low-Resource Language: An Experiment on Bangla Text Classification Task</h3>
+<i> ICPR 2024<a href="https://icpr2024.org/pdf/Accepted%20Oral%20Papers%20-%20R1%20and%20R2.pdf"> [Oral Presentation] </a> </i>
+<br>
+Farhan Noor Dehan*, <b>Md Fahim</b>*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur Rahman
+<br>
+<body>
+<button class="transparent-button" onclick="window.location.href='https://icpr2024.org/index.html'">
+    <a href="https://icpr2024.org/index.html">Paper</a>
 </button> 
 </body>
 
