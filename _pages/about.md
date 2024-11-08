@@ -107,7 +107,7 @@ Fahim Ahmed\*, <b>Md Fahim</b>\*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur R
 
 <h3>HateXplain Space Model: Fusing Robustness with Explainability in Hate Speech Analysis</h3>
 
-<b>Md Fahim</b>\*,Md Shihab Shahriar, Mohammad Ruhul Amin
+<b>Md Fahim</b>,Md Shihab Shahriar, Mohammad Ruhul Amin
 <br>
 <body>
 <button class="transparent-button" onclick="window.location.href='https://neurips2023-enlsp.github.io/papers/paper_91.pdf'">
@@ -129,7 +129,7 @@ Fahim Ahmed\*, <b>Md Fahim</b>\*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur R
 <h3>TinyLLM Efficacy in Low-Resource Language: An Experiment on Bangla Text Classification Task</h3>
 <i> ICPR 2024<a href="https://icpr2024.org/pdf/Accepted%20Oral%20Papers%20-%20R1%20and%20R2.pdf"> [Oral Presentation] </a> </i>
 <br>
-Farhan Noor Dehan*, <b>Md Fahim</b>*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur Rahman
+Farhan Noor Dehan*, <b>Md Fahim</b>\*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur Rahman
 <br>
 <body>
 <button class="transparent-button" onclick="window.location.href='https://icpr2024.org/index.html'">
