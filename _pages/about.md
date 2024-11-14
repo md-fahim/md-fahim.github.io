@@ -77,7 +77,7 @@ My research interests are primarily in Natural Language Processing (NLP) and Mul
 
 <h3>BanglaTLit: A Benchmark Dataset for Back-Transliteration of Romanized Bangla </h3> <i> EMNLP-2024 [Findings] </i>
 
-<b>Md Fahim</b>\*, Fariha Tanjim Shifat\*, Md Farhan Ishmam\*, Deeparghya Dutta Barua, Fabiha Haider, Md Sakib Ul Rahman Sourove, Farhad Alam Bhuiyan
+<b>Md Fahim</b>\*, Fariha Tanjim Shifat\*, Fabiha Haider\*, Deeparghya Dutta Barua, Md Sakib Ul Rahman Sourove, Md Farhan Ishmam, Farhad Alam Bhuiyan
 <br>
 <body>
 <button class="transparent-button" onclick="window.location.href='https://aclanthology.org/2024.findings-emnlp.859.pdf'">
