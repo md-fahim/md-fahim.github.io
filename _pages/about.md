@@ -80,6 +80,10 @@ My research interests are primarily in Natural Language Processing (NLP) and Mul
 <b>Md Fahim</b>\*, Fariha Tanjim Shifat\*, Md Farhan Ishmam\*, Deeparghya Dutta Barua, Fabiha Haider, Md Sakib Ul Rahman Sourove, Farhad Alam Bhuiyan
 <br>
 <body>
+<button class="transparent-button" onclick="window.location.href='https://aclanthology.org/2024.findings-emnlp.859.pdf'">
+    <a href="https://aclanthology.org/2024.findings-emnlp.859.pdf">Paper</a>
+</button> </body>
+<body>
 <button class="transparent-button" onclick="window.location.href='https://github.com/farhanishmam/BanglaTLit'">
     <a href="https://github.com/farhanishmam/BanglaTLit">Code</a>
 </button> </body>
