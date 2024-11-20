@@ -131,7 +131,7 @@ Fahim Ahmed\*, <b>Md Fahim</b>\*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur R
 </body>
 
 <h3>TinyLLM Efficacy in Low-Resource Language: An Experiment on Bangla Text Classification Task</h3>
-<i> ICPR 2024<a href="https://icpr2024.org/pdf/Accepted%20Oral%20Papers%20-%20R1%20and%20R2.pdf"> [Oral Presentation] </a> </i>
+<i> ICPR 2024<a href="https://icpr2024.org/pdf/Oral%20Papers.pdf"> [Oral Presentation] </a> </i>
 <br>
 Farhan Noor Dehan*, <b>Md Fahim</b>\*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur Rahman
 <br>
