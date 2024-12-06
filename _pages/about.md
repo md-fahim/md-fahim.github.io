@@ -136,8 +136,8 @@ Fahim Ahmed\*, <b>Md Fahim</b>\*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur R
 Farhan Noor Dehan*, <b>Md Fahim</b>\*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur Rahman
 <br>
 <body>
-<button class="transparent-button" onclick="window.location.href='https://icpr2024.org/index.html'">
-    <a href="https://icpr2024.org/index.html">Paper</a>
+<button class="transparent-button" onclick="window.location.href='https://link.springer.com/chapter/10.1007/978-3-031-78495-8_30'">
+    <a href="https://link.springer.com/chapter/10.1007/978-3-031-78495-8_30">Paper</a>
 </button> 
 </body>
 
