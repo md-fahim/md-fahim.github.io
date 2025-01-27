@@ -75,7 +75,7 @@ My research interests are primarily in Natural Language Processing (NLP) and Mul
 <br>
 <h2>Selected Publications</h2>
 
-<h3>1. BanglaTLit: A Benchmark Dataset for Back-Transliteration of Romanized Bangla </h3> <i> EMNLP-2024 [Findings] </i> <a href="https://aclanthology.org/2024.findings-emnlp.859.pdf">Paper</a>
+<h3>1. BanglaTLit: A Benchmark Dataset for Back-Transliteration of Romanized Bangla </h3> <i> EMNLP-2024 [Findings] </i> <a href="https://aclanthology.org/2024.findings-emnlp.859.pdf">[Paper]</a>
 
 <i> Authors - </i> <b>Md Fahim</b>\*, Fariha Tanjim Shifat\*, Fabiha Haider\*, Deeparghya Dutta Barua, Md Sakib Ul Rahman Sourove, Md Farhan Ishmam, Farhad Alam Bhuiyan
 
@@ -100,7 +100,7 @@ My research interests are primarily in Natural Language Processing (NLP) and Mul
     <li> Novel T5-based dual encoder architecture achieving SOTA on BanglaTLit.</li>
 </ul> -->
 
-<h3>2. Improving the Performance of Transformer-based Models Over Classical Baselines in Multiple Transliterated Languages</h3> <i> <a href="https://www.ecai2024.eu/programme/schedule"> ECAI-2024 [Full Talk Presentation] </a> </i> <a href="https://ebooks.iospress.nl/doi/10.3233/FAIA240972">Paper</a>
+<h3>2. Improving the Performance of Transformer-based Models Over Classical Baselines in Multiple Transliterated Languages</h3> <i> <a href="https://www.ecai2024.eu/programme/schedule" style="color: darkred;"> ECAI-2024 [Full Talk Presentation] </a> </i> <a href="https://ebooks.iospress.nl/doi/10.3233/FAIA240972">[Paper]</a>
 
 <i> Authors - </i>Fahim Ahmed\*, <b>Md Fahim</b>\*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur Rahman
 <!-- <body>
@@ -117,9 +117,10 @@ My research interests are primarily in Natural Language Processing (NLP) and Mul
     <a href="https://arxiv.org/abs/2410.13281">Paper [Preprint]</a>
 </button> </body> -->
 
-<h3>4. HateXplain Space Model: Fusing Robustness with Explainability in Hate Speech Analysis</h3> <a href="https://neurips2023-enlsp.github.io/papers/paper_91.pdf">Paper</a>
+<h3>4. HateXplain Space Model: Fusing Robustness with Explainability in Hate Speech Analysis</h3> <a href="https://neurips2023-enlsp.github.io/papers/paper_91.pdf">[Paper]</a>
 
 <i> Authors - </i><b>Md Fahim</b>,Md Shihab Shahriar, Mohammad Ruhul Amin
+
 <!-- <br>
 <body>
 <button class="transparent-button" onclick="window.location.href='https://neurips2023-enlsp.github.io/papers/paper_91.pdf'">
@@ -128,9 +129,10 @@ My research interests are primarily in Natural Language Processing (NLP) and Mul
 </body> -->
 
 <h3>5. Aambela at BLP-2023 Task 2: Enhancing BanglaBERT Performance for Bangla Sentiment Analysis Task with In Task Pretraining and Adversarial Weight Perturbation</h3>
-<i> BLP Workshop @ EMNLP<a href="https://blp-workshop.github.io/"> [Best Paper Award] </a> </i> <a href="https://aclanthology.org/2023.banglalp-1.42.pdf">Paper</a>
+<i> BLP Workshop @ EMNLP<a href="https://blp-workshop.github.io/" style="color: darkred;"> [Best Paper Award] </a> </i> <a href="https://aclanthology.org/2023.banglalp-1.42.pdf">[Paper]</a>
 
 <i> Authors - </i><b>Md Fahim</b>
+
 <!-- <br>
 <body>
 <button class="transparent-button" onclick="window.location.href='https://aclanthology.org/2023.banglalp-1.42.pdf'">
@@ -139,9 +141,10 @@ My research interests are primarily in Natural Language Processing (NLP) and Mul
 </body> -->
 
 <h3>6. TinyLLM Efficacy in Low-Resource Language: An Experiment on Bangla Text Classification Task</h3>
-<i> ICPR 2024<a href="https://icpr2024.org/pdf/Oral%20Papers.pdf"> [Oral Presentation] </a> </i> <a href="https://link.springer.com/chapter/10.1007/978-3-031-78495-8_30">Paper</a>
+<i> ICPR 2024<a href="https://icpr2024.org/pdf/Oral%20Papers.pdf" style="color: darkred;"> [Oral Presentation] </a> </i> <a href="https://link.springer.com/chapter/10.1007/978-3-031-78495-8_30">[Paper]</a>
 
 <i> Authors - </i>Farhan Noor Dehan*, <b>Md Fahim</b>\*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur Rahman
+
 <!-- <br>
 <body>
 <button class="transparent-button" onclick="window.location.href='https://link.springer.com/chapter/10.1007/978-3-031-78495-8_30'">
@@ -152,6 +155,7 @@ My research interests are primarily in Natural Language Processing (NLP) and Mul
 <h3>7. ChitroJera: A Regionally Relevant Visual Question Answering Dataset for Bangla</h3> <a href="https://arxiv.org/abs/2410.14991">Paper</a>
 
 <i> Authors - </i> Deeparghya Dutta Barua\*, Md Sakib Ul Rahman Sourove\*, Md Farhan Ishmam\*, Fabiha Haider, Fariha Tanjim Shifat, <b>Md Fahim</b>, Farhad Alam Bhuiyan
+
 <!-- <br>
 <body>
 <button class="transparent-button" onclick="window.location.href='https://arxiv.org/abs/2410.14991'">
