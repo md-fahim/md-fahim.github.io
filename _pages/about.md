@@ -100,7 +100,7 @@ My research interests are primarily in Natural Language Processing (NLP) and Mul
     <li> Novel T5-based dual encoder architecture achieving SOTA on BanglaTLit.</li>
 </ul> -->
 
-<h3>2. Improving the Performance of Transformer-based Models Over Classical Baselines in Multiple Transliterated Languages</h3> <i> <a href="https://www.ecai2024.eu/programme/schedule" style="color: darkred;"> ECAI-2024 [Full Talk Presentation] </a> </i> <a href="https://ebooks.iospress.nl/doi/10.3233/FAIA240972">[Paper]</a>
+<h3>2. Improving the Performance of Transformer-based Models Over Classical Baselines in Multiple Transliterated Languages</h3> <i> ECAI-2024 <a href="https://www.ecai2024.eu/programme/schedule" style="color: darkred;">[Full Talk Presentation] </a> </i> <a href="https://ebooks.iospress.nl/doi/10.3233/FAIA240972">[Paper]</a>
 
 <i> Authors - </i>Fahim Ahmed\*, <b>Md Fahim</b>\*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur Rahman
 <!-- <body>
@@ -117,7 +117,8 @@ My research interests are primarily in Natural Language Processing (NLP) and Mul
     <a href="https://arxiv.org/abs/2410.13281">Paper [Preprint]</a>
 </button> </body> -->
 
-<h3>4. HateXplain Space Model: Fusing Robustness with Explainability in Hate Speech Analysis</h3> <a href="https://neurips2023-enlsp.github.io/papers/paper_91.pdf">[Paper]</a>
+<h3>4. HateXplain Space Model: Fusing Robustness with Explainability in Hate Speech Analysis</h3> 
+<i> ENLSP Workshop @ NeurIPS </i> <a href="https://neurips2023-enlsp.github.io/papers/paper_91.pdf">[Paper]</a>
 
 <i> Authors - </i><b>Md Fahim</b>,Md Shihab Shahriar, Mohammad Ruhul Amin
 
@@ -152,7 +153,7 @@ My research interests are primarily in Natural Language Processing (NLP) and Mul
 </button> 
 </body> -->
 
-<h3>7. ChitroJera: A Regionally Relevant Visual Question Answering Dataset for Bangla</h3> <a href="https://arxiv.org/abs/2410.14991">Paper</a>
+<h3>7. ChitroJera: A Regionally Relevant Visual Question Answering Dataset for Bangla</h3> <a href="https://arxiv.org/abs/2410.14991">[Paper]</a>
 
 <i> Authors - </i> Deeparghya Dutta Barua\*, Md Sakib Ul Rahman Sourove\*, Md Farhan Ishmam\*, Fabiha Haider, Fariha Tanjim Shifat, <b>Md Fahim</b>, Farhad Alam Bhuiyan
 
