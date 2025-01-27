@@ -88,7 +88,7 @@ My research interests are primarily in Natural Language Processing (NLP) and Mul
     <a href="https://github.com/farhanishmam/BanglaTLit">Code</a>
 </button> </body>
 
-<div style="display: flex; justify-content: center; align-items: center; margin-top: 10px; margin-bottom: 10px; width: 100%;">
+<!-- <div style="display: flex; justify-content: center; align-items: center; margin-top: 10px; margin-bottom: 10px; width: 100%;">
     <img src="images/tLitOverview.PNG" style="border: 2px solid black; max-width: 38%; height: 76%; margin-right: 10px;">
     <img src="images/tLit.png" style="border: 2px solid black; max-width: 60%; height: auto;">
 </div>
@@ -97,12 +97,11 @@ My research interests are primarily in Natural Language Processing (NLP) and Mul
     <li> First large-scale automated Bangla transliteration, BanglaTLit, with over 42.7k samples.</li>
     <li> A romanized Bangla pre-training corpus, BanglaTLit-PT, with over 245.7k samples. </li>
     <li> Novel T5-based dual encoder architecture achieving SOTA on BanglaTLit.</li>
-</ul>
+</ul> -->
 
-<h3>Improving the Performance of Transformer-based Models Over Classical Baselines in Multiple Transliterated Languages</h3> <i> <a href="https://www.ecai2024.eu/programme/schedule"> ECAI-2024 [Full Talk Presentation] </a> </i>
+<h3>Improving the Performance of Transformer-based Models Over Classical Baselines in Multiple Transliterated Languages</h3> <i> <a href="https://www.ecai2024.eu/programme/schedule"> ECAI-2024 [Full Talk Presentation] </a> </i> 
 
 Fahim Ahmed\*, <b>Md Fahim</b>\*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur Rahman
-<br>
 <body>
 <button class="transparent-button" onclick="window.location.href='https://ebooks.iospress.nl/doi/10.3233/FAIA240972'">
     <a href="https://ebooks.iospress.nl/doi/10.3233/FAIA240972">Paper</a>
@@ -110,15 +109,11 @@ Fahim Ahmed\*, <b>Md Fahim</b>\*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur R
 
 <h3>BanTH: A Multi-label Hate Speech Detection Dataset for Transliterated Bangla
 </h3> <i>  NAACL-2025 [Findings] </i>
-
 Fabiha Haider, Fariha Tanjim Shifat, Md Farhan Ishmam, Deeparghya Dutta Barua, Md Sakib Ul Rahman Sourove, <b>Md Fahim</b>\*, Md Farhad Alam
-
-<br>
 <body>
 <button class="transparent-button" onclick="window.location.href='https://arxiv.org/abs/2410.13281'">
     <a href="https://arxiv.org/abs/2410.13281">Paper [Preprint]</a>
 </button> </body>
-
 
 <h3>HateXplain Space Model: Fusing Robustness with Explainability in Hate Speech Analysis</h3>
 
