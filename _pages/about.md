@@ -66,13 +66,12 @@ My research interests are primarily in Natural Language Processing (NLP) and Mul
 </ul> -->
 
 <h2>News and Updates</h2>
+- **January 2025:** Paper accepted in <a href="https://2025.naacl.org/">NAACL 2025 - Findings</a> 😍🎉
 - **December 2024:** Reviewing @ December ACL-ARR 2024
 - **October 2024:** Reviewing @ October ACL-ARR 2024 [NAACL-2025]
 - **September 2024:** Paper accepted in <a href="https://2024.emnlp.org/">EMNLP 2024 - Findings</a> 😍🎉
-- **August 2024:** Two papers have been accepted in <a href="https://icpr2024.org/index.html">ICPR 2024</a>
+- **August 2024:** Two papers have been accepted in <a href="https://icpr2024.org/index.html">ICPR 2024 😍</a>
 - **July 2024:** One paper has been accepted in <a href="https://www.ecai2024.eu/calls/main-track">ECAI 2024</a> 😍
-- **May 2024:** Finalists at Robi Datathon 3.0, Bangladesh's largest data analysis event with 3,500+ participants.
-- **May 2024:** Two shared task papers accepted in <a href="http://nlp.uned.es/exist2024/">EXIST 2024</a>.
 <br>
 <h2>Selected Publications</h2>
 
@@ -107,6 +106,17 @@ Fahim Ahmed\*, <b>Md Fahim</b>\*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur R
 <body>
 <button class="transparent-button" onclick="window.location.href='https://ebooks.iospress.nl/doi/10.3233/FAIA240972'">
     <a href="https://ebooks.iospress.nl/doi/10.3233/FAIA240972">Paper</a>
+</button> </body>
+
+<h3>BanTH: A Multi-label Hate Speech Detection Dataset for Transliterated Bangla
+</h3> <i>  NAACL-2025 [Findings] </i>
+
+Fabiha Haider, Fariha Tanjim Shifat, Md Farhan Ishmam, Deeparghya Dutta Barua, Md Sakib Ul Rahman Sourove, <b>Md Fahim</b>\*, Md Farhad Alam
+
+<br>
+<body>
+<button class="transparent-button" onclick="window.location.href='https://arxiv.org/abs/2410.13281'">
+    <a href="https://arxiv.org/abs/2410.13281">Paper [Preprint]</a>
 </button> </body>
 
 
