@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Publications by Mohammad Ashfaq Ur Rahman, Research Intern at CCDS, IUB. Academic research and conference papers."
+    />
+    <title>Publications | Academic Profile</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/animations.css" />
+    <script src="https://cdn.tailwindcss.com?plugins=typography,forms"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+            },
+            // Extending typography to customize prose styles
+            typography: ({ theme }) => ({
+              custom: {
+                css: {
+                  "--tw-prose-body": theme("colors.slate[600]"),
+                  "--tw-prose-headings": theme("colors.slate[800]"),
+                  "--tw-prose-links": theme("colors.teal[600]"),
+                  "--tw-prose-bold": theme("colors.slate[800]"),
+                  "--tw-prose-bullets": theme("colors.slate[400]"),
+                  "--tw-prose-hr": theme("colors.slate[200]"),
+                  "--tw-prose-quotes": theme("colors.slate[800]"),
+                  "--tw-prose-quote-borders": theme("colors.teal[300]"),
+
+                  "--tw-prose-invert-body": theme("colors.slate[300]"),
+                  "--tw-prose-invert-headings": theme("colors.slate[100]"),
+                  "--tw-prose-invert-links": theme("colors.teal[400]"),
+                  "--tw-prose-invert-bold": theme("colors.slate[100]"),
+                  "--tw-prose-invert-bullets": theme("colors.slate[600]"),
+                  "--tw-prose-invert-hr": theme("colors.slate[700]"),
+                  "--tw-prose-invert-quotes": theme("colors.slate[100]"),
+                  "--tw-prose-invert-quote-borders": theme("colors.teal[700]"),
+                },
+              },
+            }),
+            keyframes: {
+              fadeIn: {
+                "0%": { opacity: "0", transform: "translateY(10px)" },
+                "100%": { opacity: "1", transform: "translateY(0)" },
+              },
+              fadeOut: {
+                "0%": { opacity: "1", transform: "translateY(0)" },
+                "100%": { opacity: "0", transform: "translateY(10px)" },
+              },
+            },
+            animation: {
+              fadeIn: "fadeIn 0.2s ease-out forwards",
+              fadeOut: "fadeOut 0.2s ease-out forwards",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body
+    class="font-sans bg-slate-50 text-slate-700 dark:bg-slate-900 dark:text-slate-300 min-h-screen flex flex-col transition-colors duration-300"
+  >
+    <div id="header-partial"></div>
+
+    <main class="flex-1 w-full max-w-4xl mx-auto px-4 pb-10 pt-28">
+      <section
+        id="publications"
+        class="rounded-2xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-lg shadow-lg border border-slate-200 dark:border-slate-700 p-4 sm:p-6 md:p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+      >
+        <div class="flex items-center gap-4 mb-6">
+          <i
+            data-lucide="book-open-check"
+            class="w-8 h-8 text-teal-500 dark:text-teal-400"
+          ></i>
+          <h1
+            class="text-2xl sm:text-3xl font-bold text-teal-600 dark:text-teal-400"
+          >
+            Publications
+          </h1>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="relative mb-6">
+          <i
+            data-lucide="search"
+            class="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400"
+          ></i>
+          <input
+            type="text"
+            id="publication-search"
+            placeholder="Search publications..."
+            class="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white/50 dark:bg-slate-800/50 text-slate-800 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500/20 dark:focus:ring-teal-400/20 focus:border-teal-500 dark:focus:border-teal-400 transition-all duration-200"
+          />
+          <div
+            class="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-slate-400 dark:text-slate-500 hidden sm:block"
+          >
+            Search by title, authors, or content
+          </div>
+        </div>
+
+        <div
+          id="publications-md"
+          class="prose prose-custom dark:prose-invert max-w-none prose-a:transition-colors prose-a:duration-200 hover:prose-a:text-teal-700 dark:hover:prose-a:text-teal-300"
+        ></div>
+      </section>
+    </main>
+
+    <div id="footer-partial"></div>
+
+    <script src="scripts/partials.js"></script>
+    <script>
+      // Configure marked.js for consistency
+      marked.setOptions({
+        mangle: false,
+        headerIds: false,
+      });
+
+      // Load and render publications.md in custom sectioned format
+      fetch("content/publications.md")
+        .then((res) => {
+          if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+          return res.text();
+        })
+        .then((md) => {
+          // Remove legacy reference definitions if present
+          md = md.replace(
+            /^\s*\[([^\]]+)\]:\s*(\S+)(?:\s+"([^"]+)")?\s*$/gm,
+            ""
+          );
+
+          // Split into publication entries by ---
+          const entries = md
+            .split(/\r?\n-{3,}\r?\n/)
+            .map((e) => e.trim())
+            .filter(Boolean);
+
+          // Parse entries and sort by year in descending order
+          const parsedEntries = entries
+            .map((entry) => {
+              const parsed = parseEntry(entry);
+              // Extract year as number for sorting
+              const year = parseInt(parsed.year) || 0;
+              return { ...parsed, numericYear: year };
+            })
+            .sort((a, b) => b.numericYear - a.numericYear);
+
+          // Parse each entry into fields
+          function parseEntry(entry) {
+            const fields = {};
+            let current = null;
+            entry.split(/\r?\n/).forEach((line) => {
+              const sec = line.match(/^\[(\w+)\]$/);
+              if (sec) {
+                current = sec[1].toLowerCase();
+                fields[current] = "";
+              } else if (current) {
+                if (fields[current]) fields[current] += "\n";
+                fields[current] += line.trim();
+              }
+            });
+            return fields;
+          }
+
+          // Render each publication
+          const rendered = parsedEntries
+            .map((f) => {
+              // Label (e.g., "Vision")
+              let labelHtml = f.label
+                ? `<div class="mb-2"><span class="inline-block px-3 py-1 rounded-sm bg-teal-600 dark:bg-teal-700 text-white text-xs font-medium">${escapeHtml(
+                    f.label
+                  )}</span></div>`
+                : "";
+
+              // Image with background and border
+              let imgHtml = f.image
+                ? `<div class="bg-white dark:bg-slate-800 rounded w-24 h-24 sm:w-32 sm:h-32 flex items-center justify-center border border-slate-200 dark:border-slate-700"><img src="${escapeHtml(
+                    f.image
+                  )}" alt="${escapeHtml(
+                    f.title || "Publication image"
+                  )}" class="w-full h-full object-contain p-1 rounded"></div>`
+                : "";
+
+              // Title - same line as year
+              let titleHtml = f.title
+                ? `<div class="font-bold text-base text-slate-800 dark:text-white">${escapeHtml(
+                    f.title
+                  )}</div>`
+                : "";
+
+              // Year on same line as title
+              let yearHtml = f.year
+                ? `<div class="text-slate-600 dark:text-slate-400 ml-auto pl-4">${escapeHtml(
+                    f.year
+                  )}</div>`
+                : "";
+
+              // Authors - with link styling
+              let authorHtml = f.author
+                ? `<div class="text-sm mt-1 mb-2"><span class="text-slate-600 dark:text-slate-300">${f.author
+                    .split(",")
+                    .map((author) =>
+                      author.includes("Mohammad Ashfaq")
+                        ? `<a href="#" class="text-teal-600 dark:text-teal-400 hover:underline">${author.trim()}</a>`
+                        : author
+                    )
+                    .join(", ")}</span></div>`
+                : "";
+
+              // Extract URLs from markdown-style links [text](url)
+              function extractUrl(text) {
+                const match = text.match(/\[([^\]]+)\]\(([^)]+)\)/);
+                return match ? match[2] : text;
+              }
+
+              // Buttons with icons
+              let codeHtml = f.code
+                ? `<a href="${escapeHtml(
+                    extractUrl(f.code)
+                  )}" target="_blank" rel="noopener" 
+                    class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md border border-slate-300 dark:border-slate-600 
+                    text-slate-700 dark:text-slate-300 text-xs font-medium hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                    <i data-lucide="code-2" class="w-3.5 h-3.5"></i>Code</a>`
+                : "";
+
+              let paperHtml = f.paper
+                ? `<a href="${escapeHtml(
+                    extractUrl(f.paper)
+                  )}" target="_blank" rel="noopener" 
+                    class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md border border-slate-300 dark:border-slate-600 
+                    text-slate-700 dark:text-slate-300 text-xs font-medium hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                    <i data-lucide="file-text" class="w-3.5 h-3.5"></i>Paper</a>`
+                : "";
+
+              let bibHtml = f.bib
+                ? `<button onclick="copyBibTeX(this, \`${escapeHtml(
+                    f.bib
+                  )}\`)" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md border border-slate-300 dark:border-slate-600 
+                text-slate-700 dark:text-slate-300 text-xs font-medium hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                <i data-lucide="quote" class="w-3.5 h-3.5"></i>BIB</button>`
+                : ``;
+
+              return `
+              <div class="publication-item border-b border-slate-200 dark:border-slate-700 py-6">
+                <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
+                  <div class="flex flex-row sm:flex-col items-center sm:items-start">
+                    ${labelHtml}
+                    <div class="flex-shrink-0">
+                      ${imgHtml}
+                    </div>
+                  </div>
+                  <div class="flex-1 min-w-0 mt-4 sm:mt-0">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
+                      ${titleHtml}
+                      ${yearHtml}
+                    </div>
+                    ${authorHtml}
+                    <div class="flex flex-row flex-wrap gap-2 mt-3">
+                      ${codeHtml}${paperHtml}${bibHtml}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+            })
+            .join("\n");
+
+          document.getElementById("publications-md").innerHTML =
+            rendered || `<p class="text-slate-500">No publications found.</p>`;
+
+          // Re-initialize Lucide icons for the newly added buttons
+          lucide.createIcons();
+        })
+        .catch((err) => {
+          console.error(`Failed to load content/publications.md:`, err);
+          document.getElementById(
+            "publications-md"
+          ).innerHTML = `<p class="text-slate-500">Could not load publications.</p>`;
+        });
+
+      // small helper to escape HTML in alt text
+      function escapeHtml(str) {
+        return String(str).replace(/[&<>"']/g, function (s) {
+          return {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;",
+          }[s];
+        });
+      }
+
+      // Re-render Lucide icons after content is loaded
+      setTimeout(() => {
+        lucide.createIcons();
+      }, 0);
+
+      // Function to copy BibTeX citation to clipboard
+      function copyBibTeX(button, bibText) {
+        navigator.clipboard
+          .writeText(bibText)
+          .then(() => {
+            // Store original content
+            const originalContent = button.innerHTML;
+            // Show copied state
+            button.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5"></i>Copied!`;
+            // Reinitialize icon
+            lucide.createIcons();
+            // Reset after 2 seconds
+            setTimeout(() => {
+              button.innerHTML = originalContent;
+              lucide.createIcons();
+            }, 2000);
+          })
+          .catch((err) => {
+            console.error("Failed to copy text: ", err);
+          });
+      }
+
+      // Handle publication search
+      let allPublications = []; // Store all publication elements
+      const searchInput = document.getElementById("publication-search");
+
+      // Function to initialize search functionality after content is loaded
+      function initializeSearch() {
+        // Store all publication items
+        allPublications = Array.from(
+          document.getElementsByClassName("publication-item")
+        );
+
+        // Add search event listener
+        searchInput.addEventListener("input", function (e) {
+          const searchTerm = e.target.value.toLowerCase();
+
+          allPublications.forEach((pub) => {
+            const content = pub.textContent.toLowerCase();
+            const isVisible = content.includes(searchTerm);
+            pub.style.display = isVisible ? "block" : "none";
+
+            // Add/remove animation classes
+            if (isVisible) {
+              pub.classList.add("animate-fadeIn");
+              pub.classList.remove("animate-fadeOut");
+            } else {
+              pub.classList.add("animate-fadeOut");
+              pub.classList.remove("animate-fadeIn");
+            }
+          });
+
+          // Show "no results" message if no publications are visible
+          const hasVisiblePublications = allPublications.some(
+            (pub) => pub.style.display !== "none"
+          );
+          const noResultsMsg = document.getElementById("no-results-message");
+
+          if (!hasVisiblePublications) {
+            if (!noResultsMsg) {
+              const msg = document.createElement("div");
+              msg.id = "no-results-message";
+              msg.className = "text-slate-500 text-center py-8 animate-fadeIn";
+              msg.innerHTML = "No publications found matching your search.";
+              document.getElementById("publications-md").appendChild(msg);
+            }
+          } else if (noResultsMsg) {
+            noResultsMsg.remove();
+          }
+        });
+      }
+
+      // Call initializeSearch after content is loaded
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.addedNodes.length) {
+            if (
+              document.getElementsByClassName("publication-item").length > 0
+            ) {
+              initializeSearch();
+              observer.disconnect();
+            }
+          }
+        });
+      });
+
+      observer.observe(document.getElementById("publications-md"), {
+        childList: true,
+        subtree: true,
+      });
+    </script>
+  </body>
+</html>

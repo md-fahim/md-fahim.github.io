@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Notes | Academic Profile</title>
+    <link rel="stylesheet" href="styles/animations.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=typography,forms"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: { sans: ["Inter", "system-ui", "sans-serif"] },
+            typography: ({ theme }) => ({
+              custom: {
+                css: {
+                  "--tw-prose-body": theme("colors.slate[600]"),
+                  "--tw-prose-headings": theme("colors.slate[800]"),
+                  "--tw-prose-links": theme("colors.teal[600]"),
+                  "--tw-prose-invert-body": theme("colors.slate[300]"),
+                  "--tw-prose-invert-headings": theme("colors.slate[100]"),
+                  "--tw-prose-invert-links": theme("colors.teal[400]"),
+                },
+              },
+            }),
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="font-sans bg-slate-50 text-slate-700 dark:bg-slate-900 dark:text-slate-300 min-h-screen flex flex-col"
+  >
+    <div id="header-partial"></div>
+
+    <main class="flex-1 w-full max-w-4xl mx-auto px-4 pb-10 pt-28">
+      <a
+        href="notes.html"
+        class="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-lg bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm text-teal-600 dark:text-teal-300 font-semibold border border-slate-200 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+      >
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        Back to All Posts
+      </a>
+
+      <div
+        id="post-card"
+        class="rounded-2xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-lg shadow-lg border border-slate-200 dark:border-slate-700 p-4 sm:p-8"
+      >
+        <div
+          id="post-content"
+          class="prose prose-custom dark:prose-invert max-w-none mb-8 min-h-[250px] sm:min-h-[350px]"
+        >
+          <p>Loading post...</p>
+        </div>
+
+        <div
+          id="pagination-controls"
+          class="flex items-center justify-between border-t border-slate-200 dark:border-slate-700 pt-6"
+        ></div>
+      </div>
+    </main>
+
+    <div id="footer-partial"></div>
+    <script src="scripts/partials.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const postContent = document.getElementById("post-content");
+        const paginationControls = document.getElementById(
+          "pagination-controls"
+        );
+        const urlParams = new URLSearchParams(window.location.search);
+        const postFile = urlParams.get("file");
+
+        let pages = [];
+        let currentPageIndex = 0;
+
+        const renderPage = (index) => {
+          if (!pages[index]) return;
+
+          postContent.innerHTML = marked.parse(pages[index]);
+
+          const pageIndicator = document.getElementById("page-indicator");
+          const prevButton = document.getElementById("prev-button");
+          const nextButton = document.getElementById("next-button");
+
+          if (pageIndicator) {
+            pageIndicator.textContent = `Page ${index + 1} of ${pages.length}`;
+          }
+          if (prevButton) {
+            prevButton.disabled = index === 0;
+            prevButton.classList.toggle("opacity-50", index === 0);
+          }
+          if (nextButton) {
+            nextButton.disabled = index === pages.length - 1;
+            nextButton.classList.toggle(
+              "opacity-50",
+              index === pages.length - 1
+            );
+          }
+
+          lucide.createIcons();
+        };
+
+        if (postFile) {
+          const filePath = `posts/${postFile}`;
+
+          fetch(filePath)
+            .then((res) => {
+              if (!res.ok) throw new Error("Post not found");
+              return res.text();
+            })
+            .then((md) => {
+              pages = md
+                .trim()
+                .split(/^\s*---\s*$/m)
+                .filter((p) => p.trim());
+
+              if (pages.length === 0) {
+                postContent.innerHTML = `<p>No content found in this file to create pages.</p>`;
+                return;
+              }
+
+              const tempDiv = document.createElement("div");
+              tempDiv.innerHTML = marked.parse(md);
+              const firstHeading = tempDiv.querySelector("h1, h2, h3");
+              if (firstHeading) {
+                document.title = `${firstHeading.textContent} | Notes`;
+              }
+
+              // NEW: Responsive pagination controls HTML
+              paginationControls.innerHTML = `
+                <button id="prev-button" class="inline-flex items-center justify-center sm:justify-start gap-2 px-3 sm:px-4 py-2 rounded-lg bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 disabled:opacity-50 disabled:hover:bg-slate-200 dark:disabled:hover:bg-slate-700 transition-opacity">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Previous</span>
+                </button>
+                <span id="page-indicator" class="hidden sm:block text-sm font-semibold text-slate-500 dark:text-slate-400"></span>
+                <button id="next-button" class="inline-flex items-center justify-center sm:justify-start gap-2 px-3 sm:px-4 py-2 rounded-lg bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 disabled:opacity-50 disabled:hover:bg-slate-200 dark:disabled:hover:bg-slate-700 transition-opacity">
+                    <span class="hidden sm:inline">Next</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+              `;
+
+              document
+                .getElementById("prev-button")
+                .addEventListener("click", () => {
+                  if (currentPageIndex > 0) {
+                    currentPageIndex--;
+                    renderPage(currentPageIndex);
+                  }
+                });
+
+              document
+                .getElementById("next-button")
+                .addEventListener("click", () => {
+                  if (currentPageIndex < pages.length - 1) {
+                    currentPageIndex++;
+                    renderPage(currentPageIndex);
+                  }
+                });
+
+              renderPage(currentPageIndex);
+            })
+            .catch((err) => {
+              postContent.innerHTML = `<p>Sorry, the requested post could not be found.</p>`;
+              console.error(err);
+            });
+        } else {
+          postContent.innerHTML = `<p>No post specified.</p>`;
+        }
+      });
+    </script>
+  </body>
+</html>

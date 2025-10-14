@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Academic profile and blog of Mohammad Ashfaq Ur Rahman, Trying to build something at Neumentora. Explore research, projects, publications, and more."
+    />
+    <title>Mohammad Ashfaq Ur Rahman | Academic Profile</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/animations.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <script src="https://cdn.tailwindcss.com?plugins=typography,forms"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              discord: "#5865F2",
+            },
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="font-sans bg-slate-50 text-slate-700 dark:bg-slate-900 dark:text-slate-300 min-h-screen flex flex-col"
+  >
+    <div id="header-partial"></div>
+
+    <main class="flex-1 w-full max-w-4xl mx-auto px-4 pb-10 pt-28">
+      <section
+        id="about"
+        class="rounded-2xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-lg shadow-lg border border-slate-200 dark:border-slate-700 p-6 sm:p-8 flex flex-col items-center text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+      >
+        <div
+          class="p-1 rounded-full bg-gradient-to-tr from-teal-400 to-cyan-400 mb-4 shadow-md"
+        >
+          <img
+            src="assets/images/profile.png"
+            alt="Profile photo of Mohammad Ashfaq Ur Rahman"
+            class="w-28 h-28 rounded-full border-4 border-slate-50 dark:border-slate-800 object-cover"
+          />
+        </div>
+
+        <h1
+          class="text-2xl sm:text-3xl font-bold text-teal-600 dark:text-teal-300"
+        >
+          Mohammad Ashfaq Ur Rahman
+        </h1>
+
+        <p
+          class="mt-1 text-base text-slate-600 dark:text-slate-300 font-medium"
+        >
+          Trying to build something at Neumentora.
+        </p>
+
+        <dl class="mt-4 text-sm text-slate-500 dark:text-slate-400 max-w-xl">
+          <dt class="font-bold">Research Interests:</dt>
+          <dd class="font-medium text-slate-600 dark:text-slate-300">
+            Artificial Intelligence, Machine Learning, Data Science, Deep
+            Learning, LLMs, Agentic Systems
+          </dd>
+        </dl>
+
+        <div class="mt-6 flex flex-wrap gap-3 justify-center">
+          <a
+            href="mailto:imashfaqfardin@gmail.com"
+            class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm font-semibold text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:bg-slate-200/80 dark:hover:bg-slate-700/80 transition-colors text-sm"
+          >
+            <i data-lucide="mail" class="w-4 h-4"></i>Email
+          </a>
+          <a
+            href="https://github.com/ashfaqfardin"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm font-semibold text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:bg-slate-200/80 dark:hover:bg-slate-700/80 transition-colors text-sm"
+          >
+            <i data-lucide="github" class="w-4 h-4"></i>GitHub
+          </a>
+          <a
+            href="https://linkedin.com/in/ashfaqfardin"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm font-semibold text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:bg-slate-200/80 dark:hover:bg-slate-700/80 transition-colors text-sm"
+          >
+            <i data-lucide="linkedin" class="w-4 h-4"></i>LinkedIn
+          </a>
+        </div>
+      </section>
+
+      <section
+        id="discord-cta"
+        class="mt-8 text-center rounded-2xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-lg shadow-lg border border-slate-200 dark:border-slate-700 p-6 sm:p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+      >
+        <div>
+          <h2 class="text-2xl font-bold text-slate-800 dark:text-slate-100">
+            Join Our Discord Community
+          </h2>
+          <p class="mt-2 max-w-2xl mx-auto text-slate-600 dark:text-slate-400">
+            Connect with fellow researchers, students, and enthusiasts. Let's
+            learn and build the future of AI together.
+          </p>
+        </div>
+        <div class="mt-6">
+          <a
+            href="https://discord.gg/rnWp2PyKyP"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-3 px-6 py-3 rounded-lg bg-discord hover:bg-opacity-90 text-white font-semibold shadow-md transition"
+          >
+            <i class="fa-brands fa-discord text-xl"></i>
+            Join Now
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <div id="footer-partial"></div>
+
+    <script src="scripts/partials.js"></script>
+    <script src="scripts/profile.js"></script>
+    <script>
+      // Render all Lucide icons on the page
+      lucide.createIcons();
+    </script>
+  </body>
+</html>
