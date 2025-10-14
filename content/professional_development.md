@@ -1,42 +1,6 @@
-[Title]
-BanglaTLit: A Benchmark Dataset for Back-Transliteration of Romanized Bangla
-[Image]
-posts/publications/fruitquality.png
-[Author]
-Md Fahim, Fariha Tanjim Shifat, Fabiha Haider, Deeparghya Dutta Barua, Md Sakib Ul Rahman Sourove, Md Farhan Ishmam, Farhad Alam Bhuiyan
-[Code]
-[Paper]
-[https://aclanthology.org/2024.findings-emnlp.859.pdf](https://aclanthology.org/2024.findings-emnlp.859.pdf)
-[BIB]
-@inproceedings{fahim2024banglatlit,
-  title={BanglaTLit: A benchmark dataset for back-transliteration of Romanized Bangla},
-  author={Fahim, Md and Shifat, Fariha and Haider, Fabiha and Barua, Deeparghya and Sourove, Md and Ishmam, Md and Bhuiyan, Md},
-  booktitle={Findings of the Association for Computational Linguistics: EMNLP 2024},
-  pages={14656--14672},
-  year={2024}
-}
-[Venue]
-Findings of the Association for Computational Linguistics: EMNLP 2024
-[Year]
-2024
-
----
-
-[Title]
-TinyLLM Efficacy in Low-Resource Language: An Experiment on Bangla Text Classification Task
-[Image]
-posts/publications/fruitquality.png
-[Author]
-Farhan Noor Dehan*, Md Fahim*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur Rahman
-[Paper]
-[https://link.springer.com/chapter/10.1007/978-3-031-78495-8_30](https://link.springer.com/chapter/10.1007/978-3-031-78495-8_30)
-[Venue]
-ICPR 2024
-[Year]
-2024
 
 
-<!-- 
+
 <h3>
   <a href="https://aclanthology.org/2024.findings-emnlp.859.pdf">
     BanglaTLit: A Benchmark Dataset for Back-Transliteration of Romanized Bangla
@@ -47,8 +11,7 @@ ICPR 2024
   <b>Authors:</b> Md Fahim*, Fariha Tanjim Shifat*, Fabiha Haider*, Deeparghya Dutta Barua, Md Sakib Ul Rahman Sourove, Md Farhan Ishmam, Farhad Alam Bhuiyan
 </p> -->
 
-<!-- 2 -->
-<!-- <h3>
+<h3>
   <a href="https://ebooks.iospress.nl/doi/10.3233/FAIA240972">
     Improving the Performance of Transformer-based Models Over Classical Baselines in Multiple Transliterated Languages
   </a>
@@ -58,8 +21,7 @@ ICPR 2024
   <b>Authors:</b> Fahim Ahmed*, Md Fahim*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur Rahman
 </p> -->
 
-<!-- 3 -->
-<!-- <h3>
+<h3>
   <a href="https://arxiv.org/abs/2410.13281">
     BanTH: A Multi-label Hate Speech Detection Dataset for Transliterated Bangla
   </a>
@@ -69,8 +31,7 @@ ICPR 2024
   <b>Authors:</b> Fabiha Haider, Fariha Tanjim Shifat, Md Farhan Ishmam, Deeparghya Dutta Barua, Md Sakib Ul Rahman Sourove, Md Fahim*, Md Farhad Alam
 </p> -->
 
-<!-- 4 -->
-<!-- <h3>
+<h3>
   <a href="https://neurips2023-enlsp.github.io/papers/paper_91.pdf">
     HateXplain Space Model: Fusing Robustness with Explainability in Hate Speech Analysis
   </a>
@@ -80,8 +41,7 @@ ICPR 2024
   <b>Authors:</b> Md Fahim, Md Shihab Shahriar, Mohammad Ruhul Amin
 </p> -->
 
-<!-- 5 -->
-<!-- <h3>
+<h3>
   <a href="https://aclanthology.org/2023.banglalp-1.42.pdf">
     Aambela at BLP-2023 Task 2: Enhancing BanglaBERT Performance for Bangla Sentiment Analysis Task with In Task Pretraining and Adversarial Weight Perturbation
   </a>
@@ -91,8 +51,7 @@ ICPR 2024
   <b>Authors:</b> Md Fahim
 </p> -->
 
-<!-- 6 -->
-<!-- <h3>
+<h3>
   <a href="https://link.springer.com/chapter/10.1007/978-3-031-78495-8_30">
     TinyLLM Efficacy in Low-Resource Language: An Experiment on Bangla Text Classification Task
   </a>
@@ -102,12 +61,11 @@ ICPR 2024
   <b>Authors:</b> Farhan Noor Dehan*, Md Fahim*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur Rahman
 </p> -->
 
-<!-- 7 -->
-<!-- <h3>
+<h3>
   <a href="https://arxiv.org/abs/2410.14991">
     ChitroJera: A Regionally Relevant Visual Question Answering Dataset for Bangla
   </a>
 </h3>
 <p>
   <b>Authors:</b> Deeparghya Dutta Barua*, Md Sakib Ul Rahman Sourove*, Md Farhan Ishmam*, Fabiha Haider, Fariha Tanjim Shifat, Md Fahim, Farhad Alam Bhuiyan
-</p> -->
+</p>
