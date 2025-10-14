@@ -8,7 +8,7 @@
 
 
 - 🔠 **[Improving the Performance of Transformer-based Models Over Classical Baselines in Multiple Transliterated Languages](https://ebooks.iospress.nl/doi/10.3233/FAIA240972)**  
-  🎓 *ECAI-2024*  [Full Talk Presentation]((https://www.ecai2024.eu/programme/schedule))
+  🎓 *ECAI-2024*  [**Full Talk Presentation**]((https://www.ecai2024.eu/programme/schedule))
   👥 **Authors**: Fahim Ahmed\*, Md Fahim\*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur Rahman  
   
 
@@ -26,13 +26,13 @@
 
 
 - 🧠 **[Aambela at BLP-2023 Task 2: Enhancing BanglaBERT Performance...](https://aclanthology.org/2023.banglalp-1.42.pdf)**  
-  🧪 *BLP Workshop @ EMNLP*  [Best Paper Award](https://blp-workshop.github.io/) 
+  🧪 *BLP Workshop @ EMNLP*  [**Best Paper Award**](https://blp-workshop.github.io/) 
   👥 **Authors**: Md Fahim  
  
 
 
 - ⚙️ **[TinyLLM Efficacy in Low-Resource Language: An Experiment on Bangla Text Classification Task](https://link.springer.com/chapter/10.1007/978-3-031-78495-8_30)**  
-  🎓 *ICPR 2024*  [Oral Presentation](https://icpr2024.org/pdf/Oral%20Papers.pdf)
+  🎓 *ICPR 2024*  [**Oral Presentation**](https://icpr2024.org/pdf/Oral%20Papers.pdf)
   👥 **Authors**: Farhan Noor Dehan\*, Md Fahim\*, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur Rahman  
 
 
