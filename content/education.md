@@ -1,5 +1,5 @@
-**BSc, Computer Science & Engineering** (CGPA 3.31/4.00)  
-Independent University, Bangladesh  
-12/2024
+**BSc, Computer Science & Engineering**   
+University of Dhaka, Bangladesh  
+2/2023
 
-**Relevant Courses:** Artificial Intelligence, Numerical Method, Linear Algebra, Ordinary Differential Equation (ODE)
+**Relevant Courses:** Artificial Intelligence, Machine Learning, Natural Language Processing

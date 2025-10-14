@@ -1,25 +1,24 @@
 [Title]
-Fruit Quality Detection and Monitoring System
+BanglaTLit: A benchmark dataset for back-transliteration of Romanized Bangla
 [Image]
 posts/publications/fruitquality.png
 [Author]
-MMK Sohag, Mohammad Ashfaq Ur Rahman, MI Shochcho, MR Mahmud, DM Shams, et al.
+Md Fahim, Fariha Shifat, Fabiha Haider, Deeparghya Barua, Md Sourove, Md Ishmam, Md Bhuiyan
 [Code]
 [Paper]
-[https://ieeexplore.ieee.org/abstract/document/10237165/](https://ieeexplore.ieee.org/abstract/document/10237165/)
+[https://aclanthology.org/2024.findings-emnlp.859/](https://ieeexplore.ieee.org/abstract/document/10237165/)
 [BIB]
-@inproceedings{sohag2023fruit,
-title={Fruit Quality Detection and Monitoring System},
-author={Sohag, Md Maruf Kamran and Rahman, Mohammad Ashfaq Ur and Shochcho, Muhtasim Ibteda and Mahmud, Md Ridwan and Shams, Daiyan Mohammad and Samiha, Mysha and Uddin, Mohammad Rejwan and Hasan, Mahady},
-booktitle={2023 IEEE 13th International Conference on Control System, Computing and Engineering (ICCSCE)},
-pages={111--114},
-year={2023},
-organization={IEEE}
+@inproceedings{fahim2024banglatlit,
+  title={BanglaTLit: A benchmark dataset for back-transliteration of Romanized Bangla},
+  author={Fahim, Md and Shifat, Fariha and Haider, Fabiha and Barua, Deeparghya and Sourove, Md and Ishmam, Md and Bhuiyan, Md},
+  booktitle={Findings of the Association for Computational Linguistics: EMNLP 2024},
+  pages={14656--14672},
+  year={2024}
 }
 [Venue]
-2023 IEEE 13th International Conference on Control System, Computing and Engineering (ICCSCE)
+Findings of the Association for Computational Linguistics: EMNLP 2024
 [Year]
-2023
+2024
 
 ---
 
@@ -68,40 +67,3 @@ Proceedings of the 20th Workshop on Innovative Use of NLP for Building Education
 2025
 
 ---
-
-[Title]
-Improving User Engagement and Learning Outcomes in LLM-Based Python Tutor: A Study of PACE
-[Image]
-posts/publications/chiea.png
-[Author]
-Muhtasim Ibteda Shochcho, Mohammad Ashfaq Ur Rahman, Shadman Rohan, Ashraful Islam, Hasnain Heickal, AKM Mahbubur Rahman, M. Ashraful Amin, Amin Ahsan Ali
-[Code]
-[Paper]
-[https://dl.acm.org/doi/abs/10.1145/3706599.3720240](https://dl.acm.org/doi/abs/10.1145/3706599.3720240)
-[BIB]
-@inproceedings{shochcho2025improving,
-title={Improving User Engagement and Learning Outcomes in LLM-Based Python Tutor: A Study of PACE},
-author={Shochcho, Muhtasim Ibteda and Rahman, Mohammad Ashfaq Ur and Rohan, Shadman and Islam, Ashraful and Heickal, Hasnain and Rahman, AKM Mahbubur and Amin, M Ashraful and Ali, Amin Ahsan},
-booktitle={Proceedings of the Extended Abstracts of the CHI Conference on Human Factors in Computing Systems},
-pages={1--12},
-year={2025}
-}
-[Venue]
-Proceedings of the Extended Abstracts of the CHI Conference on Human Factors in Computing Systems
-[Year]
-2025
-
----
-
-[Title]
-PACE: Python AI Companion for Enhanced Engagement
-[Image]
-posts/publications/pace.png
-[Author]
-Muhtasim Ibteda Shochcho, Mohammad Ashfaq Ur Rahman
-[Paper]
-[https://ar.iub.edu.bd/handle/11348/993](https://ar.iub.edu.bd/handle/11348/993)
-[Venue]
-Independent University, Bangladesh
-[Year]
-2025
