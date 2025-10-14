@@ -105,6 +105,45 @@
       setTimeout(() => {
         lucide.createIcons();
       }, 0);
+
+            // Define sections to be loaded
+      const sections = [
+        // {
+        //   id: "skills",
+        //   icon: "zap",
+        //   title: "Skills",
+        //   file: "content/skills.md",
+        // },
+        {
+          id: "work",
+          icon: "briefcase",
+          title: "Work Experience",
+          file: "content/work_experience.md",
+        },
+    ]
+          // Load and render Markdown for each section
+      sections.forEach((sec) => {
+        const card = createSectionCard(sec.id, sec.icon, sec.title);
+        container.appendChild(card);
+
+        fetch(sec.file)
+          .then((res) => {
+            if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+            return res.text();
+          })
+          .then((md) => {
+            document.getElementById(`${sec.id}-md`).innerHTML =
+              marked.parse(md);
+          })
+          .catch((err) => console.error(`Failed to load ${sec.file}:`, err));
+      });
+
+      // After all content is potentially loaded, render icons
+      // We need to wait a tick for the DOM to update
+      setTimeout(() => {
+        lucide.createIcons();
+      }, 0);
+      
     </script>
   </body>
 </html>

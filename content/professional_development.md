@@ -1,4 +1,3 @@
-<h2>Selected Publications</h2>
 
 <h3>1. BanglaTLit: A Benchmark Dataset for Back-Transliteration of Romanized Bangla </h3> <i> EMNLP-2024 [Findings] </i> <a href="https://aclanthology.org/2024.findings-emnlp.859.pdf">[Paper]</a>
 

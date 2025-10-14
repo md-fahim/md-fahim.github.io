@@ -9,8 +9,8 @@
       class="flex items-center gap-2 text-lg font-bold tracking-tight text-teal-600 dark:text-teal-300 hover:text-teal-700 dark:hover:text-teal-400 transition-colors"
     >
       <i data-lucide="user-round" class="w-5 h-5"></i>
-      <span class="md:hidden">Mohammad</span>
-      <span class="hidden md:inline">Mohammad Ashfaq Ur Rahman</span>
+      <span class="md:hidden">MoFA</span>
+      <span class="hidden md:inline">Md Fahim</span>
     </a>
 
     <div class="flex items-center gap-2">

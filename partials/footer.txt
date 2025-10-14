@@ -3,13 +3,13 @@
     class="w-full max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between text-slate-500 dark:text-slate-400 text-sm gap-4"
   >
     <span class="text-center sm:text-left"
-      >&copy; 2025 Mohammad Ashfaq Ur Rahman. All rights reserved.</span
+      >&copy; 2025 Md Fahim. All rights reserved.</span
     >
     <div
       class="flex items-center gap-6"
     >
       <a
-        href="https://github.com/ashfaqfardin"
+        href="https://github.com/md-fahim"
         class="hover:text-teal-600 dark:hover:text-teal-300 transition-colors"
         target="_blank"
         rel="noopener noreferrer"
@@ -18,7 +18,7 @@
         <i data-lucide="github" class="w-5 h-5"></i>
       </a>
       <a
-        href="https://linkedin.com/in/ashfaqfardin"
+        href="https://www.linkedin.com/in/md-fahim-1a159b373/"
         class="hover:text-teal-600 dark:hover:text-teal-300 transition-colors"
         target="_blank"
         rel="noopener noreferrer"
@@ -27,7 +27,7 @@
         <i data-lucide="linkedin" class="w-5 h-5"></i>
       </a>
       <a
-        href="mailto:imashfaqfardin@gmail.com"
+        href="mailto:fahimcse381@gmail.com"
         class="hover:text-teal-600 dark:hover:text-teal-300 transition-colors"
         aria-label="Email"
       >
