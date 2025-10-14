@@ -10,7 +10,7 @@
     >
       <i data-lucide="user-round" class="w-5 h-5"></i>
       <span class="md:hidden">MoFA</span>
-      <span class="hidden md:inline">Md Fahim</span>
+      <span class="hidden md:inline">Md Fahim (MoFA)</span>
     </a>
 
     <div class="flex items-center gap-2">
