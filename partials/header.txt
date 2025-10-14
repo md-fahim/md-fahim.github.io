@@ -1,22 +1,23 @@
 <header
-  class="fixed top-0 left-0 w-full z-50 border-b border-slate-200/80 dark:border-slate-800/80 bg-slate-50/80 dark:bg-slate-900/80 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-slate-50/60 dark:supports-[backdrop-filter]:bg-slate-900/60"
+  class="fixed top-0 left-0 w-full z-50 border-b border-slate-200/80 dark:border-slate-800/80 bg-slate-50/80 dark:bg-slate-900/80 shadow-sm backdrop-blur"
 >
-  <div
-    class="w-full max-w-6xl mx-auto flex h-16 items-center justify-between px-4"
-  >
+  <div class="w-full max-w-6xl mx-auto flex h-16 items-center justify-between px-4">
+    <!-- Logo / Name -->
     <a
       href="about.html"
       class="flex items-center gap-2 text-lg font-bold tracking-tight text-teal-600 dark:text-teal-300 hover:text-teal-700 dark:hover:text-teal-400 transition-colors"
     >
       <i data-lucide="user-round" class="w-5 h-5"></i>
       <span class="md:hidden">MoFA</span>
-      <span class="hidden md:inline">Md Fahim (MoFA)</span>
+      <span class="hidden md:inline">Md Fahim</span>
     </a>
 
+    <!-- Navigation & Buttons -->
     <div class="flex items-center gap-2">
+      <!-- Navigation Links -->
       <nav
         id="main-nav"
-        class="hidden md:flex items-center gap-1 absolute md:static top-full left-0 w-full md:w-auto p-2 md:p-0 bg-slate-50 dark:bg-slate-900 md:bg-transparent md:dark:bg-transparent border-y md:border-0 border-slate-200 dark:border-slate-700"
+        class="hidden md:flex items-center gap-1 absolute md:static top-full left-0 w-full md:w-auto p-2 md:p-0 bg-slate-50 dark:bg-slate-900 md:bg-transparent md:dark:bg-transparent border-y md:border-0 border-slate-200 dark:border-slate-700 transition-all duration-300"
       >
         <a
           href="about.html"
@@ -28,7 +29,7 @@
           href="education.html"
           class="nav-link flex items-center gap-2 w-full text-left md:text-center px-4 py-3 md:px-3 md:py-2 rounded-md text-base md:text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 hover:text-teal-600 dark:hover:text-teal-300 transition-colors"
         >
-          <i data-lucide="graduation-cap" class="w-4 h-4"></i> Education & Work Experience
+          <i data-lucide="graduation-cap" class="w-4 h-4"></i> Education & Work
         </a>
         <a
           href="publications.html"
@@ -56,6 +57,7 @@
         </a>
       </nav>
 
+      <!-- Dark Mode Toggle -->
       <button
         id="dark-toggle"
         class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
@@ -66,6 +68,7 @@
         <span class="sr-only">Toggle dark mode</span>
       </button>
 
+      <!-- Mobile Menu Toggle -->
       <button
         id="mobile-nav-toggle"
         class="md:hidden p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
@@ -76,3 +79,21 @@
     </div>
   </div>
 </header>
+
+<script>
+  // Initialize Lucide icons
+  lucide.createIcons();
+
+  // Dark mode toggle
+  const darkToggle = document.getElementById("dark-toggle");
+  darkToggle.addEventListener("click", () => {
+    document.documentElement.classList.toggle("dark");
+  });
+
+  // Mobile nav toggle
+  const mobileNavToggle = document.getElementById("mobile-nav-toggle");
+  const mainNav = document.getElementById("main-nav");
+  mobileNavToggle.addEventListener("click", () => {
+    mainNav.classList.toggle("hidden");
+  });
+</script>

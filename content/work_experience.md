@@ -1,26 +1,41 @@
-## Penta Global Limited, Bangladesh | AI/ML Engineer 
+### Penta Global Limited, Bangladesh | AI/ML Engineer 
+
+**07/2025 – Present**  
+Banani RA, Dhaka, Bangladesh
+
+- Medical Visual Question Answering with Explainability
+- Parameter Efficient Finetuing in Multimodal Domain 
+- Audio based Dialect Handling for Doctor Paitent
+- Generative AI: Theory and Application (VAE, Flow, Diffusion and LLMs)  
+
+
+### Center for Computational & Data Sciences (CCDS), IUB | Research Assistant (Part Time)
 
 **07/2025 – Present**  
 Bashnudhara RA, Dhaka, Bangladesh
 
-- Currently exploring Agentic Systems.
-- Building the next version of the tutoring system for classroom deployment.
+- Modality Gap and Alingment in Vision Lanauge Model 
+- Multimodal Adapter for Vision Language Model  
+- Parameter Efficient Finetuing 
+- Speech Tokenizer
 
-
-## Center for Computational & Data Sciences (CCDS), IUB | Research Assistant (Part Time)
-
-**07/2025 – Present**  
-Bashnudhara RA, Dhaka, Bangladesh
-
-- Currently exploring Agentic Systems.
-- Building the next version of the tutoring system for classroom deployment.
-
-## Center for Computational & Data Sciences (CCDS), IUB | Research Assistant (Full Time)
+### Center for Computational & Data Sciences (CCDS), IUB | Research Assistant (Full Time)
 
 **10/2022 – 06/2025**  
 Bashnudhara RA, Dhaka, Bangladesh
 
-- Developed a Python Tutoring Application powered by Small Language Model (SLM) for an Intelligent Tutoring System using React, FastAPI, MySQL, and Gemma 2B.
-- Conducted research on Deep Learning and LLM architectures to enhance intelligent systems.
-- Attended a Systematic Literature Review Writing Workshop to improve research documentation.
-- Participated in a Deep Learning Code Management Workshop to learn best practices for version control in deep learning projects.
+- Hate Speech Detection  with Explainability 
+- Impact of LLMs in Low Resource Langauge
+- Model Explainability
+- Generative AI (VAE, Flow, Diffusion)
+- Vision Language Model
+
+
+### Penta Global Limited, Bangladesh | AI Researcher  (Part Time)
+
+**03/2024 – 01/2025**  
+Banani RA, Dhaka, Bangladesh
+
+- Social Media Text Analysis.
+- Dialect, Bias and Fairness Impact in Low Resource Language 
+- Handling Large Scale Transliteration Text  
