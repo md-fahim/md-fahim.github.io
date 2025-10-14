@@ -1,4 +1,4 @@
-<!-- # 📚 Research Publications -->
+# 📚 Research Publications
 
 - 🔤 **[BanglaTLit: A Benchmark Dataset for Back-Transliteration of Romanized Bangla](https://aclanthology.org/2024.findings-emnlp.859.pdf)**  
   🗞️ *EMNLP-2024 Findings*  
