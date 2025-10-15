@@ -12,3 +12,7 @@ If we want to create a new path/new menu item, we need to follow the steps
 - Also need a abcd.md for the text content
 - Then in the partial folder, there is header.txt where need to include abcd.html (with luicid icons and others)
 
+
+Major Changes
+
+- Exclude about.html and all the contents in that file is shifted to index.html
