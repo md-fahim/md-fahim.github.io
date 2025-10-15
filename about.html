@@ -140,21 +140,49 @@
             } else if(sec.type === "publication") {
               const entries = text.split(/---\s*\n?/).map(b => b.trim()).filter(b => b.length > 0).map(block => {
                 const f = {};
+                let currentKey = null;
+                let currentValue = [];
+                
                 block.split("\n").forEach(line => {
                   const match = line.match(/^\[(.+?)\]\s*(.*)/);
-                  if(match) f[match[1].toLowerCase()] = match[2].trim();
+                  if(match) {
+                    // Save previous key-value if exists
+                    if(currentKey) {
+                      f[currentKey] = currentValue.join("\n").trim();
+                    }
+                    // Start new key
+                    currentKey = match[1].toLowerCase();
+                    currentValue = [match[2]];
+                  } else if(currentKey && line.trim()) {
+                    // Continue multiline value
+                    currentValue.push(line);
+                  }
                 });
+                
+                // Save last key-value
+                if(currentKey) {
+                  f[currentKey] = currentValue.join("\n").trim();
+                }
+                
                 return f;
               });
 
               const rendered = entries.map(f => {
                 if(!f.title) return "";
+                
+                // Extract URL from markdown link format or use as-is
+                let paperUrl = "";
+                if(f.paper) {
+                  const urlMatch = f.paper.match(/\[.*?\]\((.*?)\)/) || f.paper.match(/https?:\/\/[^\s]+/);
+                  paperUrl = urlMatch ? (urlMatch[1] || urlMatch[0]) : f.paper;
+                }
+                
                 const imgHtml = f.image ? `<img src="${f.image}" alt="${escapeHtml(f.title)}" class="w-32 h-32 rounded-lg object-cover border border-slate-200 dark:border-slate-700" />` : "";
                 const titleHtml = `<div class="font-bold text-base text-slate-800 dark:text-white">${escapeHtml(f.title)}</div>`;
                 const yearHtml = f.year ? `<div class="text-slate-600 dark:text-slate-400 ml-auto pl-4">${escapeHtml(f.year)}</div>` : "";
                 const venueHtml = f.venue ? `<div class="text-sm italic text-slate-500 dark:text-slate-400 mt-1">${escapeHtml(f.venue)}</div>` : "";
-                const authorHtml = f.author ? `<div class="text-sm mt-1 mb-2"><span class="text-slate-600 dark:text-slate-300">${f.author.split(",").map(a=>a.includes("Md Fahim")?`<a href="#" class="text-teal-600 dark:text-teal-400 hover:underline">${a.trim()}</a>`:a).join(", ")}</span></div>` : "";
-                const paperHtml = f.paper ? `<a href="${f.paper.replace(/\[.*\]\((.*)\)/,"$1")}" target="_blank" class="text-teal-600 dark:text-teal-400 hover:underline mt-1">Paper</a>` : "";
+                const authorHtml = f.author ? `<div class="text-sm mt-1 mb-2"><span class="text-slate-600 dark:text-slate-300">${f.author.split(",").map(a=>a.trim().includes("Md Fahim")?`<a href="#" class="text-teal-600 dark:text-teal-400 hover:underline">${escapeHtml(a.trim())}</a>`:escapeHtml(a.trim())).join(", ")}</span></div>` : "";
+                const paperHtml = paperUrl ? `<a href="${paperUrl}" target="_blank" class="text-teal-600 dark:text-teal-400 hover:underline mt-1">Paper</a>` : "";
 
                 return `<div class="flex gap-4 border border-slate-200 dark:border-slate-700 rounded-xl p-4 bg-white/50 dark:bg-slate-800/50 hover:shadow-md transition">
                           ${imgHtml}
