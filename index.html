@@ -62,12 +62,12 @@
       };
     </script>
   </head>
- 
+
   <body
     class="font-sans bg-slate-50 text-slate-700 dark:bg-slate-900 dark:text-slate-300 min-h-screen flex flex-col transition-colors duration-300"
   >
     <div id="header-partial"></div>
- 
+
     <main
       class="flex-1 w-full max-w-6xl mx-auto px-4 pb-10 flex flex-col lg:flex-row gap-12 pt-28"
     >
@@ -119,7 +119,7 @@
           </div>
         </div>
       </aside>
- 
+
       <div class="flex-1 flex flex-col gap-8">
         <section
           id="about-main"
@@ -148,7 +148,9 @@
             >
           </p>
         </section>
- 
+
+        <div id="dynamic-content-container" class="flex flex-col gap-8"></div>
+        
         <section
           id="selected-publications"
           class="rounded-2xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-lg shadow-lg border border-slate-200 dark:border-slate-700 p-6 flex flex-col gap-4 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
@@ -162,9 +164,9 @@
               Selected Publications
             </h2>
           </div>
- 
+
           <div id="selected-publications-container" class="flex flex-col gap-2"></div>
- 
+
           <div
             class="flex justify-center mt-2 animate-fadeIn opacity-0"
             style="animation-delay: 600ms"
@@ -178,12 +180,12 @@
             </a>
           </div>
         </section>
-        <div id="dynamic-content-container" class="flex flex-col gap-8"></div>
+
       </div>
     </main>
- 
+
     <div id="footer-partial"></div>
- 
+
     <script src="scripts/partials.js"></script>
     <script>
       // Function to escape HTML special characters
@@ -198,16 +200,16 @@
           }[s];
         });
       }
- 
-      // --- START: NEW PUBLICATION LOGIC ---
- 
+
+      // --- START: PUBLICATION LOGIC ---
+
       const parsePublications = (md) => {
         md = md.replace(/^\s*\[([^\]]+)\]:\s*(\S+)(?:\s+"([^"]+)")?\s*$/gm, "");
         const entries = md
           .split(/\r?\n-{3,}\r?\n/)
           .map((e) => e.trim())
           .filter(Boolean);
- 
+
         const parsedEntries = entries
           .map((entry) => {
             const fields = {};
@@ -236,10 +238,10 @@
             };
           })
           .sort((a, b) => b.numericYear - a.numericYear);
- 
+
         return parsedEntries;
       };
- 
+
       function copyBibTeX(button, bibText) {
         navigator.clipboard
           .writeText(bibText)
@@ -254,7 +256,7 @@
           })
           .catch((err) => console.error("Failed to copy text: ", err));
       }
- 
+
       const createPublicationCard = (pub, delay) => {
         const authorHtml = pub.author
           ? `
@@ -262,7 +264,7 @@
             ${pub.author
               .split(",")
               .map((author) =>
-                author.includes("Md Fahim") // <-- Updated author name
+                author.includes("Md Fahim") 
                   ? `<span class="font-bold text-teal-600 dark:text-teal-400">${escapeHtml(
                       author.trim()
                     )}</span>`
@@ -272,7 +274,7 @@
           </p>
         `
           : "";
- 
+
         const buttonBaseClass = `
           inline-flex items-center gap-1.5 px-3 py-1 rounded-md border border-slate-300 dark:border-slate-600 
           text-slate-700 dark:text-slate-300 text-xs font-medium 
@@ -281,7 +283,7 @@
           hover:scale-105 active:scale-95
           transition-all duration-200 ease-out
         `;
- 
+
         return `
           <div class="flex flex-col sm:flex-row gap-4 p-3 rounded-lg hover:bg-white/50 dark:hover:bg-slate-700/50 transition-colors duration-300 group animate-slideUp opacity-0" style="animation-delay: ${delay}ms">
             <div class="w-24 h-24 flex-shrink-0 bg-white dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-700 p-2 group-hover:scale-105 transition-transform duration-300">
@@ -337,8 +339,8 @@
           </div>
         `;
       };
- 
-      fetch("content/publications.md") // Assuming a more comprehensive publications file
+
+      fetch("content/publications.md")
         .then((res) => {
           if (!res.ok) throw new Error("Failed to load publications");
           return res.text();
@@ -346,9 +348,9 @@
         .then((md) => {
           const publications = parsePublications(md);
           const latestTwo = publications.slice(0, 2);
- 
+
           if (latestTwo.length === 0) throw new Error("No publications found");
- 
+
           const container = document.getElementById(
             "selected-publications-container"
           );
@@ -362,9 +364,9 @@
           document.getElementById("selected-publications-container").innerHTML =
             '<p class="text-sm text-slate-500 dark:text-slate-400">Failed to load publications.</p>';
         });
- 
-      // --- END: NEW PUBLICATION LOGIC ---
- 
+
+      // --- END: PUBLICATION LOGIC ---
+
       const createSectionCard = (id, icon, title) => {
         const section = document.createElement("section");
         section.id = `${id}-section`;
@@ -379,7 +381,7 @@
         `;
         return section;
       };
- 
+
       const sections = [
         {
           id: "news",
@@ -388,15 +390,14 @@
           file: "content/recent_news.md",
           type: "markdown",
         },
-        // Publications are now handled separately above
       ];
- 
+
       const container = document.getElementById("dynamic-content-container");
- 
+
       sections.forEach((sec) => {
         const card = createSectionCard(sec.id, sec.icon, sec.title);
         container.appendChild(card);
- 
+
         fetch(sec.file)
           .then((res) => {
             if (!res.ok) throw new Error(`Failed to load ${sec.file}`);
@@ -409,7 +410,7 @@
               const tempDiv = document.createElement("div");
               tempDiv.innerHTML = parsed;
               const listItems = Array.from(tempDiv.querySelectorAll("ul li"));
- 
+
               if (listItems.length > 0) {
                 const newsItems = listItems.map((li) => {
                   const html = li.innerHTML;
@@ -417,11 +418,11 @@
                   const date = dateMatch ? dateMatch[1] : "";
                   return { html: html, date: date };
                 });
- 
+
                 const recentNews = newsItems.slice(0, 5);
                 const olderNews = newsItems.slice(5);
                 let timelineHtml = '<div class="relative space-y-1">';
- 
+
                 recentNews.forEach((item, idx) => {
                   const isLast =
                     idx === recentNews.length - 1 && olderNews.length === 0;
@@ -446,7 +447,7 @@
                   `;
                 });
                 timelineHtml += "</div>";
- 
+
                 if (olderNews.length > 0) {
                   timelineHtml += `
                     <div id="older-news-container" class="hidden relative space-y-1 mt-2">
