@@ -153,9 +153,9 @@
                   return { html: text, date: date, element: li };
                 });
                 
-                // Show only first 7 items initially
-                const recentNews = newsItems.slice(0, 7);
-                const olderNews = newsItems.slice(7);
+                // Show only first 5 items initially
+                const recentNews = newsItems.slice(0, 5);
+                const olderNews = newsItems.slice(5);
                 
                 // Create timeline visualization
                 let timelineHtml = '<div class="relative space-y-1">';
@@ -255,22 +255,23 @@
                   if(match) {
                     // Save previous key-value if exists
                     if(currentKey) {
-                      f[currentKey] = currentValue.join("\n").trim();
+                      f[currentKey] = currentValue.join(" ").trim();
                     }
                     // Start new key
                     currentKey = match[1].toLowerCase();
                     currentValue = [match[2]];
                   } else if(currentKey && line.trim()) {
                     // Continue multiline value
-                    currentValue.push(line);
+                    currentValue.push(line.trim());
                   }
                 });
                 
                 // Save last key-value
                 if(currentKey) {
-                  f[currentKey] = currentValue.join("\n").trim();
+                  f[currentKey] = currentValue.join(" ").trim();
                 }
                 
+                console.log('Parsed entry:', f);
                 return f;
               });
 
