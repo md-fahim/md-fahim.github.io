@@ -43,6 +43,20 @@
                 },
               },
             }),
+            keyframes: {
+              slideUp: {
+                "0%": { transform: "translateY(10px)", opacity: "0" },
+                "100%": { transform: "translateY(0)", opacity: "1" },
+              },
+              fadeIn: {
+                "0%": { opacity: "0" },
+                "100%": { opacity: "1" },
+              },
+            },
+            animation: {
+              slideUp: "slideUp 0.5s ease-out forwards",
+              fadeIn: "fadeIn 0.5s ease-out forwards",
+            },
           },
         },
       };
@@ -57,7 +71,6 @@
     <main
       class="flex-1 w-full max-w-6xl mx-auto px-4 pb-10 flex flex-col lg:flex-row gap-12 pt-28"
     >
-      <!-- Sidebar -->
       <aside
         class="w-full lg:w-80 flex-shrink-0 lg:sticky lg:top-24 h-fit"
       >
@@ -107,7 +120,6 @@
         </div>
       </aside>
 
-      <!-- Main content -->
       <div class="flex-1 flex flex-col gap-8">
         <section
           id="about-main"
@@ -140,24 +152,230 @@
           </p>
         </section>
 
+        <section
+          id="selected-publications"
+          class="rounded-2xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-lg shadow-lg border border-slate-200 dark:border-slate-700 p-6 flex flex-col gap-4 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+        >
+          <div class="flex items-center gap-3">
+            <i
+              data-lucide="book-open-check"
+              class="w-6 h-6 text-teal-500 dark:text-teal-400"
+            ></i>
+            <h2 class="text-xl font-bold text-teal-600 dark:text-teal-300">
+              Selected Publications
+            </h2>
+          </div>
+
+          <div id="selected-publications-container"></div>
+
+          <div
+            class="flex justify-center mt-2 animate-fadeIn opacity-0"
+            style="animation-delay: 600ms"
+          >
+            <a
+              href="publications.html"
+              class="inline-flex items-center gap-2 text-sm text-teal-600 dark:text-teal-400 hover:underline"
+            >
+              View all publications
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </section>
+
         <div id="dynamic-content-container" class="flex flex-col gap-8"></div>
       </div>
+      
     </main>
 
     <div id="footer-partial"></div>
 
     <script src="scripts/partials.js"></script>
     <script>
-      // small safe escape for user-provided text
-      const escapeHtml = (unsafe) =>
-        unsafe
-          ? unsafe
-              .replace(/&/g, "&amp;")
-              .replace(/</g, "&lt;")
-              .replace(/>/g, "&gt;")
-              .replace(/"/g, "&quot;")
-              .replace(/'/g, "&#039;")
+      // Function to escape HTML special characters
+      function escapeHtml(str) {
+        return String(str).replace(/[&<>"']/g, function (s) {
+          return {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;",
+          }[s];
+        });
+      }
+
+      // --- Publication Rendering Logic (New) ---
+
+      const parsePublications = (md) => {
+        md = md.replace(/^\s*\[([^\]]+)\]:\s*(\S+)(?:\s+"([^"]+)")?\s*$/gm, "");
+        const entries = md
+          .split(/\r?\n-{3,}\r?\n/)
+          .map((e) => e.trim())
+          .filter(Boolean);
+
+        const parsedEntries = entries
+          .map((entry) => {
+            const fields = {};
+            let current = null;
+            entry.split(/\r?\n/).forEach((line) => {
+              const sec = line.match(/^\[(\w+)\]$/);
+              if (sec) {
+                current = sec[1].toLowerCase();
+                fields[current] = "";
+              } else if (current) {
+                if (fields[current]) fields[current] += "\n";
+                fields[current] += line.trim();
+              }
+            });
+
+            if (fields.paper) {
+              const match = fields.paper.match(/\[([^\]]+)\]\(([^)]+)\)/);
+              if (match) fields.paper = match[2];
+            }
+            if (fields.code) {
+              const match = fields.code.match(/\[([^\]]+)\]\(([^)]+)\)/);
+              if (match) fields.code = match[2];
+            }
+
+            return {
+              ...fields,
+              numericYear: parseInt(fields.year) || 0,
+            };
+          })
+          .sort((a, b) => b.numericYear - a.numericYear);
+
+        return parsedEntries;
+      };
+
+      function copyBibTeX(button, bibText) {
+        navigator.clipboard
+          .writeText(bibText)
+          .then(() => {
+            const originalContent = button.innerHTML;
+            button.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5"></i>Copied!`;
+            lucide.createIcons();
+            setTimeout(() => {
+              button.innerHTML = originalContent;
+              lucide.createIcons();
+            }, 2000);
+          })
+          .catch((err) => {
+            console.error("Failed to copy text: ", err);
+          });
+      }
+
+      const createPublicationCard = (pub, delay) => {
+        const authorHtml = pub.author
+          ? `
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            ${pub.author
+              .split(",")
+              .map((author) =>
+                author.includes("Md Fahim")
+                  ? `<span class="font-semibold text-teal-600 dark:text-teal-400">${escapeHtml(
+                      author.trim()
+                    )}</span>`
+                  : escapeHtml(author.trim())
+              )
+              .join(", ")}
+          </p>
+        `
           : "";
+
+        const buttonBaseClass = `
+          inline-flex items-center gap-1.5 px-3 py-1 rounded-md border border-slate-300 dark:border-slate-600 
+          text-slate-700 dark:text-slate-300 text-xs font-medium 
+          hover:border-teal-500 dark:hover:border-teal-400
+          hover:text-teal-600 dark:hover:text-teal-400
+          hover:scale-105 active:scale-95
+          transition-all duration-200 ease-out
+        `;
+
+        return `
+          <div class="flex flex-col sm:flex-row gap-4 p-3 rounded-lg hover:bg-white/50 dark:hover:bg-slate-700/50 transition-colors duration-300 group animate-slideUp opacity-0" style="animation-delay: ${delay}ms">
+            <div class="w-24 h-24 flex-shrink-0 bg-white dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-700 p-2 group-hover:scale-105 transition-transform duration-300">
+              <img src="${escapeHtml(pub.image || "")}" alt="${escapeHtml(
+          pub.title
+        )}" class="w-full h-full object-contain rounded" 
+                     onerror="this.onerror=null; this.src='assets/images/publication-placeholder.png';" />
+            </div>
+            <div class="flex-1">
+              <h3 class="font-semibold text-slate-800 dark:text-slate-200">${escapeHtml(
+                pub.title
+              )}</h3>
+              ${authorHtml}
+              <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">${escapeHtml(
+                pub.venue
+              )}${pub.year ? ` (${escapeHtml(pub.year)})` : ""}</p>
+              <div class="flex flex-wrap gap-2 mt-3 opacity-90 group-hover:opacity-100 transition-opacity duration-300">
+                ${
+                  pub.code
+                    ? `
+                  <a href="${escapeHtml(
+                    pub.code
+                  )}" target="_blank" rel="noopener" class="${buttonBaseClass}">
+                    <i data-lucide="code-2" class="w-3.5 h-3.5"></i>Code
+                  </a>
+                `
+                    : ""
+                }
+                ${
+                  pub.paper
+                    ? `
+                  <a href="${escapeHtml(
+                    pub.paper
+                  )}" target="_blank" rel="noopener" class="${buttonBaseClass}">
+                    <i data-lucide="file-text" class="w-3.5 h-3.5"></i>Paper
+                  </a>
+                `
+                    : ""
+                }
+                ${
+                  pub.bib
+                    ? `
+                  <button onclick="copyBibTeX(this, \`${escapeHtml(
+                    pub.bib
+                  )}\`)" class="${buttonBase-class}">
+                    <i data-lucide="quote" class="w-3.5 h-3.5"></i>BIB
+                  </button>
+                `
+                    : ""
+                }
+              </div>
+            </div>
+          </div>
+        `;
+      };
+
+      fetch("content/publications.md")
+        .then((res) => {
+          if (!res.ok) throw new Error("Failed to load publications");
+          return res.text();
+        })
+        .then((md) => {
+          const publications = parsePublications(md);
+          const latestTwo = publications.slice(0, 2);
+
+          if (latestTwo.length === 0) {
+            throw new Error("No publications found");
+          }
+
+          const container = document.getElementById(
+            "selected-publications-container"
+          );
+          container.innerHTML = latestTwo
+            .map((pub, index) => createPublicationCard(pub, (index + 1) * 200))
+            .join("");
+
+          lucide.createIcons();
+        })
+        .catch((err) => {
+          console.error("Failed to load publications:", err);
+          document.getElementById("selected-publications-container").innerHTML =
+            '<p class="text-sm text-slate-500 dark:text-slate-400">Failed to load publications. Please try again later.</p>';
+        });
+
+      // --- Dynamic Section Loading (Original, for News etc.) ---
 
       const createSectionCard = (id, icon, title) => {
         const section = document.createElement("section");
@@ -182,34 +400,9 @@
           file: "content/recent_news.md",
           type: "markdown",
         },
-        {
-          id: "selected_pub",
-          icon: "award",
-          title: "Selected Publications",
-          file: "content/selected_publications.md",
-          type: "publication",
-        },
       ];
 
       const container = document.getElementById("dynamic-content-container");
-
-      // Helper to extract URL robustly from a text block:
-      function extractUrl(text) {
-        if (!text) return "";
-        // 1) Markdown link [text](url)
-        let m = text.match(/\[.*?\]\((https?:\/\/[^\s)]+)\)/i);
-        if (m && m[1]) return m[1].trim();
-        // 2) Angle-bracketed <https://...>
-        m = text.match(/<\s*(https?:\/\/[^>\s]+)\s*>/i);
-        if (m && m[1]) return m[1].trim();
-        // 3) Plain URL anywhere
-        m = text.match(/(https?:\/\/[^\s]+)/i);
-        if (m && m[1]) return m[1].trim();
-        // 4) Sometimes users put a bare URL on the next line or wrapped in brackets like [https://...]
-        m = text.match(/\[?(https?:\/\/[^\]\s]+)\]?/i);
-        if (m && m[1]) return m[1].trim();
-        return "";
-      }
 
       sections.forEach((sec) => {
         const card = createSectionCard(sec.id, sec.icon, sec.title);
@@ -222,17 +415,14 @@
           })
           .then((text) => {
             if (sec.type === "markdown") {
-              // --- original markdown handling for Recent News (kept intact, with minor cleanup)
               const contentDiv = document.getElementById(`${sec.id}-content`);
               const parsed = marked.parse(text);
 
-              // Extract news items from the parsed HTML
               const tempDiv = document.createElement("div");
               tempDiv.innerHTML = parsed;
               const listItems = Array.from(tempDiv.querySelectorAll("ul li"));
 
               if (listItems.length > 0) {
-                // Parse news items with dates (if formatted like **DATE**: content)
                 const newsItems = listItems.map((li) => {
                   const html = li.innerHTML;
                   const dateMatch = html.match(/\*\*(.+?)\*\*/);
@@ -325,100 +515,8 @@
               } else {
                 contentDiv.innerHTML = parsed;
               }
-              // ensure icons render
               lucide.createIcons();
-            } else if (sec.type === "publication") {
-              // --- publication parsing and rendering
-              const entries = text
-                .split(/---\s*\n?/)
-                .map((b) => b.trim())
-                .filter((b) => b.length > 0)
-                .map((block) => {
-                  const f = {};
-                  let currentKey = null;
-                  let currentValue = [];
-                  block.split("\n").forEach((line) => {
-                    const match = line.match(/^\[(.+?)\]\s*(.*)/);
-                    if (match) {
-                      if (currentKey) f[currentKey] = currentValue.join(" ").trim();
-                      currentKey = match[1].toLowerCase();
-                      currentValue = [match[2] || ""];
-                    } else if (currentKey) {
-                      // accumulate multiline values (including next-line-only URLs)
-                      currentValue.push(line.trim());
-                    }
-                  });
-                  if (currentKey) f[currentKey] = currentValue.join(" ").trim();
-                  return f;
-                });
-
-              const rendered = entries
-                .map((f) => {
-                  if (!f.title) return "";
-                  const paperUrl = extractUrl(f.paper);
-
-                  const imgHtml = f.image
-                    ? `<img src="${escapeHtml(f.image)}" alt="${escapeHtml(f.title)}" class="w-32 h-32 rounded-lg object-cover border border-slate-200 dark:border-slate-700" />`
-                    : "";
-
-                  const titleHtml = `<div class="font-bold text-base text-slate-800 dark:text-white">${escapeHtml(
-                    f.title
-                  )}</div>`;
-                  const yearHtml = f.year
-                    ? `<div class="text-slate-600 dark:text-slate-400 ml-auto pl-4">${escapeHtml(
-                        f.year
-                      )}</div>`
-                    : "";
-                  const venueHtml = f.venue
-                    ? `<div class="text-sm italic text-slate-500 dark:text-slate-400 mt-1">${escapeHtml(
-                        f.venue
-                      )}</div>`
-                    : "";
-                  const authorHtml = f.author
-                    ? `<div class="text-sm mt-1 mb-2"><span class="text-slate-600 dark:text-slate-300">${f.author
-                        .split(",")
-                        .map((a) =>
-                          a.trim().includes("Md Fahim")
-                            ? `<a href="#" class="text-teal-600 dark:text-teal-400 hover:underline">${escapeHtml(
-                                a.trim()
-                              )}</a>`
-                            : escapeHtml(a.trim())
-                        )
-                        .join(", ")}</span></div>`
-                    : "";
-
-                  // If we found a URL, render the Paper button; otherwise leave blank.
-                  const paperBtnHtml = paperUrl
-                    ? `<div class="mt-2">
-                        <a href="${escapeHtml(paperUrl)}" target="_blank" rel="noopener"
-                           class="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-teal-500 to-cyan-500 text-white text-sm rounded-lg shadow hover:shadow-md hover:from-teal-600 hover:to-cyan-600 transition">
-                           <i data-lucide="file-text" class="w-4 h-4"></i> Paper
-                        </a>
-                      </div>`
-                    : "";
-
-                  return `<div class="flex gap-4 border border-slate-200 dark:border-slate-700 rounded-xl p-4 bg-white/50 dark:bg-slate-800/50 hover:shadow-md transition">
-                            ${imgHtml}
-                            <div class="flex-1 flex flex-col">
-                              <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
-                                ${titleHtml}
-                                ${yearHtml}
-                              </div>
-                              ${venueHtml}
-                              ${authorHtml}
-                              ${paperBtnHtml}
-                            </div>
-                          </div>`;
-                })
-                .join("");
-
-              document.getElementById(`${sec.id}-content`).innerHTML =
-                rendered ||
-                '<p class="text-slate-500 dark:text-slate-400">No publications found.</p>';
-
-              // render icons for Paper buttons and other lucide icons
-              lucide.createIcons();
-            }
+            } 
           })
           .catch((err) => {
             console.error(`Error loading ${sec.file}:`, err);
@@ -426,6 +524,10 @@
               `<p class="text-red-500">Error loading content. Check console for details.</p>`;
           });
       });
+      
+      setTimeout(() => {
+        lucide.createIcons();
+      }, 0);
     </script>
   </body>
 </html>
