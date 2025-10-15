@@ -6,7 +6,6 @@
     <meta name="description" content="About Md Fahim, Doing something" />
     <title>About | Academic Profile</title>
 
-    <!-- Fonts & Tailwind -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
       rel="stylesheet"
@@ -21,7 +20,9 @@
         darkMode: "class",
         theme: {
           extend: {
-            fontFamily: { sans: ["Inter", "system-ui", "sans-serif"] },
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+            },
             typography: ({ theme }) => ({
               custom: {
                 css: {
@@ -118,16 +119,12 @@
           <h2 class="text-xl font-bold text-teal-600 dark:text-teal-300 mb-2">
             About Me
           </h2>
-          <p
-            class="text-base text-slate-600 dark:text-slate-300 leading-relaxed"
-          >
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
             I'm a passionate researcher and developer with a strong interest in
             building intelligent systems that can learn and reason. My current
             focus is on exploring the frontiers of AI.
           </p>
-          <p
-            class="text-base text-slate-600 dark:text-slate-300 leading-relaxed pt-2"
-          >
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed pt-2">
             <strong>Research Interests:</strong>
             <span class="font-semibold text-teal-700 dark:text-teal-400">
               Artificial Intelligence, Machine Learning, Data Science, Deep
@@ -136,7 +133,6 @@
           </p>
         </section>
 
-        <!-- DYNAMIC SECTIONS -->
         <div id="dynamic-content-container" class="flex flex-col gap-8"></div>
       </div>
     </main>
@@ -145,7 +141,6 @@
 
     <script src="scripts/partials.js"></script>
     <script>
-      // Utility to escape HTML safely
       const escapeHtml = (unsafe) =>
         unsafe
           ? unsafe
@@ -156,13 +151,11 @@
               .replace(/'/g, "&#039;")
           : "";
 
-      // Create section card
       const createSectionCard = (id, icon, title) => {
         const section = document.createElement("section");
         section.id = `${id}-section`;
         section.className =
           "rounded-2xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-lg shadow-lg border border-slate-200 dark:border-slate-700 p-6 flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1";
-
         section.innerHTML = `
           <div class="flex items-center gap-3 mb-4">
             <i data-lucide="${icon}" class="w-6 h-6 text-teal-500 dark:text-teal-400"></i>
@@ -192,7 +185,6 @@
 
       const container = document.getElementById("dynamic-content-container");
 
-      // Load each section
       sections.forEach((sec) => {
         const card = createSectionCard(sec.id, sec.icon, sec.title);
         container.appendChild(card);
@@ -210,25 +202,30 @@
             .then((res) => res.text())
             .then((text) => {
               const entries = text
-                .split(/\n-{3,}\n/)
+                .split(/\n\s*\n/)
                 .filter((b) => b.trim().length > 0)
                 .map((block) => {
                   const lines = block.split("\n");
                   const f = {};
                   let currentKey = null;
-
                   lines.forEach((line) => {
-                    line = line.trim();
-                    if (line.startsWith("[") && line.endsWith("]")) {
+                    if (line.startsWith("[") && line.includes("]")) {
                       currentKey = line
-                        .replace(/\[|\]/g, "")
+                        .replace("[", "")
+                        .replace("]", "")
                         .trim()
                         .toLowerCase();
                       f[currentKey] = "";
-                    } else if (currentKey && line !== "") {
-                      f[currentKey] += (f[currentKey] ? " " : "") + line;
+                    } else if (currentKey && line.trim() !== "") {
+                      f[currentKey] += (f[currentKey] ? " " : "") + line.trim();
                     }
                   });
+
+                  // Clean Markdown-style links for Paper/Code
+                  if (f.paper)
+                    f.paper = f.paper.replace(/\[.*?\]\((.*?)\)/, "$1").trim();
+                  if (f.code)
+                    f.code = f.code.replace(/\[.*?\]\((.*?)\)/, "$1").trim();
 
                   return f;
                 });
@@ -254,9 +251,14 @@
                     : "";
 
                   const authorHtml = f.author
-                    ? `<div class="text-sm text-slate-600 dark:text-slate-400">${escapeHtml(
-                        f.author
-                      )}</div>`
+                    ? `<div class="text-sm mt-1 mb-2"><span class="text-slate-600 dark:text-slate-300">${f.author
+                        .split(",")
+                        .map((author) =>
+                          author.includes("Md Fahim")
+                            ? `<a href="#" class="text-teal-600 dark:text-teal-400 hover:underline">${author.trim()}</a>`
+                            : author.trim()
+                        )
+                        .join(", ")}</span></div>`
                     : "";
 
                   const yearHtml = f.year
@@ -265,25 +267,20 @@
                       )}</div>`
                     : "";
 
-                  const buttons = [];
-                  if (f.code)
-                    buttons.push(
-                      `<a href="${f.code}" target="_blank" class="text-teal-600 dark:text-teal-400 text-sm font-medium hover:underline">[Code]</a>`
-                    );
-                  if (f.paper)
-                    buttons.push(
-                      `<a href="${f.paper}" target="_blank" class="text-teal-600 dark:text-teal-400 text-sm font-medium hover:underline">[Paper]</a>`
-                    );
-                  if (f.bib)
-                    buttons.push(
-                      `<button onclick="navigator.clipboard.writeText(\`${escapeHtml(
-                        f.bib
-                      )}\`)" class="text-teal-600 dark:text-teal-400 text-sm font-medium hover:underline">[BIB]</button>`
-                    );
-
-                  const buttonHtml = buttons.length
-                    ? `<div class="flex gap-3 mt-2">${buttons.join("")}</div>`
-                    : "";
+                  const linkHtml = `
+                    <div class="flex flex-wrap gap-3 mt-2">
+                      ${
+                        f.paper
+                          ? `<a href="${f.paper}" target="_blank" class="text-sm text-teal-600 dark:text-teal-400 hover:underline">📄 Paper</a>`
+                          : ""
+                      }
+                      ${
+                        f.code
+                          ? `<a href="${f.code}" target="_blank" class="text-sm text-teal-600 dark:text-teal-400 hover:underline">💻 Code</a>`
+                          : ""
+                      }
+                    </div>
+                  `;
 
                   return `
                     <div class="flex gap-4 border border-slate-200 dark:border-slate-700 rounded-xl p-4 bg-white/50 dark:bg-slate-800/50 hover:shadow-md transition">
@@ -295,7 +292,7 @@
                         </div>
                         ${venueHtml}
                         ${authorHtml}
-                        ${buttonHtml}
+                        ${linkHtml}
                       </div>
                     </div>`;
                 })
