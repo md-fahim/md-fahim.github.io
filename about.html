@@ -130,7 +130,10 @@
         container.appendChild(card);
 
         fetch(sec.file)
-          .then(res => res.text())
+          .then(res => {
+            if (!res.ok) throw new Error(`Failed to load ${sec.file}`);
+            return res.text();
+          })
           .then(text => {
             if(sec.type === "markdown"){
               document.getElementById(`${sec.id}-content`).innerHTML = marked.parse(text);
@@ -167,9 +170,14 @@
                         </div>`;
               }).join("");
 
-              document.getElementById(`${sec.id}-content`).innerHTML = rendered;
+              document.getElementById(`${sec.id}-content`).innerHTML = rendered || '<p class="text-slate-500 dark:text-slate-400">No publications found.</p>';
             }
             lucide.createIcons();
+          })
+          .catch(err => {
+            console.error(`Error loading ${sec.file}:`, err);
+            document.getElementById(`${sec.id}-content`).innerHTML = 
+              `<p class="text-red-500">Error loading content. Check console for details.</p>`;
           });
       });
     </script>
