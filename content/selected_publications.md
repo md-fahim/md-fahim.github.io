@@ -1,20 +1,3 @@
-<!-- [Title]
-BanglaTLit: A benchmark dataset for back-transliteration of Romanized Bangla
-[Image]
-posts/publications/fruitquality.png
-[Author]
-Md Fahim, Fariha Shifat, Fabiha Haider, Deeparghya Barua, Md Sourove, Md Ishmam, Md Bhuiyan
-[Code]
-[Paper]
-https://aclanthology.org/2024.findings-emnlp.859/
-[BIB]
-[Venue]
-Findings of the Association for Computational Linguistics: EMNLP 2024
-[Year]
-2024
-
---- -->
-
 [Title]
 BanglaTLit: A benchmark dataset for back-transliteration of Romanized Bangla
 [Image]

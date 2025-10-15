@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="About Md Fahim, Doing something" />
     <title>About | Academic Profile</title>
-
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
       rel="stylesheet"
@@ -14,42 +13,6 @@
     <script src="https://cdn.tailwindcss.com?plugins=typography,forms"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
-    <script>
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ["Inter", "system-ui", "sans-serif"],
-            },
-            typography: ({ theme }) => ({
-              custom: {
-                css: {
-                  "--tw-prose-body": theme("colors.slate[600]"),
-                  "--tw-prose-headings": theme("colors.slate[800]"),
-                  "--tw-prose-links": theme("colors.teal[600]"),
-                  "--tw-prose-bold": theme("colors.slate[800]"),
-                  "--tw-prose-bullets": theme("colors.slate[400]"),
-                  "--tw-prose-hr": theme("colors.slate[200]"),
-                  "--tw-prose-quotes": theme("colors.slate[800]"),
-                  "--tw-prose-quote-borders": theme("colors.teal[300]"),
-
-                  "--tw-prose-invert-body": theme("colors.slate[300]"),
-                  "--tw-prose-invert-headings": theme("colors.slate[100]"),
-                  "--tw-prose-invert-links": theme("colors.teal[400]"),
-                  "--tw-prose-invert-bold": theme("colors.slate[100]"),
-                  "--tw-prose-invert-bullets": theme("colors.slate[600]"),
-                  "--tw-prose-invert-hr": theme("colors.slate[700]"),
-                  "--tw-prose-invert-quotes": theme("colors.slate[100]"),
-                  "--tw-prose-invert-quote-borders": theme("colors.teal[700]"),
-                },
-              },
-            }),
-          },
-        },
-      };
-    </script>
   </head>
 
   <body
@@ -83,30 +46,6 @@
           <p class="text-sm text-slate-400 dark:text-slate-500 italic">
             "Keep Learning"
           </p>
-          <div class="flex flex-wrap justify-center gap-x-4 gap-y-2 pt-2">
-            <a
-              href="mailto:fahimcse381@gmail.com"
-              class="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:text-teal-500 dark:hover:text-teal-300 text-sm transition-colors"
-            >
-              <i data-lucide="mail" class="w-4 h-4"></i>Email
-            </a>
-            <a
-              href="https://github.com/md-fahim"
-              target="_blank"
-              rel="noopener"
-              class="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:text-teal-500 dark:hover:text-teal-300 text-sm transition-colors"
-            >
-              <i data-lucide="github" class="w-4 h-4"></i>GitHub
-            </a>
-            <a
-              href="https://www.linkedin.com/in/md-fahim-1a159b373/"
-              target="_blank"
-              rel="noopener"
-              class="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:text-teal-500 dark:hover:text-teal-300 text-sm transition-colors"
-            >
-              <i data-lucide="linkedin" class="w-4 h-4"></i>LinkedIn
-            </a>
-          </div>
         </div>
       </aside>
 
@@ -123,13 +62,6 @@
             I'm a passionate researcher and developer with a strong interest in
             building intelligent systems that can learn and reason. My current
             focus is on exploring the frontiers of AI.
-          </p>
-          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed pt-2">
-            <strong>Research Interests:</strong>
-            <span class="font-semibold text-teal-700 dark:text-teal-400">
-              Artificial Intelligence, Machine Learning, Data Science, Deep
-              Learning, LLMs, Agentic Systems
-            </span>
           </p>
         </section>
 
@@ -156,6 +88,7 @@
         section.id = `${id}-section`;
         section.className =
           "rounded-2xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-lg shadow-lg border border-slate-200 dark:border-slate-700 p-6 flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1";
+
         section.innerHTML = `
           <div class="flex items-center gap-3 mb-4">
             <i data-lucide="${icon}" class="w-6 h-6 text-teal-500 dark:text-teal-400"></i>
@@ -203,30 +136,18 @@
             .then((text) => {
               const entries = text
                 .split(/\n\s*\n/)
-                .filter((b) => b.trim().length > 0)
+                .map((b) => b.trim())
+                .filter((b) => b && b.includes("[Title]"))
                 .map((block) => {
                   const lines = block.split("\n");
                   const f = {};
-                  let currentKey = null;
                   lines.forEach((line) => {
-                    if (line.startsWith("[") && line.includes("]")) {
-                      currentKey = line
-                        .replace("[", "")
-                        .replace("]", "")
-                        .trim()
-                        .toLowerCase();
-                      f[currentKey] = "";
-                    } else if (currentKey && line.trim() !== "") {
-                      f[currentKey] += (f[currentKey] ? " " : "") + line.trim();
+                    const [key, ...rest] = line.split("]");
+                    if (key && rest.length) {
+                      const field = key.replace("[", "").trim().toLowerCase();
+                      f[field] = rest.join("]").trim();
                     }
                   });
-
-                  // Clean Markdown-style links for Paper/Code
-                  if (f.paper)
-                    f.paper = f.paper.replace(/\[.*?\]\((.*?)\)/, "$1").trim();
-                  if (f.code)
-                    f.code = f.code.replace(/\[.*?\]\((.*?)\)/, "$1").trim();
-
                   return f;
                 });
 
@@ -237,50 +158,37 @@
                         f.title
                       )}" class="w-32 h-32 rounded-lg object-cover border border-slate-200 dark:border-slate-700" />`
                     : "";
-
-                  const titleHtml = f.title
-                    ? `<div class="font-bold text-base text-slate-800 dark:text-white">${escapeHtml(
-                        f.title
-                      )}</div>`
-                    : "";
-
                   const venueHtml = f.venue
                     ? `<div class="text-sm italic text-slate-500 dark:text-slate-400 mt-1">${escapeHtml(
                         f.venue
                       )}</div>`
                     : "";
-
+                  const yearHtml = f.year
+                    ? `<div class="text-slate-600 dark:text-slate-400 ml-auto pl-4">${escapeHtml(
+                        f.year
+                      )}</div>`
+                    : "";
+                  const titleHtml = f.title
+                    ? `<div class="font-bold text-base text-slate-800 dark:text-white">${escapeHtml(
+                        f.title
+                      )}</div>`
+                    : "";
                   const authorHtml = f.author
                     ? `<div class="text-sm mt-1 mb-2"><span class="text-slate-600 dark:text-slate-300">${f.author
                         .split(",")
                         .map((author) =>
                           author.includes("Md Fahim")
                             ? `<a href="#" class="text-teal-600 dark:text-teal-400 hover:underline">${author.trim()}</a>`
-                            : author.trim()
+                            : author
                         )
                         .join(", ")}</span></div>`
                     : "";
-
-                  const yearHtml = f.year
-                    ? `<div class="text-slate-600 dark:text-slate-400 ml-auto pl-4">${escapeHtml(
-                        f.year
-                      )}</div>`
+                  const paperHtml = f.paper
+                    ? `<a href="${f.paper.replace(
+                        /\[.*\]\((.*)\)/,
+                        "$1"
+                      )}" target="_blank" class="text-teal-600 dark:text-teal-400 hover:underline mt-1">Paper</a>`
                     : "";
-
-                  const linkHtml = `
-                    <div class="flex flex-wrap gap-3 mt-2">
-                      ${
-                        f.paper
-                          ? `<a href="${f.paper}" target="_blank" class="text-sm text-teal-600 dark:text-teal-400 hover:underline">📄 Paper</a>`
-                          : ""
-                      }
-                      ${
-                        f.code
-                          ? `<a href="${f.code}" target="_blank" class="text-sm text-teal-600 dark:text-teal-400 hover:underline">💻 Code</a>`
-                          : ""
-                      }
-                    </div>
-                  `;
 
                   return `
                     <div class="flex gap-4 border border-slate-200 dark:border-slate-700 rounded-xl p-4 bg-white/50 dark:bg-slate-800/50 hover:shadow-md transition">
@@ -292,7 +200,7 @@
                         </div>
                         ${venueHtml}
                         ${authorHtml}
-                        ${linkHtml}
+                        ${paperHtml}
                       </div>
                     </div>`;
                 })
