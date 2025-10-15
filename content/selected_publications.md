@@ -6,7 +6,7 @@ posts/publications/fruitquality.png
 Md Fahim, Fariha Shifat, Fabiha Haider, Deeparghya Barua, Md Sourove, Md Ishmam, Md Bhuiyan
 [Code]
 [Paper]
-[https://aclanthology.org/2024.findings-emnlp.859/](https://aclanthology.org/2024.findings-emnlp.859/)
+https://aclanthology.org/2024.findings-emnlp.859/
 [BIB]
 @inproceedings{fahim2024banglatlit,
   title={BanglaTLit: A benchmark dataset for back-transliteration of Romanized Bangla},
