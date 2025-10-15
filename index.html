@@ -3,142 +3,429 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Academic profile and blog of Md Fahim. Explore research, projects, publications, and more."
-    />
-    <title>Md Fahim | Academic Profile</title>
+    <meta name="description" content="About Md Fahim, Doing something" />
+    <title>About | Academic Profile</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles/animations.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-
     <script src="https://cdn.tailwindcss.com?plugins=typography,forms"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
       tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
-            colors: {
-              discord: "#5865F2",
-            },
             fontFamily: {
               sans: ["Inter", "system-ui", "sans-serif"],
             },
+            typography: ({ theme }) => ({
+              custom: {
+                css: {
+                  "--tw-prose-body": theme("colors.slate[600]"),
+                  "--tw-prose-headings": theme("colors.slate[800]"),
+                  "--tw-prose-links": theme("colors.teal[600]"),
+                  "--tw-prose-bold": theme("colors.slate[800]"),
+                  "--tw-prose-bullets": theme("colors.slate[400]"),
+                  "--tw-prose-hr": theme("colors.slate[200]"),
+                  "--tw-prose-quotes": theme("colors.slate[800]"),
+                  "--tw-prose-quote-borders": theme("colors.teal[300]"),
+                  "--tw-prose-invert-body": theme("colors.slate[300]"),
+                  "--tw-prose-invert-headings": theme("colors.slate[100]"),
+                  "--tw-prose-invert-links": theme("colors.teal[400]"),
+                  "--tw-prose-invert-bold": theme("colors.slate[100]"),
+                  "--tw-prose-invert-bullets": theme("colors.slate[600]"),
+                  "--tw-prose-invert-hr": theme("colors.slate[700]"),
+                  "--tw-prose-invert-quotes": theme("colors.slate[100]"),
+                  "--tw-prose-invert-quote-borders": theme("colors.teal[700]"),
+                },
+              },
+            }),
           },
         },
       };
     </script>
   </head>
+
   <body
-    class="font-sans bg-slate-50 text-slate-700 dark:bg-slate-900 dark:text-slate-300 min-h-screen flex flex-col"
+    class="font-sans bg-slate-50 text-slate-700 dark:bg-slate-900 dark:text-slate-300 min-h-screen flex flex-col transition-colors duration-300"
   >
     <div id="header-partial"></div>
 
-    <main class="flex-1 w-full max-w-4xl mx-auto px-4 pb-10 pt-28">
-      <section
-        id="about"
-        class="rounded-2xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-lg shadow-lg border border-slate-200 dark:border-slate-700 p-6 sm:p-8 flex flex-col items-center text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+    <main
+      class="flex-1 w-full max-w-6xl mx-auto px-4 pb-10 flex flex-col lg:flex-row gap-12 pt-28"
+    >
+      <!-- Sidebar -->
+      <aside
+        class="w-full lg:w-80 flex-shrink-0 lg:sticky lg:top-24 h-fit"
       >
         <div
-          class="p-1 rounded-full bg-gradient-to-tr from-teal-400 to-cyan-400 mb-4 shadow-md"
+          class="rounded-2xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-lg shadow-lg border border-slate-200 dark:border-slate-700 p-6 flex flex-col items-center text-center gap-4"
         >
-          <img
-            src="assets/images/profile.jpeg"
-            alt="Profile photo of Md Fahim"
-            class="w-28 h-28 rounded-full border-4 border-slate-50 dark:border-slate-800 object-cover"
-          />
-        </div>
-
-        <h1
-          class="text-2xl sm:text-3xl font-bold text-teal-600 dark:text-teal-300"
-        >
-          Md Fahim
-        </h1>
-
-        <p
-          class="mt-1 text-base text-slate-600 dark:text-slate-300 font-medium"
-        >
-          Trying to build something at Neumentora.
-        </p>
-
-        <dl class="mt-4 text-sm text-slate-500 dark:text-slate-400 max-w-xl">
-          <dt class="font-bold">Research Interests:</dt>
-          <dd class="font-medium text-slate-600 dark:text-slate-300">
-            Artificial Intelligence, Machine Learning, Data Science, Deep
-            Learning, LLMs, Agentic Systems
-          </dd>
-        </dl>
-
-        <div class="mt-6 flex flex-wrap gap-3 justify-center">
-          <a
-            href="mailto:fahimcse381@gmail.com"
-            class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm font-semibold text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:bg-slate-200/80 dark:hover:bg-slate-700/80 transition-colors text-sm"
-          >
-            <i data-lucide="mail" class="w-4 h-4"></i>Email
-          </a>
-          <a
-            href="https://github.com/md-fahim"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm font-semibold text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:bg-slate-200/80 dark:hover:bg-slate-700/80 transition-colors text-sm"
-          >
-            <i data-lucide="github" class="w-4 h-4"></i>GitHub
-          </a>
-          <a
-            href="https://www.linkedin.com/in/md-fahim-1a159b373/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm font-semibold text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:bg-slate-200/80 dark:hover:bg-slate-700/80 transition-colors text-sm"
-          >
-            <i data-lucide="linkedin" class="w-4 h-4"></i>LinkedIn
-          </a>
-        </div>
-      </section>
-
-      <section
-        id="discord-cta"
-        class="mt-8 text-center rounded-2xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-lg shadow-lg border border-slate-200 dark:border-slate-700 p-6 sm:p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
-      >
-        <div>
-          <h2 class="text-2xl font-bold text-slate-800 dark:text-slate-100">
-            Join Our Discord Community
-          </h2>
-          <p class="mt-2 max-w-2xl mx-auto text-slate-600 dark:text-slate-400">
-            Connect with fellow researchers, students, and enthusiasts. Let's
-            learn and build the future of AI together.
+          <div class="p-1 rounded-full bg-gradient-to-tr from-teal-400 to-cyan-400 mb-2">
+            <img
+              src="assets/images/profile.jpeg"
+              alt="Profile photo of Md Fahim"
+              class="w-32 h-32 rounded-full border-4 border-white dark:border-slate-800 shadow-md object-cover"
+            />
+          </div>
+          <h1 class="text-2xl font-bold text-teal-600 dark:text-teal-300">
+            Md Fahim
+          </h1>
+          <p class="text-sm text-slate-500 dark:text-slate-400 -mt-2">
+            Exploring Life
           </p>
+          <p class="text-sm text-slate-400 dark:text-slate-500 italic">
+            "Keep Learning"
+          </p>
+          <div class="flex flex-wrap justify-center gap-x-4 gap-y-2 pt-2">
+            <a
+              href="mailto:fahimcse381@gmail.com"
+              class="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:text-teal-500 dark:hover:text-teal-300 text-sm transition-colors"
+            >
+              <i data-lucide="mail" class="w-4 h-4"></i>Email
+            </a>
+            <a
+              href="https://github.com/md-fahim"
+              target="_blank"
+              rel="noopener"
+              class="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:text-teal-500 dark:hover:text-teal-300 text-sm transition-colors"
+            >
+              <i data-lucide="github" class="w-4 h-4"></i>GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/md-fahim-1a159b373/"
+              target="_blank"
+              rel="noopener"
+              class="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:text-teal-500 dark:hover:text-teal-300 text-sm transition-colors"
+            >
+              <i data-lucide="linkedin" class="w-4 h-4"></i>LinkedIn
+            </a>
+          </div>
         </div>
-        <div class="mt-6">
-          <a
-            href="https://discord.gg/rnWp2PyKyP"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-3 px-6 py-3 rounded-lg bg-discord hover:bg-opacity-90 text-white font-semibold shadow-md transition"
+      </aside>
+
+      <!-- Main content -->
+      <div class="flex-1 flex flex-col gap-8">
+        <section
+          id="about-main"
+          class="rounded-2xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-lg shadow-lg border border-slate-200 dark:border-slate-700 p-6 flex flex-col gap-2 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+        >
+          <h2
+            class="text-xl font-bold text-teal-600 dark:text-teal-300 mb-2"
           >
-            <i class="fa-brands fa-discord text-xl"></i>
-            Join Now
-          </a>
-        </div>
-      </section>
+            About Me
+          </h2>
+          <p
+            class="text-base text-slate-600 dark:text-slate-300 leading-relaxed"
+          >
+            I'm very passionate about knowing the world and solving challenges.
+            In the era of deep learning models, my current focus is to
+            understand deep learning theory, their working machanism, solving
+            real world challenges and obviously explaining the deep learning
+            models.
+          </p>
+          <p
+            class="text-base text-slate-600 dark:text-slate-300 leading-relaxed pt-2"
+          >
+            <strong>Research Interests:</strong>
+            <span
+              class="font-semibold text-teal-700 dark:text-teal-400"
+              >Multimodal Models and LLMs, Social Media Texts, Deep Learning
+              Theory, Generative AI (Diffusion, VAE, State Space Model), Medical
+              Imaging, LLM in Education and Healthcare</span
+            >
+          </p>
+        </section>
+
+        <div id="dynamic-content-container" class="flex flex-col gap-8"></div>
+      </div>
     </main>
 
     <div id="footer-partial"></div>
 
     <script src="scripts/partials.js"></script>
-    <script src="scripts/profile.js"></script>
     <script>
-      // Render all Lucide icons on the page
-      lucide.createIcons();
+      // small safe escape for user-provided text
+      const escapeHtml = (unsafe) =>
+        unsafe
+          ? unsafe
+              .replace(/&/g, "&amp;")
+              .replace(/</g, "&lt;")
+              .replace(/>/g, "&gt;")
+              .replace(/"/g, "&quot;")
+              .replace(/'/g, "&#039;")
+          : "";
+
+      const createSectionCard = (id, icon, title) => {
+        const section = document.createElement("section");
+        section.id = `${id}-section`;
+        section.className =
+          "rounded-2xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-lg shadow-lg border border-slate-200 dark:border-slate-700 p-6 flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1";
+        section.innerHTML = `
+          <div class="flex items-center gap-3 mb-4">
+            <i data-lucide="${icon}" class="w-6 h-6 text-teal-500 dark:text-teal-400"></i>
+            <h2 class="text-xl font-semibold text-teal-600 dark:text-teal-400">${title}</h2>
+          </div>
+          <div id="${id}-content" class="flex flex-col gap-4"></div>
+        `;
+        return section;
+      };
+
+      const sections = [
+        {
+          id: "news",
+          icon: "newspaper",
+          title: "Recent News",
+          file: "content/recent_news.md",
+          type: "markdown",
+        },
+        {
+          id: "selected_pub",
+          icon: "award",
+          title: "Selected Publications",
+          file: "content/selected_publications.md",
+          type: "publication",
+        },
+      ];
+
+      const container = document.getElementById("dynamic-content-container");
+
+      // Helper to extract URL robustly from a text block:
+      function extractUrl(text) {
+        if (!text) return "";
+        // 1) Markdown link [text](url)
+        let m = text.match(/\[.*?\]\((https?:\/\/[^\s)]+)\)/i);
+        if (m && m[1]) return m[1].trim();
+        // 2) Angle-bracketed <https://...>
+        m = text.match(/<\s*(https?:\/\/[^>\s]+)\s*>/i);
+        if (m && m[1]) return m[1].trim();
+        // 3) Plain URL anywhere
+        m = text.match(/(https?:\/\/[^\s]+)/i);
+        if (m && m[1]) return m[1].trim();
+        // 4) Sometimes users put a bare URL on the next line or wrapped in brackets like [https://...]
+        m = text.match(/\[?(https?:\/\/[^\]\s]+)\]?/i);
+        if (m && m[1]) return m[1].trim();
+        return "";
+      }
+
+      sections.forEach((sec) => {
+        const card = createSectionCard(sec.id, sec.icon, sec.title);
+        container.appendChild(card);
+
+        fetch(sec.file)
+          .then((res) => {
+            if (!res.ok) throw new Error(`Failed to load ${sec.file}`);
+            return res.text();
+          })
+          .then((text) => {
+            if (sec.type === "markdown") {
+              // --- original markdown handling for Recent News (kept intact, with minor cleanup)
+              const contentDiv = document.getElementById(`${sec.id}-content`);
+              const parsed = marked.parse(text);
+
+              // Extract news items from the parsed HTML
+              const tempDiv = document.createElement("div");
+              tempDiv.innerHTML = parsed;
+              const listItems = Array.from(tempDiv.querySelectorAll("ul li"));
+
+              if (listItems.length > 0) {
+                // Parse news items with dates (if formatted like **DATE**: content)
+                const newsItems = listItems.map((li) => {
+                  const html = li.innerHTML;
+                  const dateMatch = html.match(/\*\*(.+?)\*\*/);
+                  const date = dateMatch ? dateMatch[1] : "";
+                  return { html: html, date: date };
+                });
+
+                const recentNews = newsItems.slice(0, 5);
+                const olderNews = newsItems.slice(5);
+
+                let timelineHtml = '<div class="relative space-y-1">';
+
+                recentNews.forEach((item, idx) => {
+                  const isLast = idx === recentNews.length - 1 && olderNews.length === 0;
+                  timelineHtml += `
+                    <div class="relative flex gap-4 group">
+                      <div class="flex flex-col items-center">
+                        <div class="w-3 h-3 rounded-full bg-teal-500 dark:bg-teal-400 ring-4 ring-teal-100 dark:ring-teal-900 group-hover:scale-125 transition-transform"></div>
+                        ${!isLast ? '<div class="w-0.5 h-full bg-teal-200 dark:bg-teal-800 mt-1"></div>' : ''}
+                      </div>
+                      <div class="flex-1 pb-1">
+                        <div class="bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-800/50 rounded-lg p-4 border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:border-teal-300 dark:hover:border-teal-600 transition-all duration-300 group-hover:-translate-y-1">
+                          <div class="text-sm font-semibold text-teal-600 dark:text-teal-400 mb-2">${item.date}</div>
+                          <div class="text-slate-700 dark:text-slate-300 leading-relaxed">${item.html.replace(/\*\*.+?\*\*:\s*/, '')}</div>
+                        </div>
+                      </div>
+                    </div>
+                  `;
+                });
+
+                timelineHtml += "</div>";
+
+                if (olderNews.length > 0) {
+                  timelineHtml += `
+                    <div id="older-news-container" class="hidden relative space-y-1 mt-2">
+                      ${olderNews
+                        .map((item, idx) => {
+                          const isLast = idx === olderNews.length - 1;
+                          return `
+                          <div class="relative flex gap-4 group">
+                            <div class="flex flex-col items-center">
+                              <div class="w-3 h-3 rounded-full bg-teal-400 dark:bg-teal-500 ring-4 ring-teal-100 dark:ring-teal-900 group-hover:scale-125 transition-transform"></div>
+                              ${!isLast ? '<div class="w-0.5 h-full bg-teal-200 dark:bg-teal-800 mt-1"></div>' : ''}
+                            </div>
+                            <div class="flex-1 pb-1">
+                              <div class="bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-800/50 rounded-lg p-4 border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:border-teal-300 dark:hover:border-teal-600 transition-all duration-300 group-hover:-translate-y-1">
+                                <div class="text-sm font-semibold text-teal-600 dark:text-teal-400 mb-2">${item.date}</div>
+                                <div class="text-slate-700 dark:text-slate-300 leading-relaxed">${item.html.replace(/\*\*.+?\*\*:\s*/, '')}</div>
+                              </div>
+                            </div>
+                          </div>
+                        `;
+                        })
+                        .join("")}
+                    </div>
+                    <div class="flex justify-center mt-6">
+                      <button id="toggle-older-news" 
+                        class="px-6 py-2.5 bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2">
+                        <span id="toggle-text">Show Older News</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4" id="toggle-icon"></i>
+                      </button>
+                    </div>
+                  `;
+                }
+
+                contentDiv.innerHTML = timelineHtml;
+
+                if (olderNews.length > 0) {
+                  const toggleBtn = document.getElementById("toggle-older-news");
+                  const olderContainer = document.getElementById("older-news-container");
+                  const toggleText = document.getElementById("toggle-text");
+                  const toggleIcon = document.getElementById("toggle-icon");
+
+                  toggleBtn.addEventListener("click", () => {
+                    const isHidden = olderContainer.classList.contains("hidden");
+
+                    if (isHidden) {
+                      olderContainer.classList.remove("hidden");
+                      toggleText.textContent = "Hide Older News";
+                      toggleIcon.setAttribute("data-lucide", "chevron-up");
+                    } else {
+                      olderContainer.classList.add("hidden");
+                      toggleText.textContent = "Show Older News";
+                      toggleIcon.setAttribute("data-lucide", "chevron-down");
+                    }
+
+                    lucide.createIcons();
+                  });
+                }
+              } else {
+                contentDiv.innerHTML = parsed;
+              }
+              // ensure icons render
+              lucide.createIcons();
+            } else if (sec.type === "publication") {
+              // --- publication parsing and rendering
+              const entries = text
+                .split(/---\s*\n?/)
+                .map((b) => b.trim())
+                .filter((b) => b.length > 0)
+                .map((block) => {
+                  const f = {};
+                  let currentKey = null;
+                  let currentValue = [];
+                  block.split("\n").forEach((line) => {
+                    const match = line.match(/^\[(.+?)\]\s*(.*)/);
+                    if (match) {
+                      if (currentKey) f[currentKey] = currentValue.join(" ").trim();
+                      currentKey = match[1].toLowerCase();
+                      currentValue = [match[2] || ""];
+                    } else if (currentKey) {
+                      // accumulate multiline values (including next-line-only URLs)
+                      currentValue.push(line.trim());
+                    }
+                  });
+                  if (currentKey) f[currentKey] = currentValue.join(" ").trim();
+                  return f;
+                });
+
+              const rendered = entries
+                .map((f) => {
+                  if (!f.title) return "";
+                  const paperUrl = extractUrl(f.paper);
+
+                  const imgHtml = f.image
+                    ? `<img src="${escapeHtml(f.image)}" alt="${escapeHtml(f.title)}" class="w-32 h-32 rounded-lg object-cover border border-slate-200 dark:border-slate-700" />`
+                    : "";
+
+                  const titleHtml = `<div class="font-bold text-base text-slate-800 dark:text-white">${escapeHtml(
+                    f.title
+                  )}</div>`;
+                  const yearHtml = f.year
+                    ? `<div class="text-slate-600 dark:text-slate-400 ml-auto pl-4">${escapeHtml(
+                        f.year
+                      )}</div>`
+                    : "";
+                  const venueHtml = f.venue
+                    ? `<div class="text-sm italic text-slate-500 dark:text-slate-400 mt-1">${escapeHtml(
+                        f.venue
+                      )}</div>`
+                    : "";
+                  const authorHtml = f.author
+                    ? `<div class="text-sm mt-1 mb-2"><span class="text-slate-600 dark:text-slate-300">${f.author
+                        .split(",")
+                        .map((a) =>
+                          a.trim().includes("Md Fahim")
+                            ? `<a href="#" class="text-teal-600 dark:text-teal-400 hover:underline">${escapeHtml(
+                                a.trim()
+                              )}</a>`
+                            : escapeHtml(a.trim())
+                        )
+                        .join(", ")}</span></div>`
+                    : "";
+
+                  // If we found a URL, render the Paper button; otherwise leave blank.
+                  const paperBtnHtml = paperUrl
+                    ? `<div class="mt-2">
+                        <a href="${escapeHtml(paperUrl)}" target="_blank" rel="noopener"
+                           class="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-teal-500 to-cyan-500 text-white text-sm rounded-lg shadow hover:shadow-md hover:from-teal-600 hover:to-cyan-600 transition">
+                           <i data-lucide="file-text" class="w-4 h-4"></i> Paper
+                        </a>
+                      </div>`
+                    : "";
+
+                  return `<div class="flex gap-4 border border-slate-200 dark:border-slate-700 rounded-xl p-4 bg-white/50 dark:bg-slate-800/50 hover:shadow-md transition">
+                            ${imgHtml}
+                            <div class="flex-1 flex flex-col">
+                              <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
+                                ${titleHtml}
+                                ${yearHtml}
+                              </div>
+                              ${venueHtml}
+                              ${authorHtml}
+                              ${paperBtnHtml}
+                            </div>
+                          </div>`;
+                })
+                .join("");
+
+              document.getElementById(`${sec.id}-content`).innerHTML =
+                rendered ||
+                '<p class="text-slate-500 dark:text-slate-400">No publications found.</p>';
+
+              // render icons for Paper buttons and other lucide icons
+              lucide.createIcons();
+            }
+          })
+          .catch((err) => {
+            console.error(`Error loading ${sec.file}:`, err);
+            document.getElementById(`${sec.id}-content`).innerHTML =
+              `<p class="text-red-500">Error loading content. Check console for details.</p>`;
+          });
+      });
     </script>
   </body>
 </html>
