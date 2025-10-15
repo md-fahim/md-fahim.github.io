@@ -24,7 +24,6 @@
             fontFamily: {
               sans: ["Inter", "system-ui", "sans-serif"],
             },
-            // Extending typography to customize prose styles
             typography: ({ theme }) => ({
               custom: {
                 css: {
@@ -133,29 +132,24 @@
           return res.text();
         })
         .then((md) => {
-          // Remove legacy reference definitions if present
           md = md.replace(
             /^\s*\[([^\]]+)\]:\s*(\S+)(?:\s+"([^"]+)")?\s*$/gm,
             ""
           );
 
-          // Split into publication entries by ---
           const entries = md
             .split(/\r?\n-{3,}\r?\n/)
             .map((e) => e.trim())
             .filter(Boolean);
 
-          // Parse entries and sort by year in descending order
           const parsedEntries = entries
             .map((entry) => {
               const parsed = parseEntry(entry);
-              // Extract year as number for sorting
               const year = parseInt(parsed.year) || 0;
               return { ...parsed, numericYear: year };
             })
             .sort((a, b) => b.numericYear - a.numericYear);
 
-          // Parse each entry into fields
           function parseEntry(entry) {
             const fields = {};
             let current = null;
@@ -172,17 +166,14 @@
             return fields;
           }
 
-          // Render each publication
           const rendered = parsedEntries
             .map((f) => {
-              // Label (e.g., "Vision")
               let labelHtml = f.label
                 ? `<div class="mb-2"><span class="inline-block px-3 py-1 rounded-sm bg-teal-600 dark:bg-teal-700 text-white text-xs font-medium">${escapeHtml(
                     f.label
                   )}</span></div>`
                 : "";
 
-              // Image with background and border
               let imgHtml = f.image
                 ? `<div class="bg-white dark:bg-slate-800 rounded w-24 h-24 sm:w-32 sm:h-32 flex items-center justify-center border border-slate-200 dark:border-slate-700"><img src="${escapeHtml(
                     f.image
@@ -191,39 +182,41 @@
                   )}" class="w-full h-full object-contain p-1 rounded"></div>`
                 : "";
 
-              // Title - same line as year
               let titleHtml = f.title
                 ? `<div class="font-bold text-base text-slate-800 dark:text-white">${escapeHtml(
                     f.title
                   )}</div>`
                 : "";
 
-              // Year on same line as title
               let yearHtml = f.year
                 ? `<div class="text-slate-600 dark:text-slate-400 ml-auto pl-4">${escapeHtml(
                     f.year
                   )}</div>`
                 : "";
 
-              // Authors - with link styling
+              // NEW: Venue (italic line below title)
+              let venueHtml = f.venue
+                ? `<div class="text-sm italic text-slate-500 dark:text-slate-400 mt-1">${escapeHtml(
+                    f.venue
+                  )}</div>`
+                : "";
+
               let authorHtml = f.author
                 ? `<div class="text-sm mt-1 mb-2"><span class="text-slate-600 dark:text-slate-300">${f.author
                     .split(",")
                     .map((author) =>
-                      author.includes("Mohammad Ashfaq")
+                      author.includes("Md Fahim")
                         ? `<a href="#" class="text-teal-600 dark:text-teal-400 hover:underline">${author.trim()}</a>`
                         : author
                     )
                     .join(", ")}</span></div>`
                 : "";
 
-              // Extract URLs from markdown-style links [text](url)
               function extractUrl(text) {
                 const match = text.match(/\[([^\]]+)\]\(([^)]+)\)/);
                 return match ? match[2] : text;
               }
 
-              // Buttons with icons
               let codeHtml = f.code
                 ? `<a href="${escapeHtml(
                     extractUrl(f.code)
@@ -264,6 +257,7 @@
                       ${titleHtml}
                       ${yearHtml}
                     </div>
+                    ${venueHtml}
                     ${authorHtml}
                     <div class="flex flex-row flex-wrap gap-2 mt-3">
                       ${codeHtml}${paperHtml}${bibHtml}
@@ -278,7 +272,6 @@
           document.getElementById("publications-md").innerHTML =
             rendered || `<p class="text-slate-500">No publications found.</p>`;
 
-          // Re-initialize Lucide icons for the newly added buttons
           lucide.createIcons();
         })
         .catch((err) => {
@@ -288,7 +281,6 @@
           ).innerHTML = `<p class="text-slate-500">Could not load publications.</p>`;
         });
 
-      // small helper to escape HTML in alt text
       function escapeHtml(str) {
         return String(str).replace(/[&<>"']/g, function (s) {
           return {
@@ -301,23 +293,17 @@
         });
       }
 
-      // Re-render Lucide icons after content is loaded
       setTimeout(() => {
         lucide.createIcons();
       }, 0);
 
-      // Function to copy BibTeX citation to clipboard
       function copyBibTeX(button, bibText) {
         navigator.clipboard
           .writeText(bibText)
           .then(() => {
-            // Store original content
             const originalContent = button.innerHTML;
-            // Show copied state
             button.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5"></i>Copied!`;
-            // Reinitialize icon
             lucide.createIcons();
-            // Reset after 2 seconds
             setTimeout(() => {
               button.innerHTML = originalContent;
               lucide.createIcons();
@@ -328,18 +314,14 @@
           });
       }
 
-      // Handle publication search
-      let allPublications = []; // Store all publication elements
+      let allPublications = [];
       const searchInput = document.getElementById("publication-search");
 
-      // Function to initialize search functionality after content is loaded
       function initializeSearch() {
-        // Store all publication items
         allPublications = Array.from(
           document.getElementsByClassName("publication-item")
         );
 
-        // Add search event listener
         searchInput.addEventListener("input", function (e) {
           const searchTerm = e.target.value.toLowerCase();
 
@@ -348,7 +330,6 @@
             const isVisible = content.includes(searchTerm);
             pub.style.display = isVisible ? "block" : "none";
 
-            // Add/remove animation classes
             if (isVisible) {
               pub.classList.add("animate-fadeIn");
               pub.classList.remove("animate-fadeOut");
@@ -358,7 +339,6 @@
             }
           });
 
-          // Show "no results" message if no publications are visible
           const hasVisiblePublications = allPublications.some(
             (pub) => pub.style.display !== "none"
           );
@@ -378,7 +358,6 @@
         });
       }
 
-      // Call initializeSearch after content is loaded
       const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
           if (mutation.addedNodes.length) {
