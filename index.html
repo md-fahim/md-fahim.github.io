@@ -340,7 +340,7 @@
         `;
       };
 
-      fetch("content/publications.md")
+      fetch("content/selected_publications.md")
         .then((res) => {
           if (!res.ok) throw new Error("Failed to load publications");
           return res.text();
