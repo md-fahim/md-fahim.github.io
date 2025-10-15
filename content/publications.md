@@ -27,7 +27,7 @@ BD at BEA 2025 Shared Task: MPNet Ensembles for Pedagogical Mistake Identificati
 [Image]
 posts/publications/bdatbea.png
 [Author]
-S Rohan, IS Apan, MI Shochcho, M Fahim, Mohammad Ashfaq Ur Rahman, AKM Rahman, et al.
+S Rohan, IS Apan, MI Shochcho, Md Fahim, Mohammad Ashfaq Ur Rahman, AKM Rahman, et al.
 [Code]
 [Paper]
 [https://aclanthology.org/2025.bea-1.102/](https://aclanthology.org/2025.bea-1.102/)
