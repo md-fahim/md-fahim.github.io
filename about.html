@@ -3,11 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="About Md Fahim, Doing something"
-    />
+    <meta name="description" content="About Md Fahim, Doing something" />
     <title>About | Academic Profile</title>
+
+    <!-- Fonts & Tailwind -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
       rel="stylesheet"
@@ -16,14 +15,13 @@
     <script src="https://cdn.tailwindcss.com?plugins=typography,forms"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
     <script>
       tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
-            fontFamily: {
-              sans: ["Inter", "system-ui", "sans-serif"],
-            },
+            fontFamily: { sans: ["Inter", "system-ui", "sans-serif"] },
             typography: ({ theme }) => ({
               custom: {
                 css: {
@@ -147,7 +145,7 @@
 
     <script src="scripts/partials.js"></script>
     <script>
-      // Utility to escape HTML
+      // Utility to escape HTML safely
       const escapeHtml = (unsafe) =>
         unsafe
           ? unsafe
@@ -158,7 +156,7 @@
               .replace(/'/g, "&#039;")
           : "";
 
-      // Section builder
+      // Create section card
       const createSectionCard = (id, icon, title) => {
         const section = document.createElement("section");
         section.id = `${id}-section`;
@@ -212,18 +210,26 @@
             .then((res) => res.text())
             .then((text) => {
               const entries = text
-                .split(/\n\s*\n/)
+                .split(/\n-{3,}\n/)
                 .filter((b) => b.trim().length > 0)
                 .map((block) => {
                   const lines = block.split("\n");
                   const f = {};
+                  let currentKey = null;
+
                   lines.forEach((line) => {
-                    const [key, ...rest] = line.split("]");
-                    if (key && rest.length) {
-                      const field = key.replace("[", "").trim().toLowerCase();
-                      f[field] = rest.join("]").trim();
+                    line = line.trim();
+                    if (line.startsWith("[") && line.endsWith("]")) {
+                      currentKey = line
+                        .replace(/\[|\]/g, "")
+                        .trim()
+                        .toLowerCase();
+                      f[currentKey] = "";
+                    } else if (currentKey && line !== "") {
+                      f[currentKey] += (f[currentKey] ? " " : "") + line;
                     }
                   });
+
                   return f;
                 });
 
@@ -234,26 +240,49 @@
                         f.title
                       )}" class="w-32 h-32 rounded-lg object-cover border border-slate-200 dark:border-slate-700" />`
                     : "";
+
+                  const titleHtml = f.title
+                    ? `<div class="font-bold text-base text-slate-800 dark:text-white">${escapeHtml(
+                        f.title
+                      )}</div>`
+                    : "";
+
                   const venueHtml = f.venue
                     ? `<div class="text-sm italic text-slate-500 dark:text-slate-400 mt-1">${escapeHtml(
                         f.venue
                       )}</div>`
                     : "";
+
                   const authorHtml = f.author
                     ? `<div class="text-sm text-slate-600 dark:text-slate-400">${escapeHtml(
                         f.author
                       )}</div>`
                     : "";
+
                   const yearHtml = f.year
                     ? `<div class="text-slate-600 dark:text-slate-400 ml-auto pl-4">${escapeHtml(
                         f.year
                       )}</div>`
                     : "";
 
-                  const titleHtml = f.title
-                    ? `<div class="font-bold text-base text-slate-800 dark:text-white">${escapeHtml(
-                        f.title
-                      )}</div>`
+                  const buttons = [];
+                  if (f.code)
+                    buttons.push(
+                      `<a href="${f.code}" target="_blank" class="text-teal-600 dark:text-teal-400 text-sm font-medium hover:underline">[Code]</a>`
+                    );
+                  if (f.paper)
+                    buttons.push(
+                      `<a href="${f.paper}" target="_blank" class="text-teal-600 dark:text-teal-400 text-sm font-medium hover:underline">[Paper]</a>`
+                    );
+                  if (f.bib)
+                    buttons.push(
+                      `<button onclick="navigator.clipboard.writeText(\`${escapeHtml(
+                        f.bib
+                      )}\`)" class="text-teal-600 dark:text-teal-400 text-sm font-medium hover:underline">[BIB]</button>`
+                    );
+
+                  const buttonHtml = buttons.length
+                    ? `<div class="flex gap-3 mt-2">${buttons.join("")}</div>`
                     : "";
 
                   return `
@@ -266,6 +295,7 @@
                         </div>
                         ${venueHtml}
                         ${authorHtml}
+                        ${buttonHtml}
                       </div>
                     </div>`;
                 })
