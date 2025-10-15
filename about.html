@@ -278,19 +278,14 @@
                 if(!f.title) return "";
                 
                 // Extract URL from Paper field - handle both markdown links and plain URLs
-                let paperUrl = "";
-                if(f.paper) {
+                function extractUrl(text) {
+                  if(!text) return "";
                   // First try to match markdown link format [text](url)
-                  const markdownMatch = f.paper.match(/\[.*?\]\((.*?)\)/);
-                  if(markdownMatch) {
-                    paperUrl = markdownMatch[1];
-                  } else {
-                    // Try to match plain URL
-                    const urlMatch = f.paper.match(/https?:\/\/[^\s]+/);
-                    if(urlMatch) {
-                      paperUrl = urlMatch[0];
-                    }
-                  }
+                  const markdownMatch = text.match(/\[.*?\]\((.*?)\)/);
+                  if(markdownMatch) return markdownMatch[1];
+                  // Try to match plain URL
+                  const urlMatch = text.match(/https?:\/\/[^\s]+/);
+                  return urlMatch ? urlMatch[0] : text;
                 }
                 
                 const imgHtml = f.image ? `<img src="${f.image}" alt="${escapeHtml(f.title)}" class="w-32 h-32 rounded-lg object-cover border border-slate-200 dark:border-slate-700" />` : "";
@@ -298,7 +293,8 @@
                 const yearHtml = f.year ? `<div class="text-slate-600 dark:text-slate-400 ml-auto pl-4">${escapeHtml(f.year)}</div>` : "";
                 const venueHtml = f.venue ? `<div class="text-sm italic text-slate-500 dark:text-slate-400 mt-1">${escapeHtml(f.venue)}</div>` : "";
                 const authorHtml = f.author ? `<div class="text-sm mt-1 mb-2"><span class="text-slate-600 dark:text-slate-300">${f.author.split(",").map(a=>a.trim().includes("Md Fahim")?`<a href="#" class="text-teal-600 dark:text-teal-400 hover:underline">${escapeHtml(a.trim())}</a>`:escapeHtml(a.trim())).join(", ")}</span></div>` : "";
-                const paperHtml = paperUrl ? `<a href="${paperUrl}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-teal-500 hover:bg-teal-600 text-white text-sm font-medium rounded-lg shadow-sm hover:shadow-md transition-all duration-200"><i data-lucide="file-text" class="w-4 h-4"></i>Paper</a>` : "";
+                const paperUrl = extractUrl(f.paper);
+                const paperHtml = paperUrl ? `<a href="${escapeHtml(paperUrl)}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-teal-500 hover:bg-teal-600 text-white text-sm font-medium rounded-lg shadow-sm hover:shadow-md transition-all duration-200"><i data-lucide="file-text" class="w-4 h-4"></i>Paper</a>` : "";
 
                 return `<div class="flex gap-4 border border-slate-200 dark:border-slate-700 rounded-xl p-4 bg-white/50 dark:bg-slate-800/50 hover:shadow-md transition">
                           ${imgHtml}
