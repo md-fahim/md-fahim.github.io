@@ -179,32 +179,6 @@ Oral Accept @ International Conference on Pattern Recognition: ICPR 2024
 ---
 
 [Title]
-How Good are LM and LLMs in Bangla Newspaper Article Summarization?
-[Image]
-posts/publications/fruitquality.png
-[Author]
-Faria Sultana*, Md Tahmid Hasan*, Md Fahim, Rahat Rizvi, Meheraj Hossain, Md Ashraful Amin, AKM Mahbubur Rahman and Amin Ahsan Ali
-[Paper]
-[https://link.springer.com/chapter/10.1007/978-3-031-78498-9_6](https://link.springer.com/chapter/10.1007/978-3-031-78498-9_6)
-[Code]
-
-[BIB]
-@inproceedings{sultana2024good,
-  title={How Good are LM and LLMs in Bangla Newspaper Article Summarization?},
-  author={Sultana, Faria and Fuad, Md Tahmid Hasan and Fahim, Md and Rahman, Rahat Rizvi and Hossain, Meheraj and Amin, M Ashraful and Rahman, AKM Mahbubur and Ali, Amin Ahsan},
-  booktitle={International Conference on Pattern Recognition},
-  pages={72--86},
-  year={2024},
-  organization={Springer}
-}
-[Venue]
-International Conference on Pattern Recognition: ICPR 2024
-[Year]
-2024
-
----
-
-[Title]
 EDAL: Entropy based Dynamic Attention Loss for HateSpeech Classification
 [Image]
 posts/publications/fruitquality.png

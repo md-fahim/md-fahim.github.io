@@ -380,14 +380,13 @@
         })
         .then((md) => {
           const publications = parsePublications(md);
-          const latestTwo = publications.slice(0, 2);
 
-          if (latestTwo.length === 0) throw new Error("No publications found");
+          if (publications.length === 0) throw new Error("No publications found");
 
           const container = document.getElementById(
             "selected-publications-container"
           );
-          container.innerHTML = latestTwo
+          container.innerHTML = publications
             .map((pub, index) => createPublicationCard(pub, (index + 1) * 200))
             .join("");
           lucide.createIcons();
@@ -396,9 +395,9 @@
           console.error("Failed to load publications:", err);
           document.getElementById("selected-publications-container").innerHTML =
             '<p class="text-sm text-slate-500 dark:text-slate-400">Failed to load publications.</p>';
-        });
-
-      // --- END: PUBLICATION LOGIC ---
+        });     
+         
+        // --- END: PUBLICATION LOGIC ---
 
       const createSectionCard = (id, icon, title) => {
         const section = document.createElement("section");
