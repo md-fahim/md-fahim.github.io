@@ -5,6 +5,7 @@ posts/publications/fruitquality.png
 [Author]
 Md Fahim, Fariha Shifat, Fabiha Haider, Deeparghya Barua, Md Sourove, Md Ishmam, Md Bhuiyan
 [Code]
+[https://github.com/farhanishmam/BanglaTLit](https://github.com/farhanishmam/BanglaTLit)
 [Paper]
 [https://aclanthology.org/2024.findings-emnlp.859/](https://aclanthology.org/2024.findings-emnlp.859/)
 [BIB]
