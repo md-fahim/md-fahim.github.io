@@ -275,3 +275,213 @@ Oral Aceept @ Pacific Asia Conference on Language, Information and Computation: 
 2023
 
 ---
+
+[Title]
+Penta NLP at EXIST 2024 Task 1–3: Sexism Identification, Source Intention, Sexism Categorization In Tweets
+[Image]
+posts/publications/fruitquality.png
+[Author]
+Fariha Tanjim, Fabiha Haider, Md Sakib Ul Rahman, Deeparghya Dutta, Md Farhan Ishmam, Md Fahim, Farhad Alam
+[Paper]
+[https://ceur-ws.org/Vol-3740/paper-114.pdf](https://ceur-ws.org/Vol-3740/paper-114.pdf)
+[Code]
+
+[BIB]
+
+[Venue]
+EXIST at Conference and Labs of the Evaluation Forum (CLEF)
+[Year]
+2024
+
+---
+
+[Title]
+Penta ML at EXIST 2024: Tagging Sexism in Online Multimodal Content With Attention-enhanced Modal Context
+[Image]
+posts/publications/fruitquality.png
+[Author]
+Deeparghya Dutta, Md Sakib Ul Rahman, Fabiha Haider, Fariha Tanjim, Md Farhan Ishmam, Md Fahim, Farhad Alam
+[Paper]
+[https://ceur-ws.org/Vol-3740/paper-90.pdf](https://ceur-ws.org/Vol-3740/paper-90.pdf)
+[Code]
+
+[BIB]
+
+[Venue]
+EXIST at Conference and Labs of the Evaluation Forum (CLEF)
+[Year]
+2024
+
+---
+
+[Title]
+HateXplain Space Model: Fusing Robustness with Explainability in Hate Speech Analysis
+[Image]
+posts/publications/fruitquality.png
+[Author]
+Md Fahim, Md Shihab Shahriar, Mohammad Ruhul Amin
+[Paper]
+[https://neurips2023-enlsp.github.io/papers/paper_91.pdf](https://neurips2023-enlsp.github.io/papers/paper_91.pdf)
+[Code]
+
+[BIB]
+
+[Venue]
+Efficient Natural Language and Speech Processing Workshop at NeurIPS
+[Year]
+2023
+
+---
+
+[Title]
+HateXplain2.0: An Explainable Hate Speech Detection Framework Utilizing Subjective Projection from Contextual Knowledge Space to Disjoint Concept Space
+[Image]
+posts/publications/fruitquality.png
+[Author]
+Md Fahim, Md Shihab Shahriar, Mohammad Sabik, Syed Ishtiaque Ahmed, Mohammad Ruhul Amin
+[Paper]
+[https://github.com/helenavasc/AI_HCI_Workshop_ICML_2023/blob/b87ed234b42e8fecb5622fddea84d1e4f77c80fa/papers/hatexplain2_0_an_explainable_h.pdf](https://github.com/helenavasc/AI_HCI_Workshop_ICML_2023/blob/b87ed234b42e8fecb5622fddea84d1e4f77c80fa/papers/hatexplain2_0_an_explainable_h.pdf)
+[Code]
+
+[BIB]
+
+[Venue]
+AI & HCI Workshop at ICML
+[Year]
+2023
+
+---
+
+[Title]
+Contextual Bangla Neural Stemmer: Finding Contextualized RootWord Representations for BanglaWords
+[Image]
+posts/publications/fruitquality.png
+[Author]
+Md Fahim, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur Rahman
+[Paper]
+[https://aclanthology.org/2023.banglalp-1.11.pdf](https://aclanthology.org/2023.banglalp-1.11.pdf)
+[Code]
+
+[BIB]
+
+[Venue]
+Bangla Language Processing(BLP) Workshop at EMNLP
+[Year]
+2023
+
+---
+
+[Title]
+Aambela at BLP-2023 Task 2: Enhancing BanglaBERT Performance for Bangla Sentiment Analysis Task with In Task Pretraining and Adversarial Weight Perturbation
+[Image]
+posts/publications/fruitquality.png
+[Author]
+Md Fahim
+[Paper]
+[https://aclanthology.org/2023.banglalp-1.42.pdf](https://aclanthology.org/2023.banglalp-1.42.pdf)
+[Code]
+
+[BIB]
+
+[Venue]
+Best Paper Award @ Bangla Language Processing(BLP) Workshop - EMNLP
+[Year]
+2023
+
+---
+
+[Title]
+Investigating the Effectiveness of Graph-based Algorithm for Bangla Text Classification
+[Image]
+posts/publications/fruitquality.png
+[Author]
+Dehan Noor, Md Fahim, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur Rahman
+[Paper]
+[https://aclanthology.org/2023.banglalp-1.12.pdf](https://aclanthology.org/2023.banglalp-1.12.pdf)
+[Code]
+
+[BIB]
+
+[Venue]
+Bangla Language Processing(BLP) Workshop at EMNLP
+[Year]
+2023
+
+---
+
+[Title]
+BaTEClaCor: A Novel Dataset for Bangla Text Error Classification and Correction
+[Image]
+posts/publications/fruitquality.png
+[Author]
+Nabilah Tabassum*, Syed Mohaiminul*, Md Fahim, Amin Ahsan Ali, Ashraful Amin, AKM Mahabubur Rahman
+[Paper]
+[https://aclanthology.org/2023.banglalp-1.14.pdf](https://aclanthology.org/2023.banglalp-1.14.pdf)
+[Code]
+
+[BIB]
+
+[Venue]
+Bangla Language Processing(BLP) Workshop at EMNLP
+[Year]
+2023
+
+---
+
+[Title]
+Aambela at BLP-2023 Task 1: Focus on [UNK] tokens: Analyzing Violence Inciting Bengali Text with Adding Dataset Specific New Word Tokens
+[Image]
+posts/publications/fruitquality.png
+[Author]
+Md Fahim
+[Paper]
+[https://aclanthology.org/2023.banglalp-1.24.pdf](https://aclanthology.org/2023.banglalp-1.24.pdf)
+[Code]
+
+[BIB]
+
+[Venue]
+Bangla Language Processing(BLP) Workshop at EMNLP
+[Year]
+2023
+
+---
+
+[Title]
+An Exploratory Study on Simulated Annealing for Feature Selection in Learning-to-rank
+[Image]
+posts/publications/fruitquality.png
+[Author]
+Mohd. Sayemul Haque, Md. Fahim, Muhammad Ibrahim
+[Paper]
+[https://www.mecs-press.org/ijisa/ijisa-v16-n4/v16n4-6.html](https://www.mecs-press.org/ijisa/ijisa-v16-n4/v16n4-6.html)
+[Code]
+
+[BIB]
+
+[Venue]
+International Journal of Intelligent Systems and Applications (IJISA), Vol. 16, Issue 4, Year 2024.
+[Year]
+2024
+
+---
+
+[Title]
+Beyond classification: Benchmarking object detection models for efficient tomato leaf disease identification on a real-world dataset
+[Image]
+posts/publications/fruitquality.png
+[Author]
+Fahim Mahafuz, Md Fahim, Mir Sazzat Hossain, Md. Fahad Monir, Ashraful Islam, M. Ashraful Amin
+[Paper]
+[https://www.sciencedirect.com/science/article/pii/S2772375525005672](https://www.sciencedirect.com/science/article/pii/S2772375525005672)
+[Code]
+
+[BIB]
+
+[Venue]
+Smart Agricultural Technology, Vol. 12, Year. 2025
+[Year]
+2025
+
+---
+
