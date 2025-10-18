@@ -3,7 +3,7 @@
     "title": "Everything about VAE",
     "thumbnail": "./posts/thumbnails/data-structure.jfif",
     "date": "2025-08-01",
-    "summary": "My notes on Data Structures, a foundational concept in computer science about organizing and storing data efficiently for optimal access and modification.",
+    "summary": "My notes on Variational Auto Encoder (VAE). It includes all the necessary explanation and derivation for VAE starting from ELBO to Reparameterization Tricks and Posterior Collapse",
     "file": "vae.md"
   },
   {
