@@ -152,18 +152,20 @@ The optimization objective of the variational autoencoder, like in other variati
 
 Let's start with our variational model $q_{\phi}(z \mid x)$, including the choice of variational parameters $\phi$. Now:
 
-$$\begin{align*}
+$
+\begin{align*}
 \log p_{\theta}(x) 
-&= \int q_\phi(z \mid x) \, dz \quad \text{[Multiply by 1 = } \int q_\phi(z \mid x) \, dz \text{]}  \\
-&= \int q_\phi(z \mid x) \log p(x) \, dz \quad \text{[Bring evidence into integral, } \text{as } x \text{ is independent of } z \text{]}\\
-&= \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log p_{\theta}(x) \right ] \\
+&= \int q_\phi(z \mid x) \, dz \quad \text{[Multiply by 1 = } \int q_\phi(z \mid x) \, dz \text{]}  \\\\
+&= \int q_\phi(z \mid x) \log p(x) \, dz \quad \text{[Bring evidence into integral, as } x \text{ is independent of } z \text{]}\\\\
+&= \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log p_{\theta}(x) \right ] \\\\
 &= \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log \frac{p_{\theta}(x, z)}{p_{\theta}(z \mid x)} \right]
-\quad \text{[by Bayes' rule: } p(x) = \frac{p(x, z)}{p(z|x)} ] \\
+\quad \text{[by Bayes' rule: } p(x) = \frac{p(x, z)}{p(z|x)} \text{]} \\\\
 &= \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log \left( \frac{p_{\theta}(x, z)}{q_{\phi}(z \mid x)} \cdot \frac{q_{\phi}(z \mid x)}{p_{\theta}(z \mid x)} \right) \right]
-\quad \text{[multiply and divide by } q_{\phi}(z \mid x) ] \\
+\quad \text{[multiply and divide by } q_{\phi}(z \mid x) \text{]} \\\\
 &= \underbrace{ \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log \frac{p_{\theta}(x, z)}{q_{\phi}(z \mid x)} \right] }_{\mathcal{L}_{\theta, \phi}(x)\ (\text{ELBO})}
 + \underbrace{ \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log \frac{q_{\phi}(z \mid x)}{p_{\theta}(z \mid x)} \right] }_{\mathrm{KL}(q_{\phi}(z \mid x)\ \| \ p_{\theta}(z \mid x))}
-\end{align*}$$
+\end{align*}
+$
 
 The second term in the equation is the Kullback-Leibler (KL) divergence between $q_{\phi}(z \mid x)$ and $p_{\theta}(z \mid x)$, which is non-negative:
 
@@ -178,18 +180,20 @@ $$\mathcal{L}_{\theta, \phi}(x) = \log p_{\theta}(x) - D_{\mathrm{KL}}(q_{\phi}(
 
 Now, the ELBO loss can be written as follows:
 
-$$\begin{align*}
-    \mathcal{L}_{\theta, \phi}(x) & = \log p_{\theta}(x) - D_{\mathrm{KL}}(q_{\phi}(z \mid x) \,\|\, p_{\theta}(z \mid x)) \\
+$
+\begin{align*}
+    \mathcal{L}_{\theta, \phi}(x) & = \log p_{\theta}(x) - D_{\mathrm{KL}}(q_{\phi}(z \mid x) \,\|\, p_{\theta}(z \mid x)) \\\\
     \quad &= \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log p_{\theta}(x) \right] - D_{\mathrm{KL}}(q_{\phi}(z \mid x) \,\|\, p_{\theta}(z \mid x)) 
-    \quad \text{[same logic]} \\
-    \quad &= \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log p_{\theta}(x) \right] - \mathbb{E}_{q_{\phi}(z \mid x)} \log \frac{q_{\phi}(z \mid x)}{p_{\theta}(z \mid x)} \quad [\text{ as }D_{\mathrm{KL}}(a(x)||b(x) = \sum_x a(x) \log \frac{a(x)}{b(x)} = \mathbb{E}_{a(x)} \log \frac{a(x)}{b(x)} ] \\
-    &= \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x) - \log q_{\phi}(z \mid x) + \log p_{\theta}(z \mid x) \right] \quad [\text{ as } \log \frac{A}{B} = \log A - \log B] \\
-    &= \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x)  + \log p_{\theta}(z \mid x) - \log q_{\phi}(z \mid x) \right] \\
-    &= \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x) \cdot p_{\theta}(z \mid x) - \log q_{\phi}(z \mid x) \right] \quad [\log A + \log B = \log (AB)]\\
-    &= \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x,z)  - \log q_{\phi}(z \mid x) \right] \\
-    &= \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x|z) p_{\theta}(z) - \log q_{\phi}(z \mid x) \right] \\
-    &= \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x|z) + \log p_{\theta}(z) - \log q_{\phi}(z \mid x) \right] \\
-\end{align*}$$
+    \quad \text{[same logic]} \\\\
+    \quad &= \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log p_{\theta}(x) \right] - \mathbb{E}_{q_{\phi}(z \mid x)} \log \frac{q_{\phi}(z \mid x)}{p_{\theta}(z \mid x)} \quad \text{[as } D_{\mathrm{KL}}(a(x)||b(x)) = \sum_x a(x) \log \frac{a(x)}{b(x)} = \mathbb{E}_{a(x)} \log \frac{a(x)}{b(x)} \text{]} \\\\
+    &= \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x) - \log q_{\phi}(z \mid x) + \log p_{\theta}(z \mid x) \right] \quad \text{[as } \log \frac{A}{B} = \log A - \log B \text{]} \\\\
+    &= \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x)  + \log p_{\theta}(z \mid x) - \log q_{\phi}(z \mid x) \right] \\\\
+    &= \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x) \cdot p_{\theta}(z \mid x) - \log q_{\phi}(z \mid x) \right] \quad \text{[} \log A + \log B = \log (AB) \text{]}\\\\
+    &= \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x,z)  - \log q_{\phi}(z \mid x) \right] \\\\
+    &= \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x|z) p_{\theta}(z) - \log q_{\phi}(z \mid x) \right] \\\\
+    &= \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x|z) + \log p_{\theta}(z) - \log q_{\phi}(z \mid x) \right]
+\end{align*}
+$
 
 Now, let us examine each term in the equation in more detail:
 
