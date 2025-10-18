@@ -32,7 +32,6 @@ $$p_\theta(x) \approx p^*(x)$$
 
 The model $p_\theta(x)$ should be flexible enough to fit the data well, while also allowing incorporation of prior knowledge about the data distribution.
 
----
 
 ### Parameterizing Conditional Distributions with Neural Networks
 
@@ -131,6 +130,8 @@ These methods help us estimate both $p_\theta(x)$ and $p_\theta(z|x)$ without co
 The challenge doesn't stop at latent variables.
 
 In Bayesian treatments of DLVMs, the posterior over the model parameters themselves, $p(\theta | \mathcal{D})$, is also intractable. This again forces us to use approximation methods to make learning feasible.
+
+--- 
 
 # Variational Auto Encoder (VAE)
 
@@ -241,6 +242,9 @@ Now, let us examine each term in the equation in more detail:
 - Finally, the term $\log q_{\phi}(z \mid x)$ represents the *encoder* or *variational inference model*. This is usually parameterized by a neural network, which outputs the parameters (e.g., mean and variance) of the approximate posterior distribution—commonly assumed to be Gaussian in many VAE implementations.
 
 <!-- **Figure Note:** Overview of VAE and its components (Figure reference: vae.png) -->
+
+---
+
 
 ## Gradient of ELBO
 
@@ -402,7 +406,7 @@ so that the variational posterior becomes:
 
 $$\log q_{\phi}(z \mid x) = \log p(\epsilon) - \log d_{\phi}(x, \epsilon)$$
 
----
+
 
 ### Computation of $q_{\phi}(z \mid x)$ in terms of $\epsilon$
 
