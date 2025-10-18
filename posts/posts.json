@@ -1,10 +1,10 @@
 [
   {
-    "title": "Data Structure",
+    "title": "Everything about VAE",
     "thumbnail": "./posts/thumbnails/data-structure.jfif",
     "date": "2025-08-01",
     "summary": "My notes on Data Structures, a foundational concept in computer science about organizing and storing data efficiently for optimal access and modification.",
-    "file": "data-structure.md"
+    "file": "vae.md"
   },
   {
     "title": "Object Oriented Programming",

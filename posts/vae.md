@@ -140,7 +140,7 @@ Variational Inference (VI) is a technique in Bayesian machine learning used to a
 
 Formally, VI is a method for approximating complex posterior distributions by finding a simpler distribution $q(z)$ that is close to the true posterior $p(z \mid x)$.
 
-$$q^*(z) = \arg\min_{q(z) \in \mathcal{Q}} \mathrm{KL}(q(z) \parallel p(z \mid x))$$
+$$q^{\ast}(z) = \arg\min_{q(z) \in \mathcal{Q}} \mathrm{KL}(q(z) \parallel p(z \mid x))$$
 
 To turn the DLVM's intractable posterior inference and learning problems into tractable problems, VAE introduces a parametric inference model $q_{\phi}(z \mid x)$. This model is also called an *encoder* or *recognition model*. With $\phi$ we indicate the parameters of this inference model, also called the *variational parameters*. We optimize the variational parameters $\phi$ such that:
 
@@ -152,20 +152,31 @@ The optimization objective of the variational autoencoder, like in other variati
 
 Let's start with our variational model $q_{\phi}(z \mid x)$, including the choice of variational parameters $\phi$. Now:
 
-$
-\begin{align*}
-\log p_{\theta}(x) 
-&= \int q_\phi(z \mid x) \, dz \quad \text{[Multiply by 1 = } \int q_\phi(z \mid x) \, dz \text{]}  \\\\
-&= \int q_\phi(z \mid x) \log p(x) \, dz \quad \text{[Bring evidence into integral, as } x \text{ is independent of } z \text{]}\\\\
-&= \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log p_{\theta}(x) \right ] \\\\
-&= \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log \frac{p_{\theta}(x, z)}{p_{\theta}(z \mid x)} \right]
-\quad \text{[by Bayes' rule: } p(x) = \frac{p(x, z)}{p(z|x)} \text{]} \\\\
-&= \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log \left( \frac{p_{\theta}(x, z)}{q_{\phi}(z \mid x)} \cdot \frac{q_{\phi}(z \mid x)}{p_{\theta}(z \mid x)} \right) \right]
-\quad \text{[multiply and divide by } q_{\phi}(z \mid x) \text{]} \\\\
-&= \underbrace{ \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log \frac{p_{\theta}(x, z)}{q_{\phi}(z \mid x)} \right] }_{\mathcal{L}_{\theta, \phi}(x)\ (\text{ELBO})}
-+ \underbrace{ \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log \frac{q_{\phi}(z \mid x)}{p_{\theta}(z \mid x)} \right] }_{\mathrm{KL}(q_{\phi}(z \mid x)\ \| \ p_{\theta}(z \mid x))}
-\end{align*}
-$
+**Step 1:** Multiply by 1 (expressed as an integral)
+
+$$\log p_{\theta}(x) = \int q_{\phi}(z \mid x) \, dz \cdot \log p_{\theta}(x)$$
+
+**Step 2:** Bring the evidence into the integral (since $x$ is independent of $z$)
+
+$$\log p_{\theta}(x) = \int q_{\phi}(z \mid x) \log p_{\theta}(x) \, dz$$
+
+**Step 3:** Rewrite as an expectation
+
+$$\log p_{\theta}(x) = \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log p_{\theta}(x) \right]$$
+
+**Step 4:** Apply Bayes' rule: $p(x) = \frac{p(x, z)}{p(z \mid x)}$
+
+$$\log p_{\theta}(x) = \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log \frac{p_{\theta}(x, z)}{p_{\theta}(z \mid x)} \right]$$
+
+**Step 5:** Multiply and divide by $q_{\phi}(z \mid x)$
+
+$$\log p_{\theta}(x) = \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log \left( \frac{p_{\theta}(x, z)}{q_{\phi}(z \mid x)} \cdot \frac{q_{\phi}(z \mid x)}{p_{\theta}(z \mid x)} \right) \right]$$
+
+**Step 6:** Split the logarithm into ELBO and KL divergence
+
+$$\log p_{\theta}(x) = \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log \frac{p_{\theta}(x, z)}{q_{\phi}(z \mid x)} \right] + \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log \frac{q_{\phi}(z \mid x)}{p_{\theta}(z \mid x)} \right]$$
+
+Where the first term is $\mathcal{L}_{\theta, \phi}(x)$ (ELBO) and the second term is $\mathrm{KL}(q_{\phi}(z \mid x) \| p_{\theta}(z \mid x))$.
 
 The second term in the equation is the Kullback-Leibler (KL) divergence between $q_{\phi}(z \mid x)$ and $p_{\theta}(z \mid x)$, which is non-negative:
 
@@ -175,25 +186,51 @@ and equal to zero if and only if $q_{\phi}(z \mid x)$ equals the true posterior 
 
 Due to the non-negativity of the KL divergence, the ELBO is a lower bound on the log-likelihood of the data:
 
-$$\mathcal{L}_{\theta, \phi}(x) = \log p_{\theta}(x) - D_{\mathrm{KL}}(q_{\phi}(z \mid x) \,\|\, p_{\theta}(z \mid x)) 
-\leq \log p_{\theta}(x)$$
+$$\mathcal{L}_{\theta, \phi}(x) = \log p_{\theta}(x) - D_{\mathrm{KL}}(q_{\phi}(z \mid x) \,\|\, p_{\theta}(z \mid x)) \leq \log p_{\theta}(x)$$
 
 Now, the ELBO loss can be written as follows:
 
-$
-\begin{align*}
-    \mathcal{L}_{\theta, \phi}(x) & = \log p_{\theta}(x) - D_{\mathrm{KL}}(q_{\phi}(z \mid x) \,\|\, p_{\theta}(z \mid x)) \\\\
-    \quad &= \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log p_{\theta}(x) \right] - D_{\mathrm{KL}}(q_{\phi}(z \mid x) \,\|\, p_{\theta}(z \mid x)) 
-    \quad \text{[same logic]} \\\\
-    \quad &= \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log p_{\theta}(x) \right] - \mathbb{E}_{q_{\phi}(z \mid x)} \log \frac{q_{\phi}(z \mid x)}{p_{\theta}(z \mid x)} \quad \text{[as } D_{\mathrm{KL}}(a(x)||b(x)) = \sum_x a(x) \log \frac{a(x)}{b(x)} = \mathbb{E}_{a(x)} \log \frac{a(x)}{b(x)} \text{]} \\\\
-    &= \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x) - \log q_{\phi}(z \mid x) + \log p_{\theta}(z \mid x) \right] \quad \text{[as } \log \frac{A}{B} = \log A - \log B \text{]} \\\\
-    &= \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x)  + \log p_{\theta}(z \mid x) - \log q_{\phi}(z \mid x) \right] \\\\
-    &= \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x) \cdot p_{\theta}(z \mid x) - \log q_{\phi}(z \mid x) \right] \quad \text{[} \log A + \log B = \log (AB) \text{]}\\\\
-    &= \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x,z)  - \log q_{\phi}(z \mid x) \right] \\\\
-    &= \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x|z) p_{\theta}(z) - \log q_{\phi}(z \mid x) \right] \\\\
-    &= \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x|z) + \log p_{\theta}(z) - \log q_{\phi}(z \mid x) \right]
-\end{align*}
-$
+**Starting point:**
+
+$$\mathcal{L}_{\theta, \phi}(x) = \log p_{\theta}(x) - D_{\mathrm{KL}}(q_{\phi}(z \mid x) \,\|\, p_{\theta}(z \mid x))$$
+
+**Rewrite the first term as an expectation (same logic as before):**
+
+$$\mathcal{L}_{\theta, \phi}(x) = \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log p_{\theta}(x) \right] - D_{\mathrm{KL}}(q_{\phi}(z \mid x) \,\|\, p_{\theta}(z \mid x))$$
+
+**Express KL divergence as an expectation:**
+
+Recall that $D_{\mathrm{KL}}(a(x) \| b(x)) = \sum_{x} a(x) \log \frac{a(x)}{b(x)} = \mathbb{E}_{a(x)} \left[\log \frac{a(x)}{b(x)}\right]$
+
+$$\mathcal{L}_{\theta, \phi}(x) = \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log p_{\theta}(x) \right] - \mathbb{E}_{q_{\phi}(z \mid x)} \left[\log \frac{q_{\phi}(z \mid x)}{p_{\theta}(z \mid x)}\right]$$
+
+**Combine into a single expectation and expand the fraction:**
+
+Since $\log \frac{A}{B} = \log A - \log B$:
+
+$$\mathcal{L}_{\theta, \phi}(x) = \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x) - \log q_{\phi}(z \mid x) + \log p_{\theta}(z \mid x) \right]$$
+
+**Rearrange terms:**
+
+$$\mathcal{L}_{\theta, \phi}(x) = \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x)  + \log p_{\theta}(z \mid x) - \log q_{\phi}(z \mid x) \right]$$
+
+**Combine the first two logarithms:**
+
+Since $\log A + \log B = \log (AB)$:
+
+$$\mathcal{L}_{\theta, \phi}(x) = \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log \left( p_{\theta}(x) \cdot p_{\theta}(z \mid x) \right) - \log q_{\phi}(z \mid x) \right]$$
+
+**Simplify to joint distribution:**
+
+$$\mathcal{L}_{\theta, \phi}(x) = \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x,z)  - \log q_{\phi}(z \mid x) \right]$$
+
+**Factor the joint distribution:**
+
+$$\mathcal{L}_{\theta, \phi}(x) = \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log \left( p_{\theta}(x \mid z) \cdot p_{\theta}(z) \right) - \log q_{\phi}(z \mid x) \right]$$
+
+**Final form - expand the product:**
+
+$$\mathcal{L}_{\theta, \phi}(x) = \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x \mid z) + \log p_{\theta}(z) - \log q_{\phi}(z \mid x) \right]$$
 
 Now, let us examine each term in the equation in more detail:
 
@@ -217,23 +254,33 @@ The individual-data point ELBO, and its gradient $\nabla_{\theta, \phi} \mathcal
 
 Unbiased gradients of the ELBO with respect to the generative model parameters $\theta$ are relatively straightforward to obtain:
 
-$$\begin{align*}
-\nabla_{\theta} \mathcal{L}_{\theta, \phi}(x) 
-&= \nabla_{\theta} \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x) \right] \quad [ \mathbb{E}_{q_{\phi}(.)} \text{ is independent of }\nabla_{\theta}]\\
-&= \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \nabla_{\theta} \left( \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x) \right) \right] \\
-&\approx \nabla_{\theta} \left( \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x) \right) \\
-&= \nabla_{\theta} \log p_{\theta}(x, z)
-\end{align*}$$
+**Step 1:** Take the gradient of the ELBO
+
+$$\nabla_{\theta} \mathcal{L}_{\theta, \phi}(x) = \nabla_{\theta} \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x) \right]$$
+
+Note that $\mathbb{E}_{q_{\phi}(\cdot)}$ is independent of $\nabla_{\theta}$.
+
+**Step 2:** Move the gradient inside the expectation
+
+$$\nabla_{\theta} \mathcal{L}_{\theta, \phi}(x) = \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \nabla_{\theta} \left( \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x) \right) \right]$$
+
+**Step 3:** Monte Carlo approximation (sample $z \sim q_{\phi}(z \mid x)$)
+
+$$\nabla_{\theta} \mathcal{L}_{\theta, \phi}(x) \approx \nabla_{\theta} \left( \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x) \right)$$
+
+**Step 4:** Simplify (since $q_{\phi}$ doesn't depend on $\theta$)
+
+$$\nabla_{\theta} \mathcal{L}_{\theta, \phi}(x) \approx \nabla_{\theta} \log p_{\theta}(x, z)$$
 
 The last line is a simple Monte Carlo estimator of the second line above, where $z$ in the last two lines is a random sample drawn from $q_{\phi}(z \mid x)$.
 
 Unbiased gradients with respect to the variational parameters $\phi$ are more difficult to obtain, since the ELBO's expectation is taken with respect to the distribution $q_{\phi}(z \mid x)$, which itself depends on $\phi$. That is, in general:
 
-$$\begin{align*}
-\nabla_{\phi} \mathcal{L}_{\theta, \phi}(x) 
-&= \nabla_{\phi} \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x) \right] \\
-&\neq \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \nabla_{\phi} \left( \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x) \right) \right]
-\end{align*}$$
+$$\nabla_{\phi} \mathcal{L}_{\theta, \phi}(x) = \nabla_{\phi} \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x) \right]$$
+
+This is **not equal** to:
+
+$$\mathbb{E}_{q_{\phi}(z \mid x)} \left[ \nabla_{\phi} \left( \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x) \right) \right]$$
 
 In the case of continuous latent variables, we can use the *reparameterization trick* to compute unbiased estimates of $\nabla_{\theta, \phi} \mathcal{L}_{\theta, \phi}(x)$, as we will now discuss. This stochastic estimate allows us to optimize the ELBO using SGD.
 
@@ -255,10 +302,17 @@ $$\mathbb{E}_{q_{\phi}(z \mid x)} \left[ f(z) \right] = \mathbb{E}_{p(\epsilon)}
 
 Since $z$ is now a deterministic function of $\epsilon$, $\phi$, and $x$, and the expectation is taken over a distribution independent of $\phi$, the gradient and expectation operators can be interchanged:
 
-$$\nabla_{\phi} \mathbb{E}_{q_{\phi}(z \mid x)} \left[ f(z) \right]
-= \nabla_{\phi} \mathbb{E}_{p(\epsilon)} \left[ f(g(\epsilon, \phi, x)) \right]
-= \mathbb{E}_{p(\epsilon)} \left[ \nabla_{\phi} f(g(\epsilon, \phi, x)) \right]
-\approx \nabla_{\phi} f(g(\epsilon, \phi, x))$$
+**Step 1:** Rewrite using the reparameterization
+
+$$\nabla_{\phi} \mathbb{E}_{q_{\phi}(z \mid x)} \left[ f(z) \right] = \nabla_{\phi} \mathbb{E}_{p(\epsilon)} \left[ f(g(\epsilon, \phi, x)) \right]$$
+
+**Step 2:** Interchange gradient and expectation
+
+$$= \mathbb{E}_{p(\epsilon)} \left[ \nabla_{\phi} f(g(\epsilon, \phi, x)) \right]$$
+
+**Step 3:** Monte Carlo approximation (single sample $\epsilon \sim p(\epsilon)$)
+
+$$\approx \nabla_{\phi} f(g(\epsilon, \phi, x))$$
 
 In the last step, we approximate the expectation using a single Monte Carlo sample $\epsilon \sim p(\epsilon)$, which enables efficient and unbiased stochastic gradient estimation.
 
@@ -266,17 +320,27 @@ In the last step, we approximate the expectation using a single Monte Carlo samp
 
 Using this approach, we can rewrite the ELBO as an expectation over $\epsilon$:
 
-$$\begin{align*}
-\mathcal{L}_{\theta, \phi}(x) &= \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x) \right] \\ 
-&= \mathbb{E}_{p(\epsilon)} \left[ \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x) \right]
-\quad \text{where } z = g(\epsilon, \phi, x)
-\end{align*}$$
+**Original ELBO:**
+
+$$\mathcal{L}_{\theta, \phi}(x) = \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x) \right]$$
+
+**Reparameterized ELBO:**
+
+$$\mathcal{L}_{\theta, \phi}(x) = \mathbb{E}_{p(\epsilon)} \left[ \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x) \right]$$
+
+where $z = g(\epsilon, \phi, x)$.
 
 This leads to a simple Monte Carlo estimator of the ELBO for a single data point using a single sample $\epsilon \sim p(\epsilon)$:
 
-$$\epsilon \sim p(\epsilon), \quad
-z = g(\phi, x, \epsilon), \quad
-\widetilde{\mathcal{L}}_{\theta, \phi}(x) = \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x)$$
+**Sampling procedure:**
+
+$$\epsilon \sim p(\epsilon)$$
+
+$$z = g(\phi, x, \epsilon)$$
+
+**ELBO estimator:**
+
+$$\widetilde{\mathcal{L}}_{\theta, \phi}(x) = \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x)$$
 
 This process can be efficiently implemented in computational frameworks like TensorFlow or PyTorch as a symbolic computation graph, allowing for automatic differentiation with respect to both $\theta$ and $\phi$. The resulting gradient $\nabla_{\phi} \widetilde{\mathcal{L}}_{\theta, \phi}(x)$ is used to optimize the ELBO via minibatch SGD.
 
@@ -284,12 +348,17 @@ This process can be efficiently implemented in computational frameworks like Ten
 
 The gradient computed using this approach is an unbiased estimator of the true gradient of the ELBO. When averaged over multiple noise samples $\epsilon \sim p(\epsilon)$, we have:
 
-$$\begin{align*}
-\mathbb{E}_{p(\epsilon)} \left[ \nabla_{\theta, \phi} \widetilde{\mathcal{L}}_{\theta, \phi}(x; \epsilon) \right]
-&= \mathbb{E}_{p(\epsilon)} \left[ \nabla_{\theta, \phi} \left( \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x) \right) \right] \\
-&= \nabla_{\theta, \phi} \mathbb{E}_{p(\epsilon)} \left[ \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x) \right]
-= \nabla_{\theta, \phi} \mathcal{L}_{\theta, \phi}(x)    
-\end{align*}$$
+**Step 1:** Expected value of the gradient estimator
+
+$$\mathbb{E}_{p(\epsilon)} \left[ \nabla_{\theta, \phi} \widetilde{\mathcal{L}}_{\theta, \phi}(x; \epsilon) \right] = \mathbb{E}_{p(\epsilon)} \left[ \nabla_{\theta, \phi} \left( \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x) \right) \right]$$
+
+**Step 2:** Interchange gradient and expectation
+
+$$= \nabla_{\theta, \phi} \mathbb{E}_{p(\epsilon)} \left[ \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x) \right]$$
+
+**Step 3:** Recognize this as the true ELBO gradient
+
+$$= \nabla_{\theta, \phi} \mathcal{L}_{\theta, \phi}(x)$$
 
 ---
 
@@ -299,35 +368,39 @@ Let $b$ be a continuous random variable with known density $p(b)$, and define a 
 
 The core principle is that probability mass must be preserved under a change of variables:
 
-$$\int p(a)\, da = \int p(b)\, db.$$
+$$\int p(a)\, da = \int p(b)\, db$$
 
 To express this in terms of $a$, we use the Jacobian determinant to account for how volume elements scale under the transformation. Specifically,
 
-$$da = \left| \det \left( \frac{\partial f(b)}{\partial b} \right) \right| db,$$
+$$da = \left| \det \left( \frac{\partial f(b)}{\partial b} \right) \right| db$$
 
 which leads to the change-of-variables formula:
 
-$$p(a) = p(b) \left| \det \left( \frac{\partial f(b)}{\partial b} \right) \right|^{-1} \left[ \text{often written as} = p(f^{-1}(a)) \left| \det \left( \frac{\partial f^{-1}(a)}{\partial a} \right) \right|.\right]$$
+$$p(a) = p(b) \left| \det \left( \frac{\partial f(b)}{\partial b} \right) \right|^{-1}$$
+
+This is often written as:
+
+$$p(a) = p(f^{-1}(a)) \left| \det \left( \frac{\partial f^{-1}(a)}{\partial a} \right) \right|$$
 
 **Application in Variational Inference:**
 
 In variational inference, particularly in the reparameterization trick, we express the latent variable $z$ as a deterministic function of a noise variable $\epsilon \sim p(\epsilon)$, such that:
 
-$$z = g(\epsilon, \phi, x),$$
+$$z = g(\epsilon, \phi, x)$$
 
 where $g$ is a differentiable, invertible function, and $\phi$ are variational parameters.
 
 To compute the density $q_{\phi}(z \mid x)$ induced by this transformation, we apply the change-of-variables formula:
 
-$$\log q_{\phi}(z \mid x) = \log p(\epsilon) - \log \left| \det \left( \frac{\partial z}{\partial \epsilon} \right) \right|.$$
+$$\log q_{\phi}(z \mid x) = \log p(\epsilon) - \log \left| \det \left( \frac{\partial z}{\partial \epsilon} \right) \right|$$
 
 We define:
 
-$$\log d_{\phi}(x, \epsilon) = \log \left| \det \left( \frac{\partial z}{\partial \epsilon} \right) \right|,$$
+$$\log d_{\phi}(x, \epsilon) = \log \left| \det \left( \frac{\partial z}{\partial \epsilon} \right) \right|$$
 
 so that the variational posterior becomes:
 
-$$\log q_{\phi}(z \mid x) = \log p(\epsilon) - \log d_{\phi}(x, \epsilon).$$
+$$\log q_{\phi}(z \mid x) = \log p(\epsilon) - \log d_{\phi}(x, \epsilon)$$
 
 ---
 
@@ -345,12 +418,7 @@ $$\log d_{\phi}(x, \epsilon) = \log \left| \det \left( \frac{\partial z}{\partia
 
 Here, the Jacobian matrix is:
 
-$$\frac{\partial z}{\partial \epsilon} = 
-\begin{pmatrix}
-\frac{\partial z_1}{\partial \epsilon_1} & \cdots & \frac{\partial z_1}{\partial \epsilon_k} \\
-\vdots & \ddots & \vdots \\
-\frac{\partial z_k}{\partial \epsilon_1} & \cdots & \frac{\partial z_k}{\partial \epsilon_k}
-\end{pmatrix}$$
+$$\frac{\partial z}{\partial \epsilon} = \begin{pmatrix} \frac{\partial z_{1}}{\partial \epsilon_{1}} & \cdots & \frac{\partial z_{1}}{\partial \epsilon_{k}} \\ \vdots & \ddots & \vdots \\ \frac{\partial z_{k}}{\partial \epsilon_{1}} & \cdots & \frac{\partial z_{k}}{\partial \epsilon_{k}} \end{pmatrix}$$
 
 With suitable choices of $g(\cdot)$, the log-determinant $\log d_{\phi}(x, \epsilon)$ remains easy to compute, enabling expressive yet tractable variational posteriors $q_{\phi}(z \mid x)$.
 
@@ -360,37 +428,39 @@ With suitable choices of $g(\cdot)$, the log-determinant $\log d_{\phi}(x, \epsi
 
 A common choice for the variational posterior $q_{\phi}(z \mid x)$ is a simple factorized (mean-field) Gaussian:
 
-$$q_{\phi}(z \mid x) = \mathcal{N}(z; \mu, \operatorname{diag}(\sigma^2)),$$
+$$q_{\phi}(z \mid x) = \mathcal{N}(z; \mu, \operatorname{diag}(\sigma^{2}))$$
 
-$$(\mu, \log \sigma) = \text{EncoderNeuralNet}_{\phi}(x),$$
+$$(\mu, \log \sigma) = \text{EncoderNeuralNet}_{\phi}(x)$$
 
 which implies a fully factorized distribution over the components of $z$:
 
-$$q_{\phi}(z \mid x) = \prod_{i} q_{\phi}(z_i \mid x) = \prod_{i} \mathcal{N}(z_i; \mu_i, \sigma_i^2),$$
+$$q_{\phi}(z \mid x) = \prod_{i} q_{\phi}(z_{i} \mid x) = \prod_{i} \mathcal{N}(z_{i}; \mu_{i}, \sigma_{i}^{2})$$
 
-where $\mathcal{N}(z_i; \mu_i, \sigma_i^2)$ is the PDF of a univariate Gaussian.
+where $\mathcal{N}(z_{i}; \mu_{i}, \sigma_{i}^{2})$ is the PDF of a univariate Gaussian.
 
 After reparameterization, the latent variable $z$ is expressed as a deterministic function of noise $\epsilon \sim \mathcal{N}(0, I)$:
 
-$$\epsilon \sim \mathcal{N}(0, I),$$
+$$\epsilon \sim \mathcal{N}(0, I)$$
 
-$$(\mu, \log \sigma) = \text{EncoderNeuralNet}_{\phi}(x),$$
+$$(\mu, \log \sigma) = \text{EncoderNeuralNet}_{\phi}(x)$$
 
-$$z = \mu + \sigma \odot \epsilon,$$
+$$z = \mu + \sigma \odot \epsilon$$
 
 where $\odot$ denotes element-wise multiplication. The Jacobian of this transformation is a diagonal matrix:
 
-$$\frac{\partial z}{\partial \epsilon} = \operatorname{diag}(\sigma),$$
+$$\frac{\partial z}{\partial \epsilon} = \operatorname{diag}(\sigma)$$
 
 whose determinant is simply the product of the diagonal elements. Therefore, the log-determinant becomes:
 
-$$\log d_{\phi}(x, \epsilon) = \log \det \left( \frac{\partial z}{\partial \epsilon} \right) = \sum_{i} \log \sigma_i.$$
+$$\log d_{\phi}(x, \epsilon) = \log \det \left( \frac{\partial z}{\partial \epsilon} \right) = \sum_{i} \log \sigma_{i}$$
 
 Using the change-of-variables formula, the log-density of the approximate posterior becomes:
 
-$$\log q_{\phi}(z \mid x) = \log p(\epsilon) - \log d_{\phi}(x, \epsilon),$$
+$$\log q_{\phi}(z \mid x) = \log p(\epsilon) - \log d_{\phi}(x, \epsilon)$$
 
-$$= \sum_{i} \log \mathcal{N}(\epsilon_i; 0, 1) - \log \sigma_i,$$
+Expanding this:
+
+$$\log q_{\phi}(z \mid x) = \sum_{i} \log \mathcal{N}(\epsilon_{i}; 0, 1) - \log \sigma_{i}$$
 
 where $z = g(\epsilon, \phi, x)$ is the reparameterized latent variable.
 
@@ -400,11 +470,11 @@ After training a VAE, we may wish to estimate the marginal likelihood $\log p_{\
 
 The marginal likelihood can be expressed as an expectation under the variational posterior:
 
-$$\log p_{\theta}(x) = \log \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \frac{p_{\theta}(x, z)}{q_{\phi}(z \mid x)} \right].$$
+$$\log p_{\theta}(x) = \log \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \frac{p_{\theta}(x, z)}{q_{\phi}(z \mid x)} \right]$$
 
 This can be approximated using Monte Carlo sampling. Drawing $L$ samples $z^{(l)} \sim q_{\phi}(z \mid x)$, we obtain the following estimator:
 
-$$\log p_{\theta}(x) \approx \log \left( \frac{1}{L} \sum_{l=1}^{L} \frac{p_{\theta}(x, z^{(l)})}{q_{\phi}(z^{(l)} \mid x)} \right).$$
+$$\log p_{\theta}(x) \approx \log \left( \frac{1}{L} \sum_{l=1}^{L} \frac{p_{\theta}(x, z^{(l)})}{q_{\phi}(z^{(l)} \mid x)} \right)$$
 
 As $L \to \infty$, this estimator converges to the true log marginal likelihood. When $L = 1$, it reduces to the standard ELBO estimator used in VAE training.
 
