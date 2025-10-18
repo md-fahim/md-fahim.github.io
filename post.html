@@ -12,6 +12,23 @@
     <script src="https://cdn.tailwindcss.com?plugins=typography,forms"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <!-- Add MathJax for LaTeX rendering -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true,
+          processEnvironments: true
+        },
+        options: {
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+      };
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+    
     <script>
       tailwind.config = {
         darkMode: "class",
@@ -85,6 +102,11 @@
           if (!pages[index]) return;
 
           postContent.innerHTML = marked.parse(pages[index]);
+          
+          // Trigger MathJax to render the math equations
+          if (window.MathJax) {
+            MathJax.typesetPromise([postContent]).catch((err) => console.error('MathJax error:', err));
+          }
 
           const pageIndicator = document.getElementById("page-indicator");
           const prevButton = document.getElementById("prev-button");
@@ -134,7 +156,6 @@
                 document.title = `${firstHeading.textContent} | Notes`;
               }
 
-              // NEW: Responsive pagination controls HTML
               paginationControls.innerHTML = `
                 <button id="prev-button" class="inline-flex items-center justify-center sm:justify-start gap-2 px-3 sm:px-4 py-2 rounded-lg bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 disabled:opacity-50 disabled:hover:bg-slate-200 dark:disabled:hover:bg-slate-700 transition-opacity">
                     <i data-lucide="arrow-left" class="w-4 h-4"></i>
