@@ -17,13 +17,18 @@
     <script>
       MathJax = {
         tex: {
-          inlineMath: [['$', '$']],
-          displayMath: [['$$', '$$']],
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']],
           processEscapes: true,
           processEnvironments: true
         },
         options: {
-          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        },
+        startup: {
+          pageReady: () => {
+            return MathJax.startup.defaultPageReady();
+          }
         }
       };
     </script>
@@ -58,7 +63,7 @@
     <div id="header-partial"></div>
 
     <main class="flex-1 w-full max-w-4xl mx-auto px-4 pb-10 pt-28">
-      <a
+      
         href="notes.html"
         class="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-lg bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm text-teal-600 dark:text-teal-300 font-semibold border border-slate-200 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
       >
@@ -89,22 +94,60 @@
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const postContent = document.getElementById("post-content");
-        const paginationControls = document.getElementById(
-          "pagination-controls"
-        );
+        const paginationControls = document.getElementById("pagination-controls");
         const urlParams = new URLSearchParams(window.location.search);
         const postFile = urlParams.get("file");
 
         let pages = [];
         let currentPageIndex = 0;
 
+        // Configure Marked to preserve math delimiters
+        marked.use({
+          extensions: [{
+            name: 'math',
+            level: 'inline',
+            start(src) { 
+              const match = src.match(/\$+/);
+              return match ? match.index : -1;
+            },
+            tokenizer(src) {
+              const inlineRule = /^\$(.+?)\$/;
+              const blockRule = /^\$\$(.+?)\$\$/s;
+              
+              let match = blockRule.exec(src);
+              if (match) {
+                return {
+                  type: 'math',
+                  raw: match[0],
+                  text: match[0],
+                  displayMode: true
+                };
+              }
+              
+              match = inlineRule.exec(src);
+              if (match) {
+                return {
+                  type: 'math',
+                  raw: match[0],
+                  text: match[0],
+                  displayMode: false
+                };
+              }
+            },
+            renderer(token) {
+              return token.text;
+            }
+          }]
+        });
+
         const renderPage = (index) => {
           if (!pages[index]) return;
 
+          // Parse markdown while preserving math
           postContent.innerHTML = marked.parse(pages[index]);
           
           // Trigger MathJax to render the math equations
-          if (window.MathJax) {
+          if (window.MathJax && window.MathJax.typesetPromise) {
             MathJax.typesetPromise([postContent]).catch((err) => console.error('MathJax error:', err));
           }
 
@@ -121,10 +164,7 @@
           }
           if (nextButton) {
             nextButton.disabled = index === pages.length - 1;
-            nextButton.classList.toggle(
-              "opacity-50",
-              index === pages.length - 1
-            );
+            nextButton.classList.toggle("opacity-50", index === pages.length - 1);
           }
 
           lucide.createIcons();
@@ -168,23 +208,19 @@
                 </button>
               `;
 
-              document
-                .getElementById("prev-button")
-                .addEventListener("click", () => {
-                  if (currentPageIndex > 0) {
-                    currentPageIndex--;
-                    renderPage(currentPageIndex);
-                  }
-                });
+              document.getElementById("prev-button").addEventListener("click", () => {
+                if (currentPageIndex > 0) {
+                  currentPageIndex--;
+                  renderPage(currentPageIndex);
+                }
+              });
 
-              document
-                .getElementById("next-button")
-                .addEventListener("click", () => {
-                  if (currentPageIndex < pages.length - 1) {
-                    currentPageIndex++;
-                    renderPage(currentPageIndex);
-                  }
-                });
+              document.getElementById("next-button").addEventListener("click", () => {
+                if (currentPageIndex < pages.length - 1) {
+                  currentPageIndex++;
+                  renderPage(currentPageIndex);
+                }
+              });
 
               renderPage(currentPageIndex);
             })
