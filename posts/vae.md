@@ -118,7 +118,7 @@ But the problem runs deeper.
 
 This intractability also affects the *posterior distribution* over the latent variable:
 
-$$p_\theta(z|x) = \frac{p_\theta(x, z)}{p_\theta(x)} \tag{1.19}$$
+$$p_\theta(z|x) = \frac{p_\theta(x, z)}{p_\theta(x)} $$
 
 Here, the numerator $p_\theta(x, z)$ is usually tractable — we can compute it because it's based on known parts of the model. But the denominator $p_\theta(x)$ is intractable (as we saw), making the posterior $p_\theta(z|x)$ intractable too.
 
@@ -240,7 +240,7 @@ Now, let us examine each term in the equation in more detail:
 
 - Finally, the term $\log q_{\phi}(z \mid x)$ represents the *encoder* or *variational inference model*. This is usually parameterized by a neural network, which outputs the parameters (e.g., mean and variance) of the approximate posterior distribution—commonly assumed to be Gaussian in many VAE implementations.
 
-**Figure Note:** Overview of VAE and its components (Figure reference: vae.png)
+<!-- **Figure Note:** Overview of VAE and its components (Figure reference: vae.png) -->
 
 ## Gradient of ELBO
 
