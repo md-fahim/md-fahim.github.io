@@ -131,3 +131,279 @@ These methods help us estimate both $p_\theta(x)$ and $p_\theta(z|x)$ without co
 The challenge doesn't stop at latent variables.
 
 In Bayesian treatments of DLVMs, the posterior over the model parameters themselves, $p(\theta | \mathcal{D})$, is also intractable. This again forces us to use approximation methods to make learning feasible.
+
+# Variational Auto Encoder (VAE)
+
+## Variational Inference
+
+Variational Inference (VI) is a technique in Bayesian machine learning used to approximate complex probability distributions — especially the posterior distributions that arise in Bayesian statistics and are often computationally intractable to compute exactly.
+
+Formally, VI is a method for approximating complex posterior distributions by finding a simpler distribution $q(z)$ that is close to the true posterior $p(z \mid x)$.
+
+$$q^*(z) = \arg\min_{q(z) \in \mathcal{Q}} \mathrm{KL}(q(z) \parallel p(z \mid x))$$
+
+To turn the DLVM's intractable posterior inference and learning problems into tractable problems, VAE introduces a parametric inference model $q_{\phi}(z \mid x)$. This model is also called an *encoder* or *recognition model*. With $\phi$ we indicate the parameters of this inference model, also called the *variational parameters*. We optimize the variational parameters $\phi$ such that:
+
+$$q_{\phi}(z \mid x) \approx p_{\theta}(z \mid x)$$
+
+## ELBO: Evidence Lower Bound for VAE
+
+The optimization objective of the variational autoencoder, like in other variational methods, is the evidence lower bound, abbreviated as ELBO. An alternative term for this objective is variational lower bound. Typically, the ELBO is derived through Jensen's inequality. Here we will use an alternative derivation that avoids Jensen's inequality, providing greater insight about its tightness. Let's derive ELBO for VAE.
+
+Let's start with our variational model $q_{\phi}(z \mid x)$, including the choice of variational parameters $\phi$. Now:
+
+$$\begin{align*}
+\log p_{\theta}(x) 
+&= \int q_\phi(z \mid x) \, dz \quad \text{[Multiply by 1 = } \int q_\phi(z \mid x) \, dz \text{]}  \\
+&= \int q_\phi(z \mid x) \log p(x) \, dz \quad \text{[Bring evidence into integral, } \text{as } x \text{ is independent of } z \text{]}\\
+&= \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log p_{\theta}(x) \right ] \\
+&= \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log \frac{p_{\theta}(x, z)}{p_{\theta}(z \mid x)} \right]
+\quad \text{[by Bayes' rule: } p(x) = \frac{p(x, z)}{p(z|x)} ] \\
+&= \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log \left( \frac{p_{\theta}(x, z)}{q_{\phi}(z \mid x)} \cdot \frac{q_{\phi}(z \mid x)}{p_{\theta}(z \mid x)} \right) \right]
+\quad \text{[multiply and divide by } q_{\phi}(z \mid x) ] \\
+&= \underbrace{ \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log \frac{p_{\theta}(x, z)}{q_{\phi}(z \mid x)} \right] }_{\mathcal{L}_{\theta, \phi}(x)\ (\text{ELBO})}
++ \underbrace{ \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log \frac{q_{\phi}(z \mid x)}{p_{\theta}(z \mid x)} \right] }_{\mathrm{KL}(q_{\phi}(z \mid x)\ \| \ p_{\theta}(z \mid x))}
+\end{align*}$$
+
+The second term in the equation is the Kullback-Leibler (KL) divergence between $q_{\phi}(z \mid x)$ and $p_{\theta}(z \mid x)$, which is non-negative:
+
+$$D_{\mathrm{KL}}(q_{\phi}(z \mid x) \,\|\, p_{\theta}(z \mid x)) \geq 0$$
+
+and equal to zero if and only if $q_{\phi}(z \mid x)$ equals the true posterior distribution.
+
+Due to the non-negativity of the KL divergence, the ELBO is a lower bound on the log-likelihood of the data:
+
+$$\mathcal{L}_{\theta, \phi}(x) = \log p_{\theta}(x) - D_{\mathrm{KL}}(q_{\phi}(z \mid x) \,\|\, p_{\theta}(z \mid x)) 
+\leq \log p_{\theta}(x)$$
+
+Now, the ELBO loss can be written as follows:
+
+$$\begin{align*}
+    \mathcal{L}_{\theta, \phi}(x) & = \log p_{\theta}(x) - D_{\mathrm{KL}}(q_{\phi}(z \mid x) \,\|\, p_{\theta}(z \mid x)) \\
+    \quad &= \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log p_{\theta}(x) \right] - D_{\mathrm{KL}}(q_{\phi}(z \mid x) \,\|\, p_{\theta}(z \mid x)) 
+    \quad \text{[same logic]} \\
+    \quad &= \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log p_{\theta}(x) \right] - \mathbb{E}_{q_{\phi}(z \mid x)} \log \frac{q_{\phi}(z \mid x)}{p_{\theta}(z \mid x)} \quad [\text{ as }D_{\mathrm{KL}}(a(x)||b(x) = \sum_x a(x) \log \frac{a(x)}{b(x)} = \mathbb{E}_{a(x)} \log \frac{a(x)}{b(x)} ] \\
+    &= \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x) - \log q_{\phi}(z \mid x) + \log p_{\theta}(z \mid x) \right] \quad [\text{ as } \log \frac{A}{B} = \log A - \log B] \\
+    &= \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x)  + \log p_{\theta}(z \mid x) - \log q_{\phi}(z \mid x) \right] \\
+    &= \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x) \cdot p_{\theta}(z \mid x) - \log q_{\phi}(z \mid x) \right] \quad [\log A + \log B = \log (AB)]\\
+    &= \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x,z)  - \log q_{\phi}(z \mid x) \right] \\
+    &= \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x|z) p_{\theta}(z) - \log q_{\phi}(z \mid x) \right] \\
+    &= \mathbb{E}_{q_{\phi}(z \mid x)}\left[\log p_{\theta}(x|z) + \log p_{\theta}(z) - \log q_{\phi}(z \mid x) \right] \\
+\end{align*}$$
+
+Now, let us examine each term in the equation in more detail:
+
+- The term $\log p_{\theta}(x \mid z)$ corresponds to the *decoder* (or generative) model. Given a latent variable $z$, it attempts to reconstruct the observed data $x$, and thus represents the *reconstruction loss*.
+
+- The term $\log p(z)$ denotes the *prior distribution* over the latent variables. This is typically chosen to be a standard Gaussian distribution, but other priors can also be used depending on the modeling assumptions.
+
+- Finally, the term $\log q_{\phi}(z \mid x)$ represents the *encoder* or *variational inference model*. This is usually parameterized by a neural network, which outputs the parameters (e.g., mean and variance) of the approximate posterior distribution—commonly assumed to be Gaussian in many VAE implementations.
+
+**Figure Note:** Overview of VAE and its components (Figure reference: vae.png)
+
+## Gradient of ELBO
+
+An important property of the ELBO is that it allows joint optimization with respect to all parameters ($\phi$ and $\theta$) using stochastic gradient descent (SGD). We can start with random initial values for $\phi$ and $\theta$, and stochastically optimize them until convergence.
+
+Given a dataset with i.i.d. data, the ELBO objective becomes the sum (or average) of individual data point ELBOs:
+
+$$\mathcal{L}_{\theta, \phi}(\mathcal{D}) = \sum_{x \in \mathcal{D}} \mathcal{L}_{\theta, \phi}(x)$$
+
+The individual-data point ELBO, and its gradient $\nabla_{\theta, \phi} \mathcal{L}_{\theta, \phi}(x)$, is, in general, intractable. However, good unbiased estimators $\widetilde{\nabla}_{\theta, \phi} \mathcal{L}_{\theta, \phi}(x)$ exist, as we will show, which allow us to perform minibatch SGD.
+
+Unbiased gradients of the ELBO with respect to the generative model parameters $\theta$ are relatively straightforward to obtain:
+
+$$\begin{align*}
+\nabla_{\theta} \mathcal{L}_{\theta, \phi}(x) 
+&= \nabla_{\theta} \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x) \right] \quad [ \mathbb{E}_{q_{\phi}(.)} \text{ is independent of }\nabla_{\theta}]\\
+&= \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \nabla_{\theta} \left( \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x) \right) \right] \\
+&\approx \nabla_{\theta} \left( \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x) \right) \\
+&= \nabla_{\theta} \log p_{\theta}(x, z)
+\end{align*}$$
+
+The last line is a simple Monte Carlo estimator of the second line above, where $z$ in the last two lines is a random sample drawn from $q_{\phi}(z \mid x)$.
+
+Unbiased gradients with respect to the variational parameters $\phi$ are more difficult to obtain, since the ELBO's expectation is taken with respect to the distribution $q_{\phi}(z \mid x)$, which itself depends on $\phi$. That is, in general:
+
+$$\begin{align*}
+\nabla_{\phi} \mathcal{L}_{\theta, \phi}(x) 
+&= \nabla_{\phi} \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x) \right] \\
+&\neq \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \nabla_{\phi} \left( \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x) \right) \right]
+\end{align*}$$
+
+In the case of continuous latent variables, we can use the *reparameterization trick* to compute unbiased estimates of $\nabla_{\theta, \phi} \mathcal{L}_{\theta, \phi}(x)$, as we will now discuss. This stochastic estimate allows us to optimize the ELBO using SGD.
+
+## Reparameterization Trick
+
+For continuous latent variables, and assuming that both the encoder and the generative model are differentiable, the ELBO can be directly differentiated with respect to both $\phi$ and $\theta$. This is achieved through a change of variables known as the *reparameterization trick*.
+
+To apply this trick, we express the random variable $z \sim q_{\phi}(z \mid x)$ as a differentiable and invertible transformation of another random variable $\epsilon$, where the distribution of $\epsilon$ is independent of both $x$ and $\phi$. Specifically,
+
+$$z = g(\epsilon, \phi, x)$$
+
+Here, $g$ is a deterministic function (typically implemented as part of the encoder), and $\epsilon$ is a noise variable drawn from a simple distribution, such as a standard Gaussian.
+
+### Gradient of an Expectation Under Change of Variables
+
+Given this change of variable, expectations over $q_{\phi}(z \mid x)$ can be rewritten as expectations over $p(\epsilon)$:
+
+$$\mathbb{E}_{q_{\phi}(z \mid x)} \left[ f(z) \right] = \mathbb{E}_{p(\epsilon)} \left[ f(g(\epsilon, \phi, x)) \right]$$
+
+Since $z$ is now a deterministic function of $\epsilon$, $\phi$, and $x$, and the expectation is taken over a distribution independent of $\phi$, the gradient and expectation operators can be interchanged:
+
+$$\nabla_{\phi} \mathbb{E}_{q_{\phi}(z \mid x)} \left[ f(z) \right]
+= \nabla_{\phi} \mathbb{E}_{p(\epsilon)} \left[ f(g(\epsilon, \phi, x)) \right]
+= \mathbb{E}_{p(\epsilon)} \left[ \nabla_{\phi} f(g(\epsilon, \phi, x)) \right]
+\approx \nabla_{\phi} f(g(\epsilon, \phi, x))$$
+
+In the last step, we approximate the expectation using a single Monte Carlo sample $\epsilon \sim p(\epsilon)$, which enables efficient and unbiased stochastic gradient estimation.
+
+### Reparameterized ELBO
+
+Using this approach, we can rewrite the ELBO as an expectation over $\epsilon$:
+
+$$\begin{align*}
+\mathcal{L}_{\theta, \phi}(x) &= \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x) \right] \\ 
+&= \mathbb{E}_{p(\epsilon)} \left[ \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x) \right]
+\quad \text{where } z = g(\epsilon, \phi, x)
+\end{align*}$$
+
+This leads to a simple Monte Carlo estimator of the ELBO for a single data point using a single sample $\epsilon \sim p(\epsilon)$:
+
+$$\epsilon \sim p(\epsilon), \quad
+z = g(\phi, x, \epsilon), \quad
+\widetilde{\mathcal{L}}_{\theta, \phi}(x) = \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x)$$
+
+This process can be efficiently implemented in computational frameworks like TensorFlow or PyTorch as a symbolic computation graph, allowing for automatic differentiation with respect to both $\theta$ and $\phi$. The resulting gradient $\nabla_{\phi} \widetilde{\mathcal{L}}_{\theta, \phi}(x)$ is used to optimize the ELBO via minibatch SGD.
+
+### Unbiasedness of the Gradient Estimator
+
+The gradient computed using this approach is an unbiased estimator of the true gradient of the ELBO. When averaged over multiple noise samples $\epsilon \sim p(\epsilon)$, we have:
+
+$$\begin{align*}
+\mathbb{E}_{p(\epsilon)} \left[ \nabla_{\theta, \phi} \widetilde{\mathcal{L}}_{\theta, \phi}(x; \epsilon) \right]
+&= \mathbb{E}_{p(\epsilon)} \left[ \nabla_{\theta, \phi} \left( \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x) \right) \right] \\
+&= \nabla_{\theta, \phi} \mathbb{E}_{p(\epsilon)} \left[ \log p_{\theta}(x, z) - \log q_{\phi}(z \mid x) \right]
+= \nabla_{\theta, \phi} \mathcal{L}_{\theta, \phi}(x)    
+\end{align*}$$
+
+---
+
+### Change of Variables for Probability Densities
+
+Let $b$ be a continuous random variable with known density $p(b)$, and define a new variable $a = f(b)$, where $f$ is a differentiable and invertible transformation. Our goal is to compute the probability density of $a$, denoted $p(a)$, based on the known density of $b$.
+
+The core principle is that probability mass must be preserved under a change of variables:
+
+$$\int p(a)\, da = \int p(b)\, db.$$
+
+To express this in terms of $a$, we use the Jacobian determinant to account for how volume elements scale under the transformation. Specifically,
+
+$$da = \left| \det \left( \frac{\partial f(b)}{\partial b} \right) \right| db,$$
+
+which leads to the change-of-variables formula:
+
+$$p(a) = p(b) \left| \det \left( \frac{\partial f(b)}{\partial b} \right) \right|^{-1} \left[ \text{often written as} = p(f^{-1}(a)) \left| \det \left( \frac{\partial f^{-1}(a)}{\partial a} \right) \right|.\right]$$
+
+**Application in Variational Inference:**
+
+In variational inference, particularly in the reparameterization trick, we express the latent variable $z$ as a deterministic function of a noise variable $\epsilon \sim p(\epsilon)$, such that:
+
+$$z = g(\epsilon, \phi, x),$$
+
+where $g$ is a differentiable, invertible function, and $\phi$ are variational parameters.
+
+To compute the density $q_{\phi}(z \mid x)$ induced by this transformation, we apply the change-of-variables formula:
+
+$$\log q_{\phi}(z \mid x) = \log p(\epsilon) - \log \left| \det \left( \frac{\partial z}{\partial \epsilon} \right) \right|.$$
+
+We define:
+
+$$\log d_{\phi}(x, \epsilon) = \log \left| \det \left( \frac{\partial z}{\partial \epsilon} \right) \right|,$$
+
+so that the variational posterior becomes:
+
+$$\log q_{\phi}(z \mid x) = \log p(\epsilon) - \log d_{\phi}(x, \epsilon).$$
+
+---
+
+### Computation of $q_{\phi}(z \mid x)$ in terms of $\epsilon$
+
+To compute the ELBO (or its estimator), we need the log-density $\log q_{\phi}(z \mid x)$, given $x$ and a latent sample $z$, or equivalently $\epsilon$. This is tractable if we choose an appropriate, invertible transformation $g(\cdot)$.
+
+Since the noise distribution $p(\epsilon)$ is known, and $z = g(\epsilon, \phi, x)$ is invertible, we can relate the densities via the change-of-variables formula:
+
+$$\log q_{\phi}(z \mid x) = \log p(\epsilon) - \log d_{\phi}(x, \epsilon)$$
+
+where $\log d_{\phi}(x, \epsilon)$ is the log absolute determinant of the Jacobian of the transformation from $\epsilon$ to $z$:
+
+$$\log d_{\phi}(x, \epsilon) = \log \left| \det \left( \frac{\partial z}{\partial \epsilon} \right) \right|$$
+
+Here, the Jacobian matrix is:
+
+$$\frac{\partial z}{\partial \epsilon} = 
+\begin{pmatrix}
+\frac{\partial z_1}{\partial \epsilon_1} & \cdots & \frac{\partial z_1}{\partial \epsilon_k} \\
+\vdots & \ddots & \vdots \\
+\frac{\partial z_k}{\partial \epsilon_1} & \cdots & \frac{\partial z_k}{\partial \epsilon_k}
+\end{pmatrix}$$
+
+With suitable choices of $g(\cdot)$, the log-determinant $\log d_{\phi}(x, \epsilon)$ remains easy to compute, enabling expressive yet tractable variational posteriors $q_{\phi}(z \mid x)$.
+
+**Figure Note:** Reparameterization Tricks in VAE (Figure reference: reparam-trick.png)
+
+### Computation of $q_{\phi}(z \mid x)$ for Gaussian
+
+A common choice for the variational posterior $q_{\phi}(z \mid x)$ is a simple factorized (mean-field) Gaussian:
+
+$$q_{\phi}(z \mid x) = \mathcal{N}(z; \mu, \operatorname{diag}(\sigma^2)),$$
+
+$$(\mu, \log \sigma) = \text{EncoderNeuralNet}_{\phi}(x),$$
+
+which implies a fully factorized distribution over the components of $z$:
+
+$$q_{\phi}(z \mid x) = \prod_{i} q_{\phi}(z_i \mid x) = \prod_{i} \mathcal{N}(z_i; \mu_i, \sigma_i^2),$$
+
+where $\mathcal{N}(z_i; \mu_i, \sigma_i^2)$ is the PDF of a univariate Gaussian.
+
+After reparameterization, the latent variable $z$ is expressed as a deterministic function of noise $\epsilon \sim \mathcal{N}(0, I)$:
+
+$$\epsilon \sim \mathcal{N}(0, I),$$
+
+$$(\mu, \log \sigma) = \text{EncoderNeuralNet}_{\phi}(x),$$
+
+$$z = \mu + \sigma \odot \epsilon,$$
+
+where $\odot$ denotes element-wise multiplication. The Jacobian of this transformation is a diagonal matrix:
+
+$$\frac{\partial z}{\partial \epsilon} = \operatorname{diag}(\sigma),$$
+
+whose determinant is simply the product of the diagonal elements. Therefore, the log-determinant becomes:
+
+$$\log d_{\phi}(x, \epsilon) = \log \det \left( \frac{\partial z}{\partial \epsilon} \right) = \sum_{i} \log \sigma_i.$$
+
+Using the change-of-variables formula, the log-density of the approximate posterior becomes:
+
+$$\log q_{\phi}(z \mid x) = \log p(\epsilon) - \log d_{\phi}(x, \epsilon),$$
+
+$$= \sum_{i} \log \mathcal{N}(\epsilon_i; 0, 1) - \log \sigma_i,$$
+
+where $z = g(\epsilon, \phi, x)$ is the reparameterized latent variable.
+
+## Estimating Marginal Likelihood via Importance Sampling
+
+After training a VAE, we may wish to estimate the marginal likelihood $\log p_{\theta}(x)$ of a datapoint under the generative model. Since exact computation is intractable, we can approximate it using *importance sampling*.
+
+The marginal likelihood can be expressed as an expectation under the variational posterior:
+
+$$\log p_{\theta}(x) = \log \mathbb{E}_{q_{\phi}(z \mid x)} \left[ \frac{p_{\theta}(x, z)}{q_{\phi}(z \mid x)} \right].$$
+
+This can be approximated using Monte Carlo sampling. Drawing $L$ samples $z^{(l)} \sim q_{\phi}(z \mid x)$, we obtain the following estimator:
+
+$$\log p_{\theta}(x) \approx \log \left( \frac{1}{L} \sum_{l=1}^{L} \frac{p_{\theta}(x, z^{(l)})}{q_{\phi}(z^{(l)} \mid x)} \right).$$
+
+As $L \to \infty$, this estimator converges to the true log marginal likelihood. When $L = 1$, it reduces to the standard ELBO estimator used in VAE training.
+
+This importance-weighted estimate can also be used as an objective function during training. This is the basis of the *Importance Weighted Autoencoder* (IWAE) introduced by Burda et al. (2015). In their work, it was shown that increasing $L$ yields a tighter bound on the true log-likelihood.
+
+However, a limitation of the IWAE approach is that importance weights tend to become highly imbalanced in high-dimensional latent spaces, making the estimator unreliable as dimensionality increases.
