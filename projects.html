@@ -24,7 +24,6 @@
             fontFamily: {
               sans: ["Inter", "system-ui", "sans-serif"],
             },
-            // Extending typography to customize prose styles
             typography: ({ theme }) => ({
               custom: {
                 css: {
@@ -52,37 +51,110 @@
         },
       };
     </script>
+    <style>
+      .project-preview {
+        max-height: 150px;
+        overflow: hidden;
+        position: relative;
+      }
+      
+      .project-preview.expanded {
+        max-height: none;
+      }
+      
+      .fade-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        background: linear-gradient(to bottom, transparent, white);
+        pointer-events: none;
+      }
+      
+      .dark .fade-overlay {
+        background: linear-gradient(to bottom, transparent, rgb(30, 41, 59));
+      }
+      
+      .project-preview.expanded .fade-overlay {
+        display: none;
+      }
+
+      .read-more-btn {
+        transition: all 0.3s ease;
+      }
+
+      .read-more-btn:hover {
+        transform: translateX(4px);
+      }
+
+      .project-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .project-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+      }
+
+      .icon-wrapper {
+        background: linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%);
+        border-radius: 12px;
+        padding: 12px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+      }
+
+      .project-number {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        background: linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%);
+        color: white;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 14px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+    </style>
   </head>
 
   <body
-    class="font-sans bg-slate-50 text-slate-700 dark:bg-slate-900 dark:text-slate-300 min-h-screen flex flex-col transition-colors duration-300"
+    class="font-sans bg-gradient-to-br from-slate-50 via-teal-50/30 to-slate-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-900 text-slate-700 dark:text-slate-300 min-h-screen flex flex-col transition-colors duration-300"
   >
     <div id="header-partial"></div>
 
-    <main class="flex-1 w-full max-w-6xl mx-auto px-4 pb-10 pt-28">
-      <div class="flex items-center gap-4 mb-8">
-        <i
-          data-lucide="folder-kanban"
-          class="w-8 h-8 text-teal-500 dark:text-teal-400"
-        ></i>
-        <h1
-          class="text-3xl sm:text-4xl font-bold text-teal-600 dark:text-teal-400"
-        >
-          Projects
+    <main class="flex-1 w-full max-w-7xl mx-auto px-4 pb-16 pt-28">
+      <!-- Header Section -->
+      <div class="mb-12 text-center">
+        <div class="inline-block mb-4">
+          <div class="icon-wrapper">
+            <i data-lucide="folder-kanban" class="w-8 h-8 text-white"></i>
+          </div>
+        </div>
+        <h1 class="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-teal-600 to-cyan-600 dark:from-teal-400 dark:to-cyan-400 bg-clip-text text-transparent mb-3">
+          Research Projects
         </h1>
+        <p class="text-slate-600 dark:text-slate-400 text-lg max-w-2xl mx-auto">
+          Exploring cutting-edge research in machine learning, NLP, and multimodal AI
+        </p>
       </div>
 
-      <div
-        id="projects-container"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-      ></div>
+      <!-- Projects Grid -->
+      <div id="projects-container" class="space-y-8"></div>
     </main>
 
     <div id="footer-partial"></div>
 
     <script src="scripts/partials.js"></script>
     <script>
-      // Configure marked.js to prevent it from altering header IDs (for C#, etc.)
       marked.setOptions({
         mangle: false,
         headerIds: false,
@@ -90,44 +162,111 @@
 
       const container = document.getElementById("projects-container");
 
-      // Load projects.md and create a card for each project
+      // Extract first 2-3 sentences for preview
+      function getPreview(text) {
+        const sentences = text.match(/[^.!?]+[.!?]+/g) || [];
+        const preview = sentences.slice(0, 2).join(' ');
+        return preview.trim();
+      }
+
+      // Extract title from markdown
+      function extractTitle(markdown) {
+        const match = markdown.match(/^#{1,3}\s+(.+)$/m);
+        return match ? match[1].trim() : 'Untitled Project';
+      }
+
+      // Remove title from content
+      function removeTitle(markdown) {
+        return markdown.replace(/^#{1,3}\s+.+$/m, '').trim();
+      }
+
       fetch("content/projects.md")
         .then((res) => {
           if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
           return res.text();
         })
         .then((md) => {
-          // Split the markdown file into chunks, using headings as delimiters.
-          // This regex splits the text at any line that starts with #, ##, or ###.
           const projects = md
             .split(/\n(?=#{1,3} )/)
             .filter((p) => p.trim() !== "");
 
-          // For each project chunk, create a styled card
-          projects.forEach((projectMarkdown) => {
-            const card = document.createElement("div");
-            card.className =
-              "flex flex-col rounded-2xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-lg shadow-lg border border-slate-200 dark:border-slate-700 p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1";
+          projects.forEach((projectMarkdown, index) => {
+            const title = extractTitle(projectMarkdown);
+            const content = removeTitle(projectMarkdown);
+            const plainText = content.replace(/[#*_`]/g, '');
+            const preview = getPreview(plainText);
+            const fullContentHtml = marked.parse(content);
+            const previewHtml = marked.parse(preview);
 
-            const contentHtml = marked.parse(projectMarkdown);
+            const card = document.createElement("div");
+            card.className = "project-card relative rounded-2xl bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl shadow-xl border border-slate-200/50 dark:border-slate-700/50 p-8 transition-all duration-300";
 
             card.innerHTML = `
-              <div class="prose prose-custom dark:prose-invert max-w-none prose-a:transition-colors prose-a:duration-200 hover:prose-a:text-teal-700 dark:hover:prose-a:text-teal-300">
-                ${contentHtml}
+              <div class="project-number">${index + 1}</div>
+              
+              <div class="mb-4">
+                <h2 class="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-3 pr-10">
+                  ${title}
+                </h2>
+                <div class="h-1 w-20 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full"></div>
               </div>
+
+              <div class="relative">
+                <div class="project-preview prose prose-custom dark:prose-invert max-w-none prose-p:text-slate-600 dark:prose-p:text-slate-300 prose-p:leading-relaxed" data-full-content='${JSON.stringify(fullContentHtml)}'>
+                  ${previewHtml}
+                  <div class="fade-overlay"></div>
+                </div>
+              </div>
+
+              <button class="read-more-btn mt-6 inline-flex items-center gap-2 text-teal-600 dark:text-teal-400 font-semibold hover:gap-3 group">
+                <span class="read-more-text">Read More</span>
+                <i data-lucide="chevron-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+              </button>
             `;
+
+            const previewDiv = card.querySelector('.project-preview');
+            const button = card.querySelector('.read-more-btn');
+            const buttonText = button.querySelector('.read-more-text');
+            const buttonIcon = button.querySelector('[data-lucide]');
+
+            button.addEventListener('click', () => {
+              const isExpanded = previewDiv.classList.contains('expanded');
+              
+              if (isExpanded) {
+                // Collapse
+                previewDiv.classList.remove('expanded');
+                previewDiv.innerHTML = previewHtml + '<div class="fade-overlay"></div>';
+                buttonText.textContent = 'Read More';
+                buttonIcon.setAttribute('data-lucide', 'chevron-right');
+              } else {
+                // Expand
+                previewDiv.classList.add('expanded');
+                const fullContent = JSON.parse(previewDiv.getAttribute('data-full-content'));
+                previewDiv.innerHTML = fullContent;
+                buttonText.textContent = 'Show Less';
+                buttonIcon.setAttribute('data-lucide', 'chevron-up');
+              }
+              
+              // Re-render icons
+              lucide.createIcons();
+            });
+
             container.appendChild(card);
           });
+
+          // Initial icon rendering
+          lucide.createIcons();
         })
         .catch((err) => {
           console.error(`Failed to load content/projects.md:`, err);
-          container.innerHTML = `<p class="text-slate-500 dark:text-slate-400 col-span-full">Could not load projects. Please check the console for errors.</p>`;
+          container.innerHTML = `
+            <div class="text-center py-12">
+              <i data-lucide="alert-circle" class="w-16 h-16 text-slate-400 dark:text-slate-600 mx-auto mb-4"></i>
+              <p class="text-slate-500 dark:text-slate-400 text-lg">Could not load projects. Please check the console for errors.</p>
+            </div>
+          `;
+          lucide.createIcons();
         });
-
-      // Re-render Lucide icons after content is loaded
-      setTimeout(() => {
-        lucide.createIcons();
-      }, 100); // A slightly longer timeout to ensure DOM updates
     </script>
   </body>
 </html>
