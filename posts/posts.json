@@ -2,22 +2,8 @@
   {
     "title": "Everything about VAE",
     "thumbnail": "./posts/thumbnails/data-structure.jfif",
-    "date": "2025-08-01",
+    "date": "2025-08-17",
     "summary": "My notes on Variational Auto Encoder (VAE). It includes all the necessary explanation and derivation for VAE starting from ELBO to Reparameterization Tricks and Posterior Collapse",
     "file": "vae.md"
-  },
-  {
-    "title": "Object Oriented Programming",
-    "thumbnail": "./posts/thumbnails/object-oriented-programming.jfif",
-    "date": "2025-08-01",
-    "summary": "My notes on the Object-Oriented Programming (OOP) paradigm. This covers key principles like encapsulation, inheritance, and polymorphism with practical examples.",
-    "file": "object-oriented-programming.md"
-  },
-  {
-    "title": "Machine Learning (NLP)",
-    "thumbnail": "./posts/thumbnails/machine-learning-nlp.jfif",
-    "date": "2025-08-01",
-    "summary": "My notes on Natural Language Processing (NLP), a subfield of AI that enables computers to understand and process human language for tasks like sentiment analysis.",
-    "file": "machine-learning.md"
   }
 ]

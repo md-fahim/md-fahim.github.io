@@ -5,7 +5,7 @@ In this repo
 - header.txt in partial folder makes the link and handle the view
 - jfif image format is used for faster image loading
 - For creating a new *post*, need to update **post.json** in poster folder 
-- For creating md file related to post use --- to get it into new page
+- While creating md file related to post use --- to get it into new page
 
 If we want to create a new path/new menu item, we need to follow the steps
 
