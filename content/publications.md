@@ -30,7 +30,7 @@ posts/publications/fruitquality.png
 [Author]
 Md Ayon Mia*, Akm Moshiur Rahman*, Khadiza Sultana*, Md Fahim* [Project Lead], Md Tahmid Hasan, Muhammad Ibrahim Khan, AKM Mahbubur Rahman
 [Paper]
-[https://drive.google.com/file/d/1ZHSYwcaCK5E-cgJJDnrTtdAYN5FJphH1/view?usp=sharing](https://drive.google.com/file/d/1ZHSYwcaCK5E-cgJJDnrTtdAYN5FJphH1/view?usp=sharing)
+[https://aclanthology.org/2025.emnlp-main.900/](https://aclanthology.org/2025.emnlp-main.900/)
 [Code]
 [https://github.com/Ayon128/BANMIME](https://github.com/Ayon128/BANMIME)
 [BIB]
@@ -48,7 +48,7 @@ posts/publications/fruitquality.png
 [Author]
 Md Mubtasim, Md Fahim, Tasnim Mohiuddin, AKM Mahabubur Rahman, Aman Chadha, Tariq Iqbal, M Ashraful Amin, Md Mofijul Islam, Amin Ahsan Ali
 [Paper]
-[https://arxiv.org/abs/2410.15017](https://arxiv.org/abs/2410.15017)
+[https://aclanthology.org/2025.findings-emnlp.1394/](https://aclanthology.org/2025.findings-emnlp.1394/)
 [Code]
 [https://github.com/mubtasimahasan/DM-Codec](https://github.com/mubtasimahasan/DM-Codec)
 [BIB]
