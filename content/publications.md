@@ -24,6 +24,41 @@ Findings of the Association for Computational Linguistics: EMNLP 2024
 ---
 
 [Title]
+R-MMA: Enhancing Vision-Language Models with Recurrent Adapters for Few-Shot and Cross-Domain Generalization
+[Image]
+posts/publications/fruitquality.png
+[Author]
+Md Fahim, Farhan Ishmam, Sazzat Hossain, Ashraful Amin, Amin Ahsan, AKM  Mahbubur
+[Paper]
+[https://drive.google.com/file/d/1diRwMGJFq-RtExrEwU7p26bxwRFRs4WR/view?usp=sharing](https://drive.google.com/file/d/1diRwMGJFq-RtExrEwU7p26bxwRFRs4WR/view?usp=sharing)
+[Code]
+[BIB]
+[Venue]
+IEEE/CVF Winter Conference on Applications of Computer Vision: WACV 2026
+[Year]
+2026
+
+
+---
+
+[Title]
+BanglaProtha: Evaluating Vision Language Models in Underrepresented Long-tail Cultural Contexts
+[Image]
+posts/publications/fruitquality.png
+[Author]
+Md Fahim*, Md Sakib Ul Rahman*, AKM Moshiur Rahman*, Fahan Ismam, Tasmim Rahman Adib, Fariha Tanjim, Fabiha Haider and Farhad Alam
+[Paper]
+[https://drive.google.com/file/d/1OaPnZryQDAKh-Z9sOR308udqroF5QSdd/view?usp=sharing](https://drive.google.com/file/d/1OaPnZryQDAKh-Z9sOR308udqroF5QSdd/view?usp=sharing)
+[Code]
+[BIB]
+[Venue]
+IEEE/CVF Winter Conference on Applications of Computer Vision: WACV 2026
+[Year]
+2026
+
+---
+
+[Title]
 BANMIME : Misogyny Detection with Metaphor Explanation on Bangla Memes
 [Image]
 posts/publications/fruitquality.png

@@ -1,3 +1,39 @@
+
+[Title]
+R-MMA: Enhancing Vision-Language Models with Recurrent Adapters for Few-Shot and Cross-Domain Generalization
+[Image]
+posts/publications/fruitquality.png
+[Author]
+Md Fahim, Farhan Ishmam, Sazzat Hossain, Ashraful Amin, Amin Ahsan, AKM  Mahbubur
+[Paper]
+[https://drive.google.com/file/d/1diRwMGJFq-RtExrEwU7p26bxwRFRs4WR/view?usp=sharing](https://drive.google.com/file/d/1diRwMGJFq-RtExrEwU7p26bxwRFRs4WR/view?usp=sharing)
+[Code]
+[BIB]
+[Venue]
+IEEE/CVF Winter Conference on Applications of Computer Vision: WACV 
+[Year]
+2026
+
+
+---
+
+[Title]
+BanglaProtha: Evaluating Vision Language Models in Underrepresented Long-tail Cultural Contexts
+[Image]
+posts/publications/fruitquality.png
+[Author]
+Md Fahim*, Md Sakib Ul Rahman*, AKM Moshiur Rahman*, Fahan Ismam, Tasmim Rahman Adib, Fariha Tanjim, Fabiha Haider and Farhad Alam
+[Paper]
+[https://drive.google.com/file/d/1OaPnZryQDAKh-Z9sOR308udqroF5QSdd/view?usp=sharing](https://drive.google.com/file/d/1OaPnZryQDAKh-Z9sOR308udqroF5QSdd/view?usp=sharing)
+[Code]
+[BIB]
+[Venue]
+IEEE/CVF Winter Conference on Applications of Computer Vision: WACV 
+[Year]
+2026
+
+---
+
 [Title]
 BanglaTLit: A benchmark dataset for back-transliteration of Romanized Bangla
 [Image]
@@ -17,7 +53,7 @@ Md Fahim, Fariha Shifat, Fabiha Haider, Deeparghya Barua, Md Sourove, Md Ishmam,
   year={2024}
 }
 [Venue]
-Findings of the Association for Computational Linguistics: EMNLP 2024
+Findings of the Association for Computational Linguistics: EMNLP 
 [Year]
 2024
 
@@ -58,7 +94,7 @@ Md Ayon Mia*, Akm Moshiur Rahman*, Khadiza Sultana*, Md Fahim* [Project Lead], M
     abstract = "Detecting misogyny in multimodal content remains a notable challenge, particularly in culturally conservative and low-resource contexts like Bangladesh. While existing research has explored hate speech and general meme classification, the nuanced identification of misogyny in Bangla memes, rich in metaphor, humor, and visual-textual interplay, remains severely underexplored. To address this gap, we introduce BanMiMe, the first comprehensive Bangla misogynistic meme dataset comprising 2,000 culturally grounded samples where each meme includes misogyny labels, humor categories, metaphor localization, and detailed human-written explanations. We benchmark the various performance of open and closed-source vision-language models (VLMs) under zero-shot and prompt-based settings and evaluate their capacity for both classification and explanation generation. Furthermore, we systematically explore multiple fine-tuning strategies, including standard, data-augmented, and Chain-of-Thought (CoT) supervision. Our results demonstrate that CoT-based fine-tuning consistently enhances model performance, both in terms of accuracy and in generating meaningful explanations. We envision BanMiMe as a foundational resource for advancing explainable multimodal moderation systems in low-resource and culturally sensitive settings."
 }
 [Venue]
-Empirical Methods in Natural Language Processing (EMNLP 2025): Main Conference
+Empirical Methods in Natural Language Processing (EMNLP): Main Conference
 [Year]
 2025
 
@@ -101,35 +137,8 @@ Md Mubtasim, Md Fahim, Tasnim Mohiuddin, AKM Mahabubur Rahman, Aman Chadha, Tari
     abstract = "Recent advancements in speech-language models have yielded significant improvements in speech tokenization and synthesis. However, effectively mapping the complex, multidimensional attributes of speech into discrete tokens remains challenging. This process demands acoustic, semantic, and contextual information for precise speech representations. Existing speech representations generally fall into two categories: acoustic tokens from audio codecs and semantic tokens from speech self-supervised learning models. Although recent efforts have unified acoustic and semantic tokens for improved performance, they overlook the crucial role of contextual representation in comprehensive speech modeling. Our empirical investigations reveal that the absence of contextual representations results in elevated Word Error Rate (WER) and Word Information Lost (WIL) scores in speech transcriptions. To address these limitations, we propose two novel distillation approaches: (1) a language model (LM)-guided distillation method that incorporates contextual information, and (2) a combined LM and self-supervised speech model (SM)-guided distillation technique that effectively distills multimodal representations (acoustic, semantic, and contextual) into a comprehensive speech tokenizer, termed DM-Codec. The DM-Codec architecture adopts a streamlined encoder-decoder framework with a Residual Vector Quantizer (RVQ) and incorporates the LM and SM during the training process. Experiments show DM-Codec significantly outperforms state-of-the-art speech tokenization models, reducing WER by up to 13.46{\%}, WIL by 9.82{\%}, and improving speech quality by 5.84{\%} and intelligibility by 1.85{\%} on the LibriSpeech benchmark dataset."
 }
 [Venue]
-Findings of the Association for Computational Linguistics: EMNLP 2025
+Findings of the Association for Computational Linguistics: EMNLP 
 [Year]
 2025
 
 ---
-
-[Title]
-ChitroJera: A Regionally Relevant Visual Question Answering Dataset for Bangla
-[Image]
-posts/publications/fruitquality.png
-[Author]
-Deeparghya Dutta*, Md Sakib Ul Rahman*, Md Fahim*, Fabiha Haider, Fariha Tanjim, Md Farhan Ishmam, Farhad Alam
-[Paper]
-[https://arxiv.org/abs/2410.14991](https://arxiv.org/abs/2410.14991)
-[Code]
-[https://github.com/farhanishmam/ChitroJera](https://github.com/farhanishmam/ChitroJera)
-[BIB]
-@inproceedings{barua2025chitrojera,
-  title={ChitroJera: A Regionally Relevant Visual Question Answering Dataset for Bangla},
-  author={Barua, Deeparghya Dutta and Sourove, Md Sakib Ul Rahman and Fahim, Md and Haider, Fabiha and Shifat, Fariha Tanjim and Rahman Adib, Md Tasmim and Uddin, Anam Borhan and Ishmam, Md Farhan and Alam, Md Farhad},
-  booktitle={Joint European Conference on Machine Learning and Knowledge Discovery in Databases},
-  pages={473--491},
-  year={2025},
-  organization={Springer}
-}
-[Venue]
-Joint European Conference on Machine Learning and Knowledge Discovery in Databases: ECML-PKDD 2025
-[Year]
-2025
-
----
-

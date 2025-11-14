@@ -1,7 +1,8 @@
 <h2>News and Updates</h2>
 
+- **Nov 2025:** Two Papers accepted in <a href="https://wacv.thecvf.com/">WACV 2026 </a> 🎉😍🎉.
 - **Oct 2025:** Two Papers accepted in <a href="https://2025.aaclnet.org/">IJCNLP-AACL 2025 </a> 🎉🎉
-- **Aug 2025:** Two Papers (Main:1; Findings: 1) accepted in <a href="https://2025.emnlp.org/">EMNLP 2025 </a> 🎉😍🎉.
+- **Aug 2025:** Two Papers (Main:1; Findings: 1) accepted in <a href="https://2025.emnlp.org/">EMNLP 2025 </a> 🎉😍🎉
 - **May 2025:** Paper accepted in <a href="https://ecmlpkdd.org/2025/">ECML-PKDD 2025 </a> 😍🎉
 - **January 2025:** Paper accepted in <a href="https://2025.naacl.org/">NAACL 2025 - Findings</a> 😍🎉
 - **September 2024:** Paper accepted in <a href="https://2024.emnlp.org/">EMNLP 2024 - Findings</a> 😍🎉
