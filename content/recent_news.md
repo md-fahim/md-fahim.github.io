@@ -1,7 +1,7 @@
 <h2>News and Updates</h2>
 
 - **Feb 2026:** Papers on Partial Finetuning accepted in <a href="https://lrec2026.info/">LREC 2026 </a> and Information Science (Q1, IF: 6.8, H: 245) 🎉.
-- **Dec 2025:** Eight Papers accepted in <a href="https://blp-workshop.github.io/">BLP Workshop 2025 </a> &  <a href="https://drive.google.com/file/d/139DMLtTYuIYrIBc2K7mp5jJStUeVsobY/view?usp=drive_link"> Got Best Paper Award </a> 🎉🎉.
+- **Dec 2025:** 8 Papers accepted in <a href="https://blp-workshop.github.io/">2nd BLP Workshop</a> &  <a href="https://drive.google.com/file/d/139DMLtTYuIYrIBc2K7mp5jJStUeVsobY/view?usp=drive_link"> Got Best Paper Award </a> 🎉🎉.
 - **Nov 2025:** Two Papers accepted in <a href="https://wacv.thecvf.com/">WACV 2026 </a> 🎉😍🎉.
 - **Oct 2025:** Two Papers accepted in <a href="https://2025.aaclnet.org/">IJCNLP-AACL 2025 </a> 🎉🎉
 - **Aug 2025:** Two Papers (Main:1; Findings: 1) accepted in <a href="https://2025.emnlp.org/">EMNLP 2025 </a> 🎉😍🎉

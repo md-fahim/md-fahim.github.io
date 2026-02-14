@@ -1,7 +1,17 @@
 ## Reviewer @ Prestigious AI/ML Conference
-**Description:** Served as a reviewer for ICLR 2026, ACL 2025, EMNLP 2025, NAACL 2025, EMNLP 2024 and ACL ARR
+**Description:** Served as a reviewer for ICLR, ACL, EMNLP, NAACL, and COLM
 **Date:** 2024-Present
 **Link:** [View Profile](https://openreview.net/profile?id=~Md_Fahim1)
+
+## Best Paper Award @ BLP 2025
+**Description:** Got Best Paper Award in 2nd Bangla Language Processing (BLP) Workshop 
+**Date:** Dec 2025
+**Link:** [Certificate](https://drive.google.com/file/d/1nEz3VhxaoKYwi54sUm7QuCb8j0vECXnz/view?usp=sharing)
+
+## Best Paper Award @ BLP 2023
+**Description:** Received Best Paper Award at 1st Bangla Language Processing Workshop @ EMNLP
+**Date:** Dec 2023
+**Link:** [Certificate](https://blp-workshop.github.io/2023/awards)
 
 ## Kaggle Expert (X3)
 **Description:** Participated in Several Competitions and Won 3 silver and 2 bronze Medals across Competition, Notebooks, and Discussion categories
@@ -12,10 +22,6 @@
 **Description:** In the top 20 teams among 3,500+ participants at Robi Datathon 3.0, Bangladesh's largest datathon
 **Date:** May 2024
 
-## Best Paper Award
-**Description:** Received Best Paper Award at 1st Bangla Language Processing Workshop @ EMNLP
-**Date:** Dec 2023
-**Link:** [Workshop Awards](https://blp-workshop.github.io/awards)
 
 ## Winner @ Sentiment Analysis Shared Task
 **Description:** Achieved 1st Place in Sentiment Analysis Shared Task at BLP Workshop
