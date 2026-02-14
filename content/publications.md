@@ -59,6 +59,23 @@ IEEE/CVF Winter Conference on Applications of Computer Vision: WACV 2026
 ---
 
 [Title]
+Training-free layer selection for partial fine-tuning of language models
+[Image]
+posts/publications/fruitquality.png
+[Author]
+Aldrin Kabya, Md Fahim, Md Tahmid Hasan, Akm Moshiur Rahman, Amin Ahsan Ali, AKM Mahbubur Rahman
+[Paper]
+[https://www.sciencedirect.com/science/article/pii/S0020025526001350](https://www.sciencedirect.com/science/article/pii/S0020025526001350)
+[Code]
+[BIB]
+[Venue]
+Information Sciences (Q1 Journal, IF: 6.8, H-Index: 243)
+[Year]
+2026
+
+---
+
+[Title]
 BANMIME : Misogyny Detection with Metaphor Explanation on Bangla Memes
 [Image]
 posts/publications/fruitquality.png
@@ -216,7 +233,7 @@ posts/publications/fruitquality.png
 [Author]
 Fariha Anjum*, Muhtasim Ibteda*, Abdullah Arean*, Mohammad Ashfaq, AKM Moshiur, Ahaj Mahhin, Md Fahim, Ashraful Amin, Amin Ahsan, AKM  Mahbubur
 [Paper]
-[https://drive.google.com/file/d/1xR8xuFb3QtEvTN_-WT1gqvhCJLK1jqoA/view?usp=sharing](https://drive.google.com/file/d/1xR8xuFb3QtEvTN_-WT1gqvhCJLK1jqoA/view?usp=sharing)
+[https://aclanthology.org/2025.findings-ijcnlp.134/](https://aclanthology.org/2025.findings-ijcnlp.134/)
 [Code]
 
 [BIB]
@@ -235,7 +252,7 @@ posts/publications/fruitquality.png
 [Author]
 Newaz Ben, AKM Moshiur, Mir Sazzat, Mysha Samiha, Alvi Noor, Md Fahim, Amin Ahsan,  Ashraful Islam, Ashraful Amin, AKM  Mahbubur
 [Paper]
-[https://drive.google.com/file/d/1Q2fqjyfJKw4GUVuDnZsk2PFwdE0H2ehN/view?usp=sharing](https://drive.google.com/file/d/1Q2fqjyfJKw4GUVuDnZsk2PFwdE0H2ehN/view?usp=sharing)
+[https://aclanthology.org/2025.findings-ijcnlp.135/](https://aclanthology.org/2025.findings-ijcnlp.135/)
 [Code]
 
 [BIB]
@@ -247,53 +264,6 @@ IJCNLP-AACL 2025
 
 ---
 
-
-
-[Title]
-BD at BEA 2025 Shared Task: MPNet Ensembles for Pedagogical Mistake Identification and Localization in AI Tutor Responses
-[Image]
-posts/publications/bdatbea.png
-[Author]
-S Rohan, IS Apan, MI Shochcho, Md Fahim, Mohammad Ashfaq Ur Rahman, AKM Rahman, et al.
-[Code]
-[Paper]
-[https://aclanthology.org/2025.bea-1.102/](https://aclanthology.org/2025.bea-1.102/)
-[BIB]
-@inproceedings{rohan-etal-2025-bd,
-title = "{BD} at {BEA} 2025 Shared Task: {MPN}et Ensembles for Pedagogical Mistake Identification and Localization in {AI} Tutor Responses",
-author = "Rohan, Shadman and
-Sur Apan, Ishita and
-Shochcho, Muhtasim Ibteda and
-Fahim, Md and
-Rahman, Mohammad Ashfaq Ur and
-Rahman, AKM Mahbubur and
-Ali, Amin Ahsan",
-editor = {Kochmar, Ekaterina and
-Alhafni, Bashar and
-Bexte, Marie and
-Burstein, Jill and
-Horbach, Andrea and
-Laarmann-Quante, Ronja and
-Tack, Ana{\"i}s and
-Yaneva, Victoria and
-Yuan, Zheng},
-booktitle = "Proceedings of the 20th Workshop on Innovative Use of NLP for Building Educational Applications (BEA 2025)",
-month = jul,
-year = "2025",
-address = "Vienna, Austria",
-publisher = "Association for Computational Linguistics",
-url = "https://aclanthology.org/2025.bea-1.102/",
-doi = "10.18653/v1/2025.bea-1.102",
-pages = "1266--1277",
-ISBN = "979-8-89176-270-1",
-abstract = "We present Team BD{'}s submission to the BEA 2025 Shared Task on Pedagogical Ability Assessment of AI-powered Tutors, under Track 1 (Mistake Identification) and Track 2 (Mistake Location). Both tracks involve three-class classification of tutor responses in educational dialogues {--} determining if a tutor correctly recognizes a student{'}s mistake (Track 1) and whether the tutor pinpoints the mistake{'}s location (Track 2). Our system is built on MPNet, a Transformer-based language modelthat combines BERT and XLNet{'}s pre-training advantages. We fine-tuned MPNet on the task data using a class-weighted cross-entropy loss to handle class imbalance, and leveraged grouped cross-validation (10 folds) to maximize the use of limited data while avoiding dialogue overlap between training and validation. We then performed a hard-voting ensemble of the best models from each fold, which improves robustness and generalization by combining multiple classifiers. Ourapproach achieved strong results on both tracks, with exact-match macro-F1 scores of approximately 0.7110 for Mistake Identification and 0.5543 for Mistake Location on the official test set. We include comprehensive analysis of our system{'}s performance, including confusion matrices and t-SNE visualizations to interpret classifier behavior, as well as a taxonomy of common errors with examples. We hope our ensemble-based approach and findings provide useful insights for designing reliable tutor response evaluation systems in educational dialogue settings."
-}
-[Venue]
-Proceedings of the 20th Workshop on Innovative Use of NLP for Building Educational Applications (BEA 2025)
-[Year]
-2025
-
----
 
 [Title]
 Improving the Performance of Transformer-based Models Over Classical Baselines in Multiple Transliterated Languages
