@@ -1,5 +1,6 @@
 <h2>News and Updates</h2>
 
+- **April 2026:** Two Papers accepted in <a href="https://2026.aclweb.org/">ACL 2026 </a> 🎉😍🎉.
 - **Feb 2026:** Papers on Partial Finetuning accepted in <a href="https://lrec2026.info/">LREC 2026 </a> and Information Science (Q1, IF: 6.8, H: 245) 🎉.
 - **Dec 2025:** 8 Papers accepted in <a href="https://blp-workshop.github.io/">2nd BLP Workshop</a> &  <a href="https://drive.google.com/file/d/139DMLtTYuIYrIBc2K7mp5jJStUeVsobY/view?usp=drive_link"> Got Best Paper Award </a> 🎉🎉.
 - **Nov 2025:** Two Papers accepted in <a href="https://wacv.thecvf.com/">WACV 2026 </a> 🎉😍🎉.
